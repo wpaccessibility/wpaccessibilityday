@@ -8,7 +8,6 @@ wp-blog-header.php
 wp-comments-post.php
 wp-config-sample.php
 wp-config.php
-wp-content/
 wp-cron.php
 wp-includes/
 wp-links-opml.php
@@ -19,6 +18,18 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
+wp-content/plugins/
+wp-content/uploads/
+wp-content/wp-rocket-config/
+wp-content/upgrade/
+wp-content/mu-plugins/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/index.php
+wp-content/themes/twenty*/
+wp-content/themes/gutenberg-starter-theme/
+wp-content/themes/index.php
 
 # ignore everything in the "wp-content" directory, except:
 !wp-content/themes/wp-accessibility-day/
