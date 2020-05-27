@@ -38,7 +38,7 @@
 				?>
 			</div><!-- .site-branding -->
 
-			<?php if ( !get_field('hide_menu') ) : ?>
+			<?php if ( ! function_exists( 'get_field' ) || ! get_field('hide_menu') ) : ?>
 			<nav id="site-navigation" class="main-navigation">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gutenberg-starter-theme' ); ?></button>
 				<?php
