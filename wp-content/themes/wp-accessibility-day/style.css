@@ -119,24 +119,28 @@ header,
 	margin-top: 0;
 }
 
-.site-branding .site-title a {
+.site-branding .site-title a,
+.site-branding .site-title .wrapper {
 	display: flex;
 	align-items: center;
 }
 
-.site-branding .site-title a img {
+.site-branding .site-title a img,
+.site-branding .site-title .wrapper img {
 	margin-right: 16px;
 	flex: 0 0 20%;
 	max-width: 80px;
 }
 
-.site-branding .site-title a span {
+.site-branding .site-title a span,
+.site-branding .site-title .wrapper span {
 	word-break: normal;
 	flex: 0 0 80%;
 }
 
 .site-branding .site-title a,
-.site-branding .site-title a span {
+.site-branding .site-title a span,
+.site-branding .site-title .wrapper span {
 	font-family: 'Patua One';
 	font-size: 30px;
 	font-weight: 400;
@@ -162,6 +166,13 @@ header,
 	border-radius: 18px;
 }
 
+#primary-menu .sub-menu a {
+	border-radius: 0;
+}
+#primary-menu .sub-menu li {
+	margin: 0;
+}
+
 #primary-menu .current_page_item a:hover,
 #primary-menu .current_page_item a:focus {
 	border: 2px solid var(--golden-sand);
@@ -172,8 +183,11 @@ header,
 	margin: auto 0 auto auto;
 }
 
-.site-header .main-navigation a {
+.site-header .main-navigation li {
 	margin: 0 .4em;
+}
+
+.site-header .main-navigation a {
 	border: 2px solid transparent;
 }
 
@@ -237,10 +251,6 @@ header,
 .entry-header,
 .entry-header .entry-title {
 	margin-bottom: 0;
-}
-
-.home h1.entry-title {
-	display: none;
 }
 
 .entry-header .subtitle .event-date {
