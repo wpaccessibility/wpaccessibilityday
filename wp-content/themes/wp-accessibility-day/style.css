@@ -33,7 +33,7 @@
 /* 1. Variables */
 :root {
 	--purple: #3D3D54;
-	--golden-sand: #DE954F;
+	--nebula: #d7e4e0;
 	--sand: #FCF4ED;
 	--slate-teal: #3E6688;
 	--petrol: #5D6E80;
@@ -52,6 +52,10 @@ h1,h2,h3,h4,h5,h6,
 a {
 	font-family: 'Karla';
 	color: var(--purple);
+}
+
+body {
+	background: var(--nebula);
 }
 
 #primary {
@@ -166,6 +170,10 @@ header,
 	border-radius: 18px;
 }
 
+#primary-menu .sub-menu {
+	background: #fff;
+}
+
 #primary-menu .sub-menu a {
 	border-radius: 0;
 }
@@ -175,7 +183,7 @@ header,
 
 #primary-menu .current_page_item a:hover,
 #primary-menu .current_page_item a:focus {
-	border: 2px solid var(--golden-sand);
+	border: 2px solid var(--nebula);
 }
 
 .site-header .main-navigation {
@@ -277,7 +285,7 @@ header,
 
 .entry-content h2::before {
 	content: '';
-	background: var(--golden-sand);
+	background: var(--nebula);
 	width: 14px;
 	height: 14px;
 	position: absolute;
