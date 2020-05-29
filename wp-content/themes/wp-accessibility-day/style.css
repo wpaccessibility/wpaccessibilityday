@@ -238,16 +238,6 @@ header,
 	position: relative;
 }
 
-.entry-header::before {
-	content: '';
-	display: block;
-	width: 740px;
-	position: absolute;
-	margin-left: -750px;
-	bottom: 10px;
-	border-bottom: 8px solid var(--slate-teal);
-}
-
 .entry-header,
 .entry-header .entry-title {
 	margin-bottom: 0;
