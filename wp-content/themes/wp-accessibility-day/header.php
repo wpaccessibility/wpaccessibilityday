@@ -28,9 +28,9 @@
 				// get custom logo
 				$custom_logo_id = get_theme_mod( 'custom_logo' );
 				$custom_logo_attr = array( 'class' => 'custom-logo', 'alt' => '' );
-
+				// Since front page h1 is the name of the site, don't use H1 on front page logo.
 				if ( is_front_page() ) : ?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )?><span><?php bloginfo( 'name' ); ?></span></a></h1>
+					<p class="site-title"><?php echo wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )?><span><?php bloginfo( 'name' ); ?></span></p>
 				<?php else : ?>
 					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )?><span><?php bloginfo( 'name' ); ?></span></a></p>
 				<?php
