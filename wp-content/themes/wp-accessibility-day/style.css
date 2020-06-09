@@ -32,13 +32,14 @@
 
 /* 1. Variables */
 :root {
-	--purple: #3D3D54;
+	--brown: #4f3a3a;
+	--dark-petrol: #232d30;
+	--green: #317a69;
 	--nebula: #d7e4e0;
-	--sand: #FCF4ED;
-	--slate-teal: #3E6688;
-	--petrol: #5D6E80;
-	--dark-petrol: #232D30;
-	--brown: #4F3A3A;
+	--petrol: #5d6e80;
+	--purple: #3d3d54;
+	--sand: #fcf4ed;
+	--slate-teal: #3e6688;
 }
 
 /* ============================================ */
@@ -152,28 +153,42 @@ header,
 
 /* 3.2 Header Menu */
 
-#primary-menu .current_page_item a,
 #primary-menu a:hover,
 #primary-menu a:focus {
+	color: var(--purple);
+	text-decoration: underline;
+}
+
+#primary-menu .current_page_item a {
 	background: var(--purple);
-	color: #fff;
 	border-radius: 18px;
-}
-
-#primary-menu .sub-menu {
-	background: #fff;
-}
-
-#primary-menu .sub-menu a {
-	border-radius: 0;
-}
-#primary-menu .sub-menu li {
-	margin: 0;
+	color: #fff;
 }
 
 #primary-menu .current_page_item a:hover,
 #primary-menu .current_page_item a:focus {
 	border: 2px solid var(--nebula);
+	color: #fff;
+	text-decoration: none;
+}
+
+#primary-menu .sub-menu,
+#primary-menu .current_page_item .sub-menu a {
+	background-color: var(--green);
+}
+
+#primary-menu .sub-menu li {
+	margin: 0;
+}
+
+#primary-menu .sub-menu a {
+	border-radius: 0;
+	color: #fff;
+}
+
+#primary-menu .sub-menu a:hover,
+#primary-menu .sub-menu a:focus {
+	text-decoration: underline;
 }
 
 .site-header .main-navigation li {
