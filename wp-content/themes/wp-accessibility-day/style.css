@@ -13,7 +13,7 @@
 
 /*
  General information:
- Fonts used: Karla, Patua One.
+ Fonts used: Inter.
  Colors: see 1. Variables.
  Breakpoints: 37.5em(600px),
 
@@ -31,15 +31,15 @@
 /* ============================================ */
 
 /* 1. Variables */
+
 :root {
-	--brown: #4f3a3a;
-	--dark-petrol: #232d30;
 	--green: #317a69;
+	--light-purple: #565676;
 	--nebula: #d7e4e0;
-	--petrol: #5d6e80;
+	--pearl: #fafafa;
 	--purple: #3d3d54;
-	--sand: #fcf4ed;
-	--slate-teal: #3e6688;
+	--sky-blue: #e6eff3;
+	--teal: #7dacbf;
 }
 
 /* ============================================ */
@@ -49,14 +49,19 @@
 body,
 p,
 span,
-h1,h2,h3,h4,h5,h6,
+h1, h2, h3, h4, h5, h6,
 a {
-	font-family: 'Karla';
 	color: var(--purple);
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
 }
 
 body {
 	background: var(--nebula);
+}
+
+h1 {
+	font-weight: 800;
 }
 
 #primary {
@@ -64,12 +69,12 @@ body {
 }
 
 a:hover {
-	color: var(--dark-petrol);
+	color: var(--purple);
 	text-decoration: none;
 }
 
 a:focus {
-	outline: var(--dark-petrol) thin dotted;
+	outline: var(--purple) thin dotted;
 }
 
 header,
@@ -80,16 +85,15 @@ header,
 	padding-right: 20px !important;
 }
 
-
 /* ============================================ */
 
 /* 3. Header */
 
 .site-header {
-	margin: 0 auto;
-	padding-top: 30px;
 	display: grid;
 	grid-template-columns: 1fr;
+	margin: 0 auto;
+	padding-top: 30px;
 }
 
 @media screen and (min-width: 37.5em) {
@@ -129,22 +133,21 @@ header,
 
 .site-branding .site-title a span,
 .site-branding .site-title .wrapper span {
-	word-break: normal;
 	flex: 0 0 80%;
+	font-weight: 600;
+	word-break: normal;
 }
 
 .site-branding .site-title a,
 .site-branding .site-title a span,
 .site-branding .site-title .wrapper span {
-	font-family: 'Patua One';
 	font-size: 30px;
-	font-weight: 400;
 	color: var(--purple);
 }
 
 .site-branding .site-title a:hover,
 .site-branding .site-title a:hover span {
-	color: var(--slate-teal);
+	color: var(--light-purple);
 }
 
 @media screen and (min-width: 37.5em) {
@@ -303,7 +306,7 @@ header,
 	line-height: 1.4;
 	margin-bottom: .3em;
 	margin-top: 0;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .entry-header .subtitle .event-time {
@@ -320,9 +323,9 @@ header,
 	background: linear-gradient(
 		-6deg,
 		transparent 30%,
-		var(--sand) 30%,
-		var(--sand) 70%,
-		var(--sand) 70%
+		var(--sky-blue) 30%,
+		var(--sky-blue) 70%,
+		var(--sky-blue) 70%
 	);
 }
 
@@ -351,14 +354,14 @@ input:focus {
 label {
 	display: block;
 	font-size: .75em;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 input[type="text"],
 input[type="email"] {
 	display: block;
 	background: rgba( 62, 102, 136, .1);
-	border: 2px solid var(--petrol);
+	border: 2px solid var(--teal);
 	border-radius: 2px;
 	width: 100%;
 	max-width: 492px;
@@ -369,18 +372,18 @@ input[type="email"] {
 input[type="submit"],
 button,
 .button {
-	font-family: 'Karla';
 	font-size: .75em;
-	font-weight: bold;
+	font-weight: 600;
 	color: #fff;
-	background: var(--slate-teal);
+	background: var(--green);
 	padding: 10px 20px;
 	border: none;
 }
+
 input[type="submit"]:hover,
 button:hover,
 .button {
-	background: var(--dark-petrol);
+	background: var(--purple);
 }
 
 .mc4wp-response {

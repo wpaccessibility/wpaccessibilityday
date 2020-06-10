@@ -44,15 +44,8 @@ class Theme {
 		);
 
 		wp_enqueue_style(
-			'karla-font',
-			'https://fonts.googleapis.com/css?family=Karla:400,700&display=swap',
-			array( $parent_style ),
-			wp_get_theme()->get( 'Version' )
-		);
-
-		wp_enqueue_style(
-			'patua-one-font',
-			'https://fonts.googleapis.com/css?family=Patua+One&display=swap',
+			'inter-font',
+			'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap',
 			array( $parent_style ),
 			wp_get_theme()->get( 'Version' )
 		);
