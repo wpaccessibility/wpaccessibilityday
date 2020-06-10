@@ -163,6 +163,7 @@ header,
 	background: var(--purple);
 	border-radius: 18px;
 	color: #fff;
+	padding: 0 .5em;
 }
 
 #primary-menu .current_page_item a:hover,
@@ -170,6 +171,11 @@ header,
 	border: 2px solid var(--nebula);
 	color: #fff;
 	text-decoration: none;
+}
+
+#primary-menu .sub-menu {
+	padding: 1em;
+	border-radius: 3px;
 }
 
 #primary-menu .sub-menu,
@@ -191,12 +197,18 @@ header,
 	text-decoration: underline;
 }
 
+.site-header .main-navigation ul ul {
+	box-shadow: none;
+}
+
 .site-header .main-navigation li {
-	margin: 0 .4em;
+	margin: 0 .9em;
 }
 
 .site-header .main-navigation a {
 	border: 2px solid transparent;
+	font-weight: 600;
+	padding: 0;
 }
 
 .site-header .main-navigation a:nth-of-type(last) {
