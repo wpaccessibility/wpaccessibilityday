@@ -227,6 +227,35 @@ header,
 	}
 }
 
+@media screen and (max-width: 37.5em) {
+	.site-header .main-navigation.toggled ul {
+		margin: .5em 0;
+	}
+
+	.site-header .main-navigation.toggled a {
+		text-align: left;
+	}
+
+	.site-header .main-navigation.toggled #primary-menu .sub-menu {
+		float: none;
+		position: static;
+		left: auto;
+		padding: 0 .5em;
+		border-left: 3px solid var(--green);
+		background: transparent;
+		margin: 0 .5em;
+	}
+	
+	.site-header .main-navigation.toggled #primary-menu .sub-menu li a {
+		color: inherit;
+	}
+
+	.site-header {
+		/* Disable grid */
+		display: block;
+	}
+}
+
 /* ============================================ */
 
 /* 4. Main Content */
