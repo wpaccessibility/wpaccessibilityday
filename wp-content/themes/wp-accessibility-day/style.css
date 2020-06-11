@@ -391,6 +391,15 @@ button:hover,
 	background: var(--purple);
 }
 
+.mc4wp-form {
+	background: var(--pearl);
+	padding: 1em 0;
+}
+
+.mc4wp-form input[type=email] {
+	margin-bottom: 4px;
+}
+
 .mc4wp-response {
 	font-size: 18px;
 	font-style: italic;
