@@ -420,3 +420,17 @@ button:hover,
 #colophon .site-info {
 	max-width: 720px;
 }
+
+.wp-block-button a {
+	background-color: var(--green);
+	color: #fff;
+	border-radius: 3px !important;
+	font-weight: 600;
+	font-size: 22px;
+}
+
+.wp-block-button.is-style-outline a {
+	border: 1px solid var(--green);
+	background-color: var(--pearl);
+	color: var(--purple);
+}
