@@ -365,13 +365,25 @@ label {
 input[type="text"],
 input[type="email"] {
 	display: block;
-	background: rgba( 62, 102, 136, .1);
+	background: rgba( 62, 102, 136, .2);
 	border: 2px solid var(--teal);
 	border-radius: 2px;
 	width: 100%;
 	max-width: 492px;
 	height: 44px;
 	margin-bottom: 12px;
+}
+
+textarea {
+	border-radius: 2px;
+	background: rgba( 62, 102, 136, .1);
+	border: 2px solid var(--teal);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+	background: var(--pearl);
 }
 
 input[type="submit"],
