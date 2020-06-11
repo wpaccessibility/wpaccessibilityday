@@ -416,3 +416,7 @@ button:hover,
 	font-size: 18px;
 	font-style: italic;
 }
+
+#colophon .site-info {
+	max-width: 720px;
+}
