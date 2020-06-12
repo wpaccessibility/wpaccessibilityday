@@ -340,18 +340,6 @@ header,
 
 /* 4.2 Entry Content */
 
-.entry-content {
-	background: linear-gradient(
-		-6deg,
-		transparent 30%,
-		var(--sky-blue) 30%,
-		var(--sky-blue) 70%,
-		var(--sky-blue) 70%
-	);
-	margin-top: -20px;
-	padding-top: 32px;
-}
-
 .entry-content p:first-child {
 	margin-top: 0;
 }
