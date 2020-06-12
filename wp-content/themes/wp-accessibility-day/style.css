@@ -47,8 +47,6 @@
 /* 2. General */
 
 body,
-p,
-span,
 h1, h2, h3, h4, h5, h6,
 a,
 input,
@@ -65,16 +63,24 @@ body {
 	background: var(--nebula);
 }
 
-h1 {
+b,
+strong {
+	font-weight: 600;
+}
+
+h1,
+h2 {
 	font-weight: 800;
 }
 
 #primary {
 	font-size: 24px;
+	font-size: 1.5rem;
 }
 
-a:hover {
-	color: var(--purple);
+a:hover,
+a:focus {
+	color: var(--light-purple);
 	text-decoration: none;
 }
 
@@ -113,45 +119,40 @@ header,
 /* 3.1 Header Branding */
 
 .site-branding {
-	text-align: unset;
 	margin: 1em 0;
+	text-align: unset;
 }
 
 .site-branding .site-title {
 	line-height: 1;
-	word-break: break-word;
 	margin-top: 0;
+	word-break: break-word;
 }
 
 .site-branding .site-title a,
 .site-branding .site-title .wrapper {
-	display: flex;
 	align-items: center;
+	display: flex;
 }
 
 .site-branding .site-title a img,
 .site-branding .site-title .wrapper img {
-	margin-right: 16px;
 	flex: 0 0 20%;
+	margin-right: 16px;
 	max-width: 80px;
 }
 
 .site-branding .site-title a span,
 .site-branding .site-title .wrapper span {
 	flex: 0 0 80%;
+	font-size: 30px;
+	font-size: 1.875rem;
 	font-weight: 600;
 	word-break: normal;
 }
 
-.site-branding .site-title a,
-.site-branding .site-title a span,
-.site-branding .site-title .wrapper span {
-	font-size: 30px;
-	color: var(--purple);
-}
-
 .site-branding .site-title a:hover,
-.site-branding .site-title a:hover span {
+.site-branding .site-title a:focus {
 	color: var(--light-purple);
 }
 
@@ -170,25 +171,25 @@ header,
 #primary-menu .current_page_item a {
 	background: var(--purple);
 	border-radius: 18px;
-	color: #fff;
+	color: var(--pearl);
 	padding: 0 .5em;
 }
 
 #primary-menu .current_page_item a:hover,
 #primary-menu .current_page_item a:focus {
 	border: 2px solid var(--nebula);
-	color: #fff;
+	color: var(--pearl);
 	text-decoration: none;
 }
 
 #primary-menu .sub-menu {
-	padding: 1em;
 	border-radius: 3px;
+	padding: 1em;
 }
 
 #primary-menu .sub-menu,
 #primary-menu .current_page_item .sub-menu a {
-	background-color: var(--green);
+	background: var(--green);
 }
 
 #primary-menu .sub-menu li {
@@ -197,7 +198,7 @@ header,
 
 #primary-menu .sub-menu a {
 	border-radius: 0;
-	color: #fff;
+	color: var(--pearl);
 }
 
 #primary-menu .sub-menu a:hover,
@@ -273,6 +274,7 @@ header,
 	.home .entry-content {
 		position: relative;
 	}
+
 	.home .entry-content::before {
 		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/wave-decoration-symbol.svg');
 		display: block;
@@ -283,6 +285,7 @@ header,
 		top: -30px;
 		right: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
 	}
+
 	.home .entry-content::after {
 		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/corners-decoration-symbol.svg');
 		display: block;
@@ -307,11 +310,12 @@ header,
 }
 
 .entry-header .subtitle .event-date {
-	font-size: 2.44em;
+	font-size: 40px;
+	font-size: 2.5rem;
+	font-weight: 600;
 	line-height: 1.4;
 	margin-bottom: .3em;
 	margin-top: 0;
-	font-weight: 600;
 }
 
 .entry-header .subtitle .event-time {
@@ -323,8 +327,6 @@ header,
 /* 4.2 Entry Content */
 
 .entry-content {
-	padding-top: 32px;
-	margin-top: -20px;
 	background: linear-gradient(
 		-6deg,
 		transparent 30%,
@@ -332,6 +334,8 @@ header,
 		var(--sky-blue) 70%,
 		var(--sky-blue) 70%
 	);
+	margin-top: -20px;
+	padding-top: 32px;
 }
 
 .entry-content p:first-child {
@@ -339,45 +343,45 @@ header,
 }
 
 .entry-content h2::before {
-	content: '';
 	background: var(--nebula);
-	width: 14px;
+	content: '';
 	height: 14px;
-	position: absolute;
 	margin-left: -20px;
 	margin-top: 26px;
+	position: absolute;
+	width: 14px;
 }
 
 /* ============================================ */
 
 /* 5. Forms */
 input:focus {
-	outline: #191e23 2px dotted;
+	outline: var(--purple) 2px dotted;
 	outline-offset: 2px
 }
 
 label {
 	display: block;
-	font-size: .75em;
+	font-size: 12px;
+	font-size: .75rem;
 	font-weight: 600;
 }
 
 input[type="text"],
-input[type="email"] {
-	display: block;
-	background: rgba( 62, 102, 136, .2);
+input[type="email"],
+textarea {
+	background: var(--sky-blue);
 	border: 2px solid var(--teal);
 	border-radius: 2px;
-	width: 100%;
+	display: block;
 	max-width: 492px;
-	height: 44px;
 	margin-bottom: 12px;
+	width: 100%;
 }
 
-textarea {
-	border-radius: 2px;
-	background: rgba( 62, 102, 136, .1);
-	border: 2px solid var(--teal);
+input[type="text"],
+input[type="email"] {
+	height: 44px;
 }
 
 input[type="text"]:focus,
@@ -389,17 +393,21 @@ textarea:focus {
 input[type="submit"],
 button,
 .button {
+	background: var(--green);
+	border: none;
+	color: var(--pearl);
+	font-size: 12px;
 	font-size: .75em;
 	font-weight: 600;
-	color: #fff;
-	background: var(--green);
 	padding: 10px 20px;
-	border: none;
 }
 
 input[type="submit"]:hover,
+input[type="submit"]:focus,
 button:hover,
-.button {
+button:focus,
+.button:hover,
+.button:focus {
 	background: var(--purple);
 }
 
@@ -414,6 +422,7 @@ button:hover,
 
 .mc4wp-response {
 	font-size: 18px;
+	font-size: 1.125rem;
 	font-style: italic;
 }
 
@@ -422,15 +431,16 @@ button:hover,
 }
 
 .wp-block-button a {
-	background-color: var(--green);
-	color: #fff;
+	background: var(--green);
 	border-radius: 3px !important;
+	color: var(--pearl);
 	font-weight: 600;
 	font-size: 22px;
+	font-size: 1.375rem;
 }
 
 .wp-block-button.is-style-outline a {
+	background: var(--pearl);
 	border: 1px solid var(--green);
-	background-color: var(--pearl);
 	color: var(--purple);
 }
