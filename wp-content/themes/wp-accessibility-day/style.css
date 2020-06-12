@@ -116,6 +116,14 @@ header,
 	}
 }
 
+.a11y-background-svg {
+	right: 0;
+	position: absolute;
+	top: 0;
+	width: 80%;
+	z-index: -10;
+}
+
 /* 3.1 Header Branding */
 
 .site-branding {
@@ -275,6 +283,7 @@ header,
 		position: relative;
 	}
 
+	/*
 	.home .entry-content::before {
 		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/wave-decoration-symbol.svg');
 		display: block;
@@ -296,6 +305,7 @@ header,
 		top: 320px;
 		left: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
 	}
+	*/
 }
 
 /* 4.1 Entry Header */
