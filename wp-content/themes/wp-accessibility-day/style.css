@@ -299,6 +299,13 @@ header,
 		position: relative;
 	}
 
+	.entry-content h2,
+	.entry-content h3 {
+		line-height: 1.1;
+		width: 33%;
+		min-width: 360px;
+	}
+
 }
 
 /* 4.1 Entry Header */
