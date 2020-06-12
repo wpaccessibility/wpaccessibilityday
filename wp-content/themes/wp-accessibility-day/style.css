@@ -402,6 +402,7 @@ button:focus,
 .mc4wp-form {
 	background: var(--pearl);
 	padding: 1em 0;
+	border-radius: 4px;
 }
 
 .mc4wp-form input[type=email] {
