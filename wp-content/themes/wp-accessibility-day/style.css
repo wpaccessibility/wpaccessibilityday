@@ -356,16 +356,6 @@ header,
 	margin-top: 0;
 }
 
-.entry-content h2::before {
-	background: var(--nebula);
-	content: '';
-	height: 14px;
-	margin-left: -20px;
-	margin-top: 26px;
-	position: absolute;
-	width: 14px;
-}
-
 /* ============================================ */
 
 /* 5. Forms */
