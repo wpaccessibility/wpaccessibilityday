@@ -39,6 +39,7 @@
 	--pearl: #fafafa;
 	--purple: #3d3d54;
 	--sky-blue: #e6eff3;
+	--sky-blue-transparent: #e6eff388;
 	--teal: #7dacbf;
 }
 
@@ -74,8 +75,8 @@ h2 {
 }
 
 #primary {
-	font-size: 24px;
-	font-size: 1.5rem;
+	font-size: 20px;
+	font-size: 1.25rem;
 }
 
 a:hover,
@@ -88,8 +89,13 @@ a:focus {
 	outline: var(--purple) thin dotted;
 }
 
+code, kbd, tt, var {
+	font-size: 1.3rem;
+}
+
 header,
 .entry-header,
+.entry-footer,
 .entry-content {
 	max-width: 960px !important;
 	padding-left: 20px !important;
@@ -99,13 +105,31 @@ header,
 
 .entry-content > * {
 	max-width: 660px !important;
-	margin: 36px 0 !important;
+	margin: 36px !important;
 	padding-left: 36px !important;
 	padding-right: 36px !important;
 }
 
 .entry-content .wp-block-columns {
 	max-width: 100% !important;
+}
+
+.blog .entry-content,
+.archive .entry-content {
+	background: linear-gradient(
+		-6deg,
+		transparent 30%,
+		var(--sky-blue-transparent) 30%,
+		var(--sky-blue-transparent) 70%,
+		var(--sky-blue-transparent) 70%
+	);
+	padding-top: 10px;
+}
+
+.entry-meta,
+.entry-footer {
+	color: var(--light-purple);
+	border-bottom: none;
 }
 
 /* ============================================ */
