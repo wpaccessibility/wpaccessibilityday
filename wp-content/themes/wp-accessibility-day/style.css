@@ -105,7 +105,7 @@ header,
 
 .entry-content > * {
 	max-width: 660px !important;
-	margin: 36px !important;
+	margin: 36px -36px !important;
 	padding-left: 36px !important;
 	padding-right: 36px !important;
 }
