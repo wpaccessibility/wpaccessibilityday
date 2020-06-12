@@ -267,6 +267,10 @@ header,
 		color: inherit;
 	}
 
+	.site-header .main-navigation.toggled #primary-menu .sub-menu li.current_page_item a {
+		color: var(--pearl);
+	}
+
 	.site-header {
 		/* Disable grid */
 		display: block;
