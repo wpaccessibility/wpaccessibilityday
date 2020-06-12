@@ -327,7 +327,7 @@ header,
 	.entry-content h3 {
 		line-height: 1.1;
 		width: 33%;
-		min-width: 360px;
+		min-width: 320px;
 	}
 
 }
@@ -340,14 +340,18 @@ header,
 
 .entry-header,
 .entry-header .entry-title {
+	font-size: 64px;
 	margin-bottom: 0;
 }
 
-.entry-header .subtitle .event-date {
+.entry-header .subtitle {
 	font-size: 40px;
 	font-size: 2.5rem;
 	font-weight: 600;
 	line-height: 1.4;
+}
+
+.entry-header .subtitle .event-date {
 	margin-bottom: .3em;
 	margin-top: 0;
 }
