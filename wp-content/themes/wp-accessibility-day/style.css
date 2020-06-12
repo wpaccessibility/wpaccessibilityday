@@ -299,29 +299,6 @@ header,
 		position: relative;
 	}
 
-	/*
-	.home .entry-content::before {
-		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/wave-decoration-symbol.svg');
-		display: block;
-		width: 125px;
-		height: 125px;
-		position: absolute;
-		opacity: .6;
-		top: -30px;
-		right: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
-	}
-
-	.home .entry-content::after {
-		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/corners-decoration-symbol.svg');
-		display: block;
-		width: 125px;
-		height: 125px;
-		position: absolute;
-		opacity: .6;
-		top: 320px;
-		left: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
-	}
-	*/
 }
 
 /* 4.1 Entry Header */
