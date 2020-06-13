@@ -95,12 +95,12 @@ code, kbd, tt, var {
 
 header,
 .entry-header,
-.entry-footer,
-.entry-content {
+.entry-content,
+.entry-footer {
 	max-width: 960px !important;
+	margin: 0 auto;
 	padding-left: 20px !important;
 	padding-right: 20px !important;
-	margin: 0 auto;
 }
 
 .entry-content > * {
@@ -322,7 +322,6 @@ header,
 	.home .entry-content {
 		position: relative;
 	}
-
 }
 
 /* 4.1 Entry Header */
@@ -334,6 +333,7 @@ header,
 .entry-header,
 .entry-header .entry-title {
 	font-size: 64px;
+	font-size: 4rem;
 	margin-bottom: 0;
 }
 
@@ -453,4 +453,10 @@ button:focus,
 	background: var(--pearl);
 	border: 1px solid var(--green);
 	color: var(--purple);
+}
+
+.pearl-box {
+	background: var(--pearl);
+	border-radius: 6px;
+	padding: 2em;
 }
