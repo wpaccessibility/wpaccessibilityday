@@ -464,3 +464,41 @@ button:focus,
 .entry-content ul {
 	list-style: url(./assets/images/list-tick.svg);
 }
+
+.trapezoid {
+	background: linear-gradient(
+		transparent 25%,
+		var(--sky-blue) 25%,
+		var(--sky-blue) 75%,
+		transparent 75%
+	);
+	position: relative;
+}
+
+.trapezoid::before {
+	background: linear-gradient( var(--sky-blue) 50%, transparent 50% );
+	clip-path: inset(0 round 6px);
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 1.75em;
+	z-index: -5;
+
+}
+
+.trapezoid::after {
+	background: linear-gradient( transparent 50%, var(--sky-blue) 50% );
+	clip-path: inset(0 round 6px);
+	bottom: 0;
+	content: '';
+	left: 0;
+	margin-bottom: -1em;
+	padding-bottom: 1em;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform:skewY(6deg);
+	z-index: -5;
+}
