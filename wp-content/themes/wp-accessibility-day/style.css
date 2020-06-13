@@ -460,3 +460,7 @@ button:focus,
 	border-radius: 6px;
 	padding: 2em;
 }
+
+.entry-content ul {
+	list-style: url(./assets/images/list-tick.svg);
+}
