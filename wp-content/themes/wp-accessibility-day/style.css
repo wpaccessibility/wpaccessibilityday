@@ -461,6 +461,11 @@ button:focus,
 	font-size: 1.375rem;
 }
 
+.wp-block-button a:hover,
+.wp-block-button a:focus {
+	text-decoration: underline;
+}
+
 .wp-block-button.is-style-outline a {
 	background: var(--pearl);
 	border: 1px solid var(--green);
