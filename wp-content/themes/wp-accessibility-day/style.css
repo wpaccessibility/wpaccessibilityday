@@ -99,19 +99,32 @@ header,
 .entry-footer {
 	max-width: 960px !important;
 	margin: 0 auto;
-	padding-left: 20px !important;
-	padding-right: 20px !important;
-}
-
-.entry-content > * {
-	max-width: 660px !important;
-	margin: 36px -36px !important;
 	padding-left: 36px !important;
 	padding-right: 36px !important;
 }
 
-.entry-content .wp-block-columns {
-	max-width: 100% !important;
+.entry-content > * {
+	max-width: 660px;
+	margin: 36px 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.wp-block-group > .wp-block-group__inner-container .wp-block-columns {
+	max-width: 100%;
+}
+
+.entry-content .trapezoid, .entry-content .pearl-box {
+	padding: 36px !important;
+}
+
+.entry-content > .pearl-box {
+	margin-left: -36px !important;
+}
+
+.entry-content .trapezoid {
+	max-width: 100%;
+	margin: 36px -36px !important;
 }
 
 .blog .entry-content,
@@ -330,7 +343,6 @@ header,
 	position: relative;
 }
 
-.entry-header,
 .entry-header .entry-title {
 	font-size: 64px;
 	font-size: 4rem;
@@ -418,12 +430,6 @@ button:focus,
 .button:hover,
 .button:focus {
 	background: var(--purple);
-}
-
-.mc4wp-form {
-	background: var(--pearl);
-	padding: 1em 0;
-	border-radius: 4px;
 }
 
 .mc4wp-form input[type=email] {
