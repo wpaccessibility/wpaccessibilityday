@@ -39,14 +39,3 @@ add_action( 'after_setup_theme', 'wp_accessibility_day_text_domain' );
 
 // Instantiate theme.
 Theme::get_instance();
-
-// Add subtitle to home page
-function wpad_home_subtitle() {
-	global $post;
-	if ( function_exists( 'get_field' ) ) {
-		echo '<div class="subtitle">' . get_field( 'subtitle_content', $post->ID ) . '</div>';
-	} else {
-		echo '<div class="subtitle"><p class="event-date">October 2nd, 2020</p><p><a href="https://www.timeanddate.com/worldclock/fixedtime.html?hour=18&amp;min=00&amp;sec=0" class="customize-unpreviewable">From 18:00 UTC</a></p></div>';
-	}
-}
-add_action( 'wpad_entry_header', 'wpad_home_subtitle' );
