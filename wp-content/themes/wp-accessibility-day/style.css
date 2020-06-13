@@ -188,6 +188,7 @@ header,
 .site-branding .site-title .wrapper {
 	align-items: center;
 	display: flex;
+	color: var(--purple);
 }
 
 .site-branding .site-title a img,
