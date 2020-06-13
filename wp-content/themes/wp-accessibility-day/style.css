@@ -110,20 +110,18 @@ header,
 	padding-right: 0 !important;
 }
 
-.wp-block-group > .wp-block-group__inner-container .wp-block-columns {
-	max-width: 100%;
+.wp-block-group > .wp-block-group__inner-container > * {
+	max-width: 100% !important;
 }
 
-.entry-content .trapezoid, .entry-content .pearl-box {
+.entry-content .trapezoid,
+.entry-content .pearl-box {
 	padding: 36px !important;
-}
-
-.entry-content > .pearl-box {
-	margin-left: -36px !important;
 }
 
 .entry-content .trapezoid {
 	max-width: 100%;
+	padding-top: 0 !important;
 	margin: 36px -36px !important;
 }
 
@@ -290,6 +288,14 @@ header,
 
 	.main-navigation ul {
 		justify-content: flex-start;
+	}
+
+	.entry-content .trapezoid .pearl-box {
+		margin-top: -72px;
+	}
+	
+	.entry-content > .pearl-box {
+		margin-left: -36px !important;
 	}
 }
 
