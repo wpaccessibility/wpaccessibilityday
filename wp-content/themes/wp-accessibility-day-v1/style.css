@@ -1,0 +1,335 @@
+/*
+ Theme Name:   WP Accessibility Day
+ Theme URI:    wpaccessibilityday.org/
+ Description:  WP Accessibility Day Theme
+ Author:       WordPress Contributors
+ Author URI:   http://wordpress.org
+ Template:     gutenberg-starter-theme
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  wpaccessibilityday
+ */
+
+/*
+ General information:
+ Fonts used: Karla, Patua One.
+ Colors: see 1. Variables.
+ Breakpoints: 37.5em(600px),
+
+ TOC
+ 1. Variables
+ 2. General
+ 3. Header
+ 3.1 Header Branding
+ 3.2 Header Menu
+ 4. Main Content
+ 4.1 Entry Header
+ 5. Forms
+ */
+
+/* ============================================ */
+
+/* 1. Variables */
+:root {
+	--purple: #3D3D54;
+	--golden-sand: #DE954F;
+	--sand: #FCF4ED;
+	--slate-teal: #3E6688;
+	--petrol: #5D6E80;
+	--dark-petrol: #232D30;
+	--brown: #4F3A3A;
+}
+
+/* ============================================ */
+
+/* 2. General */
+
+body,
+p,
+span,
+h1,h2,h3,h4,h5,h6,
+a {
+	font-family: 'Karla';
+	color: var(--purple);
+}
+
+#primary {
+	font-size: 24px;
+}
+
+a:hover {
+	color: var(--dark-petrol);
+	text-decoration: none;
+}
+
+a:focus {
+	outline: var(--dark-petrol) thin dotted;
+}
+
+header,
+.entry-header,
+.entry-content > * {
+	max-width: 800px !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+}
+
+
+/* ============================================ */
+
+/* 3. Header */
+
+.site-header {
+	margin: 0 auto;
+	padding-top: 60px;
+}
+
+.site-branding {
+	margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 37.5em) {
+
+	.site-header {
+		display: grid;
+		grid-template-columns: 1fr 150px;
+		justify-content: center;
+		grid-gap: 20px;
+	}
+
+	.site-branding {
+		margin-bottom: 0;
+	}
+}
+
+/* 3.1 Header Branding */
+
+.site-branding {
+	text-align: unset;
+	/* display: grid;
+	grid-template-columns: 120px 250px;
+	grid-gap: 20px; */
+	margin: 0;
+}
+
+.site-branding .site-title {
+	line-height: 1;
+	word-break: break-word;
+	margin-top: 0;
+}
+
+.site-branding .site-title a {
+	display: flex;
+	align-items: center;
+}
+
+.site-branding .site-title a img {
+	margin-right: 16px;
+	flex: 0 0 40%;
+}
+
+.site-branding .site-title a span {
+	word-break: normal;
+	flex: 0 0 60%;
+}
+
+.site-branding .site-title a,
+.site-branding .site-title a span {
+	font-family: 'Patua One';
+	font-size: 30px;
+	font-weight: 400;
+	color: var(--purple);
+}
+
+.site-branding .site-title a:hover,
+.site-branding .site-title a:hover span {
+	color: var(--slate-teal);
+}
+
+@media screen and (min-width: 37.5em) {
+	.site-branding .site-title a,
+	.site-branding .site-title a span {
+		font-size: 60px;
+	}
+
+	.site-branding .site-title a img {
+		flex: auto;
+	}
+
+	.site-branding .site-title a span {
+		flex: auto;
+	}
+}
+
+/* 3.2 Header Menu */
+
+#primary-menu .current_page_item {
+	font-weight: 700;
+}
+
+#primary-menu .current_page_item::before {
+	content: '';
+	background: var(--golden-sand);
+	width: 7px;
+	height: 7px;
+	position: absolute;
+	left: -5px;
+	top: 10px;
+}
+
+.site-header .main-navigation {
+	padding-left: 10px;
+}
+
+@media screen and (min-width: 37.5em) {
+	.main-navigation ul {
+		justify-content: flex-start;
+	}
+}
+
+/* ============================================ */
+
+/* 4. Main Content */
+
+@media screen and (min-width: 37.5em) {
+
+	.home .entry-content {
+		position: relative;
+	}
+	.home .entry-content::before {
+		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/wave-decoration-symbol.svg');
+		display: block;
+		width: 125px;
+		height: 125px;
+		position: absolute;
+		opacity: .6;
+		top: -30px;
+		right: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
+	}
+	.home .entry-content::after {
+		content: url('/wpaccessibilityday/wp-content/uploads/2020/04/corners-decoration-symbol.svg');
+		display: block;
+		width: 125px;
+		height: 125px;
+		position: absolute;
+		opacity: .6;
+		top: 320px;
+		left: calc( ( ( 100vw - 800px ) / 2 ) - 125px );
+	}
+}
+
+/* 4.1 Entry Header */
+
+.entry-header {
+	position: relative;
+}
+
+.entry-header::before {
+	content: '';
+	display: block;
+	width: 740px;
+	position: absolute;
+	margin-left: -750px;
+	bottom: 10px;
+	border-bottom: 8px solid var(--slate-teal);
+}
+
+.entry-header,
+.entry-header .entry-title {
+	margin-bottom: 0;
+}
+
+.home h1.entry-title {
+	display: none;
+}
+
+.entry-header .subtitle .event-date {
+	font-size: 2.44em;
+	line-height: 1.4;
+	margin-bottom: .3em;
+	margin-top: 0;
+	font-weight: bold;
+}
+
+.entry-header .subtitle .event-time {
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 10;
+}
+
+/* 4.2 Entry Content */
+
+.entry-content {
+	padding-top: 32px;
+	margin-top: -20px;
+	background: linear-gradient(
+		-6deg,
+		transparent 30%,
+		var(--sand) 30%,
+		var(--sand) 70%,
+		var(--sand) 70%
+	);
+}
+
+.entry-content p:first-child {
+	margin-top: 0;
+}
+
+.entry-content h2::before {
+	content: '';
+	background: var(--golden-sand);
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	margin-left: -20px;
+	margin-top: 26px;
+}
+
+/* ============================================ */
+
+/* 5. Forms */
+input:focus {
+	outline: #191e23 2px dotted;
+	outline-offset: 2px
+}
+
+label {
+	display: block;
+	font-size: .75em;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+	display: block;
+	background: rgba( 62, 102, 136, .1);
+	border: 2px solid var(--petrol);
+	border-radius: 2px;
+	width: 100%;
+	max-width: 492px;
+	height: 44px;
+	margin-bottom: 12px;
+}
+
+input[type="submit"],
+button,
+.button {
+	font-family: 'Karla';
+	font-size: .75em;
+	font-weight: bold;
+	color: #fff;
+	background: var(--slate-teal);
+	padding: 10px 20px;
+	border: none;
+}
+input[type="submit"]:hover,
+button:hover,
+.button {
+	background: var(--dark-petrol);
+}
+
+.mc4wp-response {
+	font-size: 18px;
+	font-style: italic;
+}
