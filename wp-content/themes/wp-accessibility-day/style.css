@@ -298,6 +298,11 @@ header,
 	.entry-content > .pearl-box {
 		margin-left: -36px !important;
 	}
+
+	.entry-header .entry-title {
+		font-size: 64px !important;
+		font-size: 4rem !important;
+	}
 }
 
 @media screen and (max-width: 37.5em) {
@@ -351,8 +356,8 @@ header,
 }
 
 .entry-header .entry-title {
-	font-size: 64px;
-	font-size: 4rem;
+	font-size: 48px;
+	font-size: 3rem;
 	margin-bottom: 0;
 }
 
