@@ -370,6 +370,7 @@ header,
 	font-size: 48px;
 	font-size: 3rem;
 	margin-bottom: 0;
+	line-height: 1em;
 }
 
 .entry-header .subtitle {
