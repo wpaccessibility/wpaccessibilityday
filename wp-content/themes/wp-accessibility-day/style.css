@@ -439,6 +439,11 @@ button:focus,
 	background: var(--purple);
 }
 
+.wpcf7 .wpcf7-response-output {
+	margin: 0;
+	background: var(--pearl);
+}
+
 .mc4wp-form input[type=email] {
 	margin-bottom: 4px;
 }
