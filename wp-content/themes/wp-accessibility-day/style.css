@@ -110,6 +110,17 @@ header,
 	padding-right: 0 !important;
 }
 
+@media (max-width:720px) {
+	.wp-block-column {
+		flex-basis: 100% !important;
+		flex-grow: 1;
+		margin-left: 0 !important;
+	}
+	.entry-content .trapezoid .pearl-box {
+		margin: 0 !important;
+	}
+}
+
 .wp-block-group > .wp-block-group__inner-container > * {
 	max-width: 100% !important;
 }
