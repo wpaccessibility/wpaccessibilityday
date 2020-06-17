@@ -354,6 +354,7 @@ header,
 	font-size: 64px;
 	font-size: 4rem;
 	margin-bottom: 0;
+	line-height: 1em;
 }
 
 .entry-header .subtitle {
