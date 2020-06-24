@@ -302,7 +302,7 @@ header,
 		justify-content: flex-start;
 	}
 
-	.entry-content .trapezoid .pearl-box {
+	.home .entry-content .trapezoid .pearl-box {
 		margin-top: -72px;
 	}
 	
@@ -313,6 +313,11 @@ header,
 	.entry-header .entry-title {
 		font-size: 64px !important;
 		font-size: 4rem !important;
+	}
+	
+	.blog .entry-header .entry-title {
+		font-size: 48px !important;
+		font-size: 3rem !important;
 	}
 }
 
