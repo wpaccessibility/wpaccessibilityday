@@ -51,25 +51,45 @@ function wpad_home_subtitle() {
 }
 add_action( 'wpad_entry_header', 'wpad_home_subtitle' );
 
-// Declare shortcode for "People" page
+/**
+ * Return HTML from a WordPress profile via shortcode.
+ *
+ * @param array $atts Shortcode attributes with one parameter, user ID.
+ *
+ * @return string
+ */
 function wpad_shortcode_people( $atts ) {
 	$atts = shortcode_atts( array(
 		'id' => '',
 	), $atts );
-	$content = wpad_get_people_data( $atts['id'] );
+
+	$content = ( '' !== $atts['id'] || is_numeric( $atts['id'] ) ) ? wpad_get_people_data( absint( $atts['id'] ) ) : '';
+
 	return $content;
 }
 add_shortcode( 'people', 'wpad_shortcode_people' );
 
+/**
+ * Return HTML from a WordPress profile.
+ *
+ * @param string $id user ID.
+ *
+ * @return string
+ */
 function wpad_get_people_data( $id ) {
-	$image           = '';
-	$name            = '';
-	$username        = '';
-	$bio             = '';
-	$employer        = '';
-	$job             = '';
-	$country         = '';
-	$website         = '';
+	$image    = '';
+	$name     = '';
+	$username = '';
+	$bio      = '';
+	$employer = '';
+	$job      = '';
+	$country  = '';
+	$website  = '';
+
+	// Remove transient & manually refresh.
+	if ( current_user_can( 'manage_options' ) && isset( $_GET['wpad_transients'] ) ) {
+		delete_transient( 'wpad_existing_data_for_member_' . esc_url( $id ) );
+	}
 	$existing_people = get_transient( 'wpad_existing_data_for_member_' . esc_url( $id ) );
 
 	if ( ! empty( $existing_people ) ) {
@@ -77,39 +97,39 @@ function wpad_get_people_data( $id ) {
 		$name     = $existing_people['name'];
 		$username = $existing_people['username'];
 		$bio      = $existing_people['bio'];
-		$employer = $existing_people['employer'];		
-		$job      = $existing_people['job'];		
-		$country  = $existing_people['country'];		
-		$website  = $existing_people['website'];		
+		$employer = $existing_people['employer'];
+		$job      = $existing_people['job'];
+		$country  = $existing_people['country'];
+		$website  = $existing_people['website'];
 	} else {
 		require_once( get_stylesheet_directory() . '/simplehtmldom/simple_html_dom.php' );
 	
-		$url = 'https://profiles.wordpress.org/' . trim( $id );
+		$url  = 'https://profiles.wordpress.org/' . trim( $id );
 		$html = file_get_html( $url );
 	
 		$image_element = $html->find( '.photo' );
-		$image = $image_element[0]->outertext;
+		$image         = $image_element[0]->outertext;
 	
 		$name_element = $html->find( 'h2.fn' );
-		$name = $name_element[0]->plaintext;
+		$name         = $name_element[0]->plaintext;
 	
 		$username_element = $html->find( '#slack-username' );
-		$username = $username_element[0]->innertext;
+		$username         = $username_element[0]->innertext;
 
 		$bio_element = $html->find( '.item-meta-about' );
-		$bio = $bio_element[0]->innertext;
+		$bio         = $bio_element[0]->innertext;
 
 		$employer_element = $html->find( '#user-company strong' );
-		$employer = $employer_element[0]->innertext;
+		$employer         = $employer_element[0]->innertext;
 
 		$job_element = $html->find( '#user-job strong' );
-		$job = $job_element[0]->innertext;
+		$job         = $job_element[0]->innertext;
 
 		$country_element = $html->find( '#user-location strong' );
-		$country = $country_element[0]->innertext;
+		$country         = $country_element[0]->innertext;
 
 		$website_element = $html->find( '#user-website strong' );
-		$website = $website_element[0]->innertext;
+		$website         = $website_element[0]->innertext;
 
 		$new_people = array(
 			'image'    => $image,
@@ -147,6 +167,7 @@ function wpad_get_people_data( $id ) {
 		$content .= '<div class="bio">' . $bio . '</div>';
 	}
 	$content .= '</div>';
+
 	return $content;
 }
 
