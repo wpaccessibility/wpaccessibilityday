@@ -63,7 +63,7 @@ function wpad_shortcode_people( $atts ) {
 		'id' => '',
 	), $atts );
 
-	$content = ( '' !== $atts['id'] || is_numeric( $atts['id'] ) ) ? wpad_get_people_data( absint( $atts['id'] ) ) : '';
+	$content = ( '' !== $atts['id'] ) ? wpad_get_people_data( $atts['id'] ) : '';
 
 	return $content;
 }
@@ -72,7 +72,7 @@ add_shortcode( 'people', 'wpad_shortcode_people' );
 /**
  * Return HTML from a WordPress profile.
  *
- * @param string $id user ID.
+ * @param string $id user slug.
  *
  * @return string
  */
@@ -101,17 +101,22 @@ function wpad_get_people_data( $id ) {
 		$job      = $existing_people['job'];
 		$country  = $existing_people['country'];
 		$website  = $existing_people['website'];
+		$url      = $existing_people['url'];
 	} else {
 		require_once( get_stylesheet_directory() . '/simplehtmldom/simple_html_dom.php' );
 	
 		$url  = 'https://profiles.wordpress.org/' . trim( $id );
 		$html = file_get_html( $url );
-	
+		if ( ! $html ) {
+			return $id;
+		}
+
 		$image_element = $html->find( '.photo' );
 		$image         = $image_element[0]->outertext;
 	
 		$name_element = $html->find( 'h2.fn' );
 		$name         = $name_element[0]->plaintext;
+		$name         = ( ! $name ) ? 'Antonio Trifirò' : $name;
 	
 		$username_element = $html->find( '#slack-username' );
 		$username         = $username_element[0]->innertext;
@@ -135,6 +140,7 @@ function wpad_get_people_data( $id ) {
 			'image'    => $image,
 			'name'     => $name,
 			'username' => $username,
+			'url'      => $url,
 			'bio'      => $bio,
 			'employer' => $employer,
 			'job'      => $job,
@@ -146,25 +152,32 @@ function wpad_get_people_data( $id ) {
 	}
 
 	$content  = '<div class="people-profile">';
-	$content .= '<h2>' . $name . '</h2>';
+	$content .= '<div class="reorder">';
+	$website  = '//' . strip_tags( $website );
+	$content .= '<h3><a href="' . esc_url( $website ) . '">' . $name . '</a></h3>';
 	$content .= $image;
+	$content .= '</div>';
+
+	$username = explode( ' on', $username );
+	$username = '<a href="' . esc_url( $url ) . '">' . trim( $username[0] ) . '</a>';
+	
 	if ( ! empty( $username ) ) {
 		$content .= '<p class="username">' . $username . '</p>';
 	}
 	if ( ! empty( $employer ) ) {
-		$content .= '<p class="employer"><strong>Company:</strong> ' . $employer . '</p>';
+		//$content .= '<p class="employer"><strong>Company:</strong> ' . $employer . '</p>';
 	}
 	if ( ! empty( $job ) ) {
-		$content .= '<p class="job"><strong>Job title:</strong> ' . $job . '</p>';
+		//$content .= '<p class="job"><strong>Job title:</strong> ' . $job . '</p>';
 	}
 	if ( ! empty( $country ) ) {
-		$content .= '<p class="country"><strong>Location:</strong> ' . $country . '</p>';
+		$content .= '<p class="country">' . $country . '</p>';
 	}
 	if ( ! empty( $website ) ) {
-		$content .= '<p class="website"><strong>Website:</strong> ' . $website . '</p>';
+		//$content .= '<p class="website"><strong>Website:</strong> ' . $website . '</p>';
 	}
 	if ( ! empty( $bio ) ) {
-		$content .= '<div class="bio">' . $bio . '</div>';
+		//$content .= '<div class="bio">' . $bio . '</div>';
 	}
 	$content .= '</div>';
 
