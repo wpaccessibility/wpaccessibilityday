@@ -552,3 +552,55 @@ button:focus,
 	transform:skewY(6deg);
 	z-index: -5;
 }
+
+/* Organizers */
+.reorder {
+  display: flex;
+  flex-direction: column;
+}
+
+.reorder img {
+  order: -1;
+  margin: 0 auto;
+}
+
+.lead-organizers .wp-block-group__inner-container {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.team-organizers .wp-block-group__inner-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (min-width: 37.5em) {
+	.lead-organizers .wp-block-group__inner-container {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.team-organizers .wp-block-group__inner-container {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+
+.people-profile {
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+.people-profile img {
+	border-radius: 120px;
+}
+
+.people-profile h3 {
+	font-size: 1em;
+	line-height: 1;
+	padding: 0;
+	margin: .5em 0;
+}
+
+.people-profile p {
+	font-size: .85em;
+	margin: 0;
+}
