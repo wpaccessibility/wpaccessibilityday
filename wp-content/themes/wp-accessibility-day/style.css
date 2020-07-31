@@ -96,7 +96,8 @@ code, kbd, tt, var {
 header,
 .entry-header,
 .entry-content,
-.entry-footer {
+.entry-footer,
+.nav-breadcrumbs {
 	max-width: 960px !important;
 	margin: 0 auto;
 	padding-left: 36px !important;
