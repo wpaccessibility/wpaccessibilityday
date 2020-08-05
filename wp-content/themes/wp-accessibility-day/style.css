@@ -486,6 +486,24 @@ button:focus,
 	max-width: 720px;
 }
 
+#primary .alignwide .blocks-gallery-grid {
+	max-width: 100%;
+	margin: 0;
+}
+
+#primary .blocks-gallery-grid figure {
+	padding-bottom: 4em;
+}
+
+#primary .blocks-gallery-grid figcaption {
+	background: transparent;
+	font-size: .9em;
+}
+
+#primary .wp-block-gallery .blocks-gallery-item figure {
+	align-items: center;
+}
+
 .wp-block-button a {
 	background: var(--green);
 	border-radius: 3px !important;
