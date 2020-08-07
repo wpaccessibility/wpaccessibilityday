@@ -491,17 +491,21 @@ button:focus,
 	margin: 0;
 }
 
-#primary .blocks-gallery-grid figure {
-	padding-bottom: 4em;
-}
-
 #primary .blocks-gallery-grid figcaption {
 	background: transparent;
 	font-size: .9em;
+	width: calc( 100% - 2em );
+	padding: 5px;
 }
 
 #primary .wp-block-gallery .blocks-gallery-item figure {
 	align-items: center;
+	padding: 1em 1em 3em;
+	background: #fff;
+}
+
+#primary .wp-block-gallery .blocks-gallery-item figure img {
+	margin: 0 auto;
 }
 
 .wp-block-button a {
