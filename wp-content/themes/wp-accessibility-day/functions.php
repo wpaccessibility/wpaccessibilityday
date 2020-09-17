@@ -184,3 +184,70 @@ function wpad_get_people_data( $id ) {
 	return $content;
 }
 
+/**
+ * Parse format for time.
+ */
+function wpaccessibilityday_time() {
+	// https://www.timeanddate.com/worldclock/fixedtime.html?iso=20201003T1400 - Format.
+}
+
+add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
+function wpaccessibilityday_schedule( $atts, $content ) {
+	$args = shortcode_atts( array(
+		'start'     => '18',
+	), $atts, 'wpaccessibilityday_schedule' );
+
+	$query = array(
+		'post_type'      => 'mcm_talk',
+		'post_status'    => 'publish, draft',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'meta_query'     => array(
+			'relation' => 'AND',
+			array(
+				'key'     => '_time-in-utc',
+				'compare' => 'EXISTS',
+			),
+			array(
+				'key'     => '_time-in-utc',
+				'value'   => '',
+				'compare' => '!=',
+			),
+		),
+	);
+	$posts    = get_posts( $query );
+	$schedule = array();
+	foreach( $posts as $post_ID ) {
+		$time = str_replace( ':00', '', get_post_meta( $post_ID, '_time-in-utc', true ) );
+		$schedule[ $time ] = $post_ID;
+	}
+	$start = $args['start'] - 24;
+	for( $i = $start; $i < $args['start']; $i++ ) {
+		if ( absint( $i ) != $i ) {
+			$base = 24 - absint( $i );
+		} else {
+			$base = $i;
+		}
+
+		$time   = str_pad( $base, 2, '0', STR_PAD_LEFT );
+		$post   = $schedule[ $time ];
+		$auth   = get_post_meta( $post, '_speaker', true );
+		$slides = esc_url( get_post_meta( $post, '_slides-url', true ) );
+		if ( $auth ) {
+			$author = get_post( $auth );
+		}
+		$talk        = get_post( $post );
+		$datatime    = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
+		$time_output = '<h2 class="talk-time" data-time="' . $datatime . '">' . $time . ':00 UTC' . '</h2>' . get_the_post_thumbnail( $auth );
+		$talk_output = '<h3>' . $talk->post_title . '</h3><p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p><div class="talk-description">' . $talk->post_content . '</div>';
+
+		$output[] = $time_output . $talk_output;
+	}
+
+	return implode( PHP_EOL, $output );
+}
+
+add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
+function wp_talk_time() {
+	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
+}
