@@ -13,6 +13,8 @@
 
 <footer id="colophon" class="site-footer">
 	<div class="site-info">
+		<div class="event-info">Follow <a href="https://twitter.com/hashtag/WPAccessibilityDay">#WPAccessibilityDay</a> <a href="https://twitter.com/hashtag/WPAD2020">#WPAD2020</a> <a href="https://twitter.com/WPAccessibility">@WPAccessibility</a></div>
+
 		<?php
 		/* translators: %s: CMS name, i.e. WordPress. */
 		printf( esc_html__( 'Proudly powered by %s', 'gutenberg-starter-theme' ), '<a href="https://wordpress.org/">WordPress</a>' );
