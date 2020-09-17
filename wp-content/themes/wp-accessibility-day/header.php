@@ -53,10 +53,14 @@
 			</nav><!-- #site-navigation -->
 		<?php endif; ?>
 		</header><!-- #masthead -->
-		<nav aria-label="Breadcrumb navigation" class="nav-breadcrumbs">
 		<?php
 		if ( ! is_front_page() && function_exists( 'yoast_breadcrumb' ) ) {
+			?>
+			<nav aria-label="Breadcrumb navigation" class="nav-breadcrumbs">
+			<?php
 			yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+			?>
+			</nav>
+			<?php
 		}
 		?>
-		</nav>
