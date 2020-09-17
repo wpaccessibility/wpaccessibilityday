@@ -229,19 +229,25 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$base = $i;
 		}
 
-		$time   = str_pad( $base, 2, '0', STR_PAD_LEFT );
-		$post   = $schedule[ $time ];
-		$auth   = get_post_meta( $post, '_speaker', true );
-		$slides = esc_url( get_post_meta( $post, '_slides-url', true ) );
-		if ( $auth ) {
-			$author = get_post( $auth );
-		}
-		$talk        = get_post( $post );
-		$datatime    = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
-		$time_output = '<h2 class="talk-time" data-time="' . $datatime . '">' . $time . ':00 UTC' . '</h2>' . get_the_post_thumbnail( $auth );
-		$talk_output = '<h3>' . $talk->post_title . '</h3><p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p><div class="talk-description">' . $talk->post_content . '</div>';
+		$time      = str_pad( $base, 2, '0', STR_PAD_LEFT );
+		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
+		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '">' . $time . ':00 UTC' . '</h2>';
+		$talk_ID   = $schedule[ $time ];
+		if ( ! $talk_ID ) {
+			$output[] = $time_html . '<p>Not yet scheduled</p>';
+		} else {
+			$auth    = get_post_meta( $talk_ID, '_speaker', true );
+			$slides  = esc_url( get_post_meta( $talk_ID, '_slides-url', true ) );
+			if ( $auth ) {
+				$author = get_post( $auth );
+			}
+			$talk        = get_post( $talk_ID );
 
-		$output[] = $time_output . $talk_output;
+			$time_output = $time_html . get_the_post_thumbnail( $auth );
+			$talk_output = '<h3>' . $talk->post_title . '</h3><p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p><div class="talk-description">' . $talk->post_content . '</div>';
+
+			$output[] = $time_output . $talk_output;
+		}
 	}
 
 	return implode( PHP_EOL, $output );
