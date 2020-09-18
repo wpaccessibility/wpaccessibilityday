@@ -582,6 +582,11 @@ button:focus,
 	z-index: -5;
 }
 
+.trapezoid.schedule {
+	padding-top: 1.5em !important;
+	margin-bottom: 3em !important;
+}
+
 /* Organizers */
 .reorder {
   display: flex;
