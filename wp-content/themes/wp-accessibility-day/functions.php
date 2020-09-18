@@ -243,10 +243,21 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			}
 			$talk        = get_post( $talk_ID );
 
-			$time_output = $time_html . get_the_post_thumbnail( $auth );
-			$talk_output = '<h3>' . $talk->post_title . '</h3><p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p><div class="talk-description">' . $talk->post_content . '</div>';
+			$time_output = $time_html . get_the_post_thumbnail( $auth ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
+			$talk_output = '<h3>' . $talk->post_title . '</h3><div class="talk-description">' . $talk->post_content . '</div>';
 
-			$output[] = $time_output . $talk_output;
+			$output[] = "<div class='wp-block-group alignwide trapezoid schedule'>
+				<div class='wp-block-group__inner-container'>
+					<div class='wp-block-columns'>
+						<div class='wp-block-column'>
+							$time_output
+						</div>
+						<div class='wp-block-column'>
+							$talk_output
+						</div>
+					</div>
+				</div>
+			</div>";
 		}
 	}
 
