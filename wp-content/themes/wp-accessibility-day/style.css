@@ -587,6 +587,10 @@ button:focus,
 	margin-bottom: 3em !important;
 }
 
+.trapezoid.schedule img {
+	border-radius: 5px 5px 200px 5px;
+}
+
 /* Organizers */
 .reorder {
   display: flex;

@@ -243,17 +243,20 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			}
 			$talk        = get_post( $talk_ID );
 
-			$time_output = $time_html . get_the_post_thumbnail( $auth ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
+			$time_output = $time_html . get_the_post_thumbnail( $auth, 'medium' ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
 			$talk_output = '<h3>' . $talk->post_title . '</h3><div class="talk-description">' . $talk->post_content . '</div>';
+			$speaker_id  = sanitize_title( $author->post_title );
 
-			$output[] = "<div class='wp-block-group alignwide trapezoid schedule'>
+			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
 							$time_output
 						</div>
 						<div class='wp-block-column'>
+							<div class='pearl-box'>
 							$talk_output
+							</div>
 						</div>
 					</div>
 				</div>
