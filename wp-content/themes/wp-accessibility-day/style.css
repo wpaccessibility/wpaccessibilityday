@@ -591,6 +591,62 @@ button:focus,
 	border-radius: 5px 5px 200px 5px;
 }
 
+.home .entry-content .trapezoid.schedule .pearl-box {
+	margin-top: 20px;
+}
+
+.home .entry-content .trapezoid.schedule .pearl-box h3 {
+	margin: 0 0 20px;
+}
+
+.event-sponsors ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	column-gap: 10px;
+	align-items: center;
+}
+
+.event-sponsors .silver {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.event-sponsors .bronze {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.event-info {
+	font-size: 1.2em;
+}
+
+.event-sponsors li {
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+	flex-basis: 0;
+	flex-grow: 1;
+	background: #fff;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.event-sponsors li a:hover, 
+.event-sponsors li a:focus {
+	box-shadow: 2px 2px 4px #333;
+	display: block;
+}
+
+.event-sponsors img {
+	max-height: 100px;
+	width: auto;
+}
+
+.event-sponsors .bronze img {
+	max-height: 70px;
+}
+
 /* Organizers */
 .reorder {
   display: flex;
