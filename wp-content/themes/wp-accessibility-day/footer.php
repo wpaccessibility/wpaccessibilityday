@@ -14,9 +14,7 @@
 <footer id="colophon" class="site-footer">
 	<div class="site-info">
 		<div class="event-info"><p>Follow us on Twitter: <a href="https://twitter.com/hashtag/WPAccessibilityDay">#WPAccessibilityDay</a> <a href="https://twitter.com/hashtag/WPAD2020">#WPAD2020</a> <a href="https://twitter.com/WPAccessibility">@WPAccessibility</a></p></div>
-		<?php
-		if ( current_user_can( 'manage_options' ) ) {
-		?>
+
 		<div class="event-sponsors">
 		<h2>Meet our Sponsors</h2>
 		<p>Our amazing and generous sponsors have made this event possible! Please give our sponsors a visit and thank them for their support!</p>
@@ -24,7 +22,7 @@
 		<ul class='gold'>
 			<li><a href="https://yoast.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/Yoast_Logo_tagline_Large_RGB.png" alt="Yoast SEO"></a></li>
 			<li><a href="https://infoaxia.co.jp/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/Infoaxia_logo_Global-1.png" alt="Infoaxia Tokyo, Japan"></a></li>
-			<li><a href="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/GD_PRO_RGB_BLACK.svg"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/A11Y-Collective-Logo.png" alt="GoDaddy Pro"></a></li>
+			<li><a href="https://www.godaddy.com/pro?utm_source=events_sponsor_page&utm_medium=events&utm_campaign=en-us_events_prd_awa_partners_part_wpad_conf_001"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/GD_PRO_RGB_BLACK.svg" alt="GoDaddy Pro"></a></li>
 		</ul>
 		<h3>Silver Sponsors</h3>
 		<ul class='silver'>
@@ -37,10 +35,10 @@
 			<li><a href="https://rocketvalidator.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/rocket-validator-dark.png" alt="Rocket Validator"></a></li>
 			<li><a href="https://www.joedolson.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/awd_logo_sm_print.jpg" alt="Joe Dolson Accessible Web Design"></a></li>
 			<li><a href="https://www.codegeek.net/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/09/CG-Logo-Lines-Pos-RGB-300dpi-1024x712.png" alt="CodeGeek"></a></li>
+			<li><a href="https://bhmbizsites.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/09/bhm-2020-logo.jpg" alt="Bet Hannon Business Websites"></a></li>
 		</ul>
 		</div>
 		<?php
-		}
 		/* translators: %s: CMS name, i.e. WordPress. */
 		printf( esc_html__( 'Proudly powered by %s', 'gutenberg-starter-theme' ), '<a href="https://wordpress.org/">WordPress</a>' );
 		?>
