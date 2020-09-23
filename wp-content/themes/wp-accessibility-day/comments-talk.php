@@ -62,8 +62,8 @@ if ( post_password_required() ) {
 	if ( is_user_logged_in() ) {
 		$args = array(
 			'title_reply'   => 'Ask a Question',
-			'label_submit'  => 'Post a Question',
-			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Question', 'noun' ) . '</label><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+			'label_submit'  => 'Submit',
+			'comment_field' => '<p class="comment-form-comment"><label for="comment"><span class="base">Question</span><span class="response">Answer</span></label><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
 		);
 		comment_form( $args );
 	}

@@ -310,6 +310,10 @@ class WPad_Walker_Comment extends Walker_Comment {
 		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '', $comment ); ?>>
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
+					<?php
+					// Only display comment author info if speaker posts.
+					if ( $comment->user_id === $post->post_author ) {
+						?>
 					<div class="comment-author vcard">
 						<?php
 						/*
@@ -356,9 +360,13 @@ class WPad_Walker_Comment extends Walker_Comment {
 						*/
 						?>
 					</div><!-- .comment-author -->
- 
+						<?php
+					} else {
+						echo '<div></div>';
+					}
+					?>
 					<div class="comment-metadata">
-						<a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">
+						<a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">Asked on 
 							<?php
 								/* translators: 1: comment date, 2: comment time */
 								$comment_timestamp = sprintf( __( '%1$s at %2$s', 'custom' ), get_comment_date( '', $comment ), get_comment_time() );

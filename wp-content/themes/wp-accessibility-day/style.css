@@ -388,6 +388,41 @@ h2.event-time {
 ol.comment-list {
 	margin: 0;
 	padding: 0;
+	list-style: none;
+}
+
+ol.children {
+	margin-right: -.5em;
+}
+
+ol.comment-list li {
+	padding: 10px;
+}
+
+#respond span.response {
+	display: none;
+}
+
+.comment-list #respond span.base {
+	display: none;
+}
+
+.comment-list #respond span.response {
+	display: inline;
+}
+
+
+#comment {
+	min-height: 200px;
+	max-width: 100%;
+}
+
+ol.comment-list li:nth-of-type(even) {
+	background: rgba( 255, 255, 255, .3 );
+}
+
+.comment-list .logged-in-as {
+	font-size: 1rem;
 }
 
 .comment-meta {
@@ -398,6 +433,10 @@ ol.comment-list {
 
 .comment-meta {
 	font-size: 1rem;
+}
+
+.comment-metadata {
+	text-align: right;
 }
 
 .comment-author {
