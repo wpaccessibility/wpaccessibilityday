@@ -102,7 +102,8 @@ header,
 .entry-header,
 .entry-content,
 .entry-footer,
-.nav-breadcrumbs {
+.nav-breadcrumbs,
+#comments {
 	max-width: 960px !important;
 	margin: 0 auto;
 	padding-left: 36px !important;
@@ -115,6 +116,11 @@ header,
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 }
+
+h2.event-time {
+	max-width: 640px;
+}
+
 
 @media (max-width:720px) {
 	.wp-block-column {
@@ -298,6 +304,13 @@ header,
 	margin-right: 0;
 }
 
+.site-main .post-navigation {
+	border-bottom: none;
+	margin: 10px auto;
+	width: 100%;
+	max-width: 888px;
+}
+
 @media screen and (min-width: 37.5em) {
 
 	.site-header .main-navigation {
@@ -370,6 +383,62 @@ header,
 	.home .entry-content {
 		position: relative;
 	}
+}
+
+ol.comment-list {
+	margin: 0;
+	padding: 0;
+}
+
+.comment-meta {
+	display: grid;
+	grid-template-columns: .5fr 1fr;
+	grid-column-gap: 20px;
+}
+
+.comment-meta {
+	font-size: 1rem;
+}
+
+.comment-author {
+	background: var(--pearl);
+	padding: 4px;
+}
+
+#respond {
+	background: var(--pearl);
+	padding: 1em;
+}
+
+.comment-reply a {
+	border-radius: 3px;
+	border: 1px solid var(--purple);
+	background: var(--pearl);
+	padding: 5px 10px;
+}
+
+.comment-reply a:hover,
+.comment-reply a:focus {
+	border: 1px solid var(--pearl);
+}
+
+h3#reply-title {
+	font-size: 1.2em;
+	margin: 0 0 20px;
+}
+
+h3#reply-title small {
+	font-size: 20px;
+	margin-left: 1em;
+}
+
+.children .bypostauthor {
+	background: rgba( 255,255,255,.3 );
+	padding: .5em;
+}
+
+.comment-author .post-author-badge .dashicons {
+	vertical-align: text-bottom;
 }
 
 /* 4.1 Entry Header */
@@ -489,7 +558,7 @@ button:focus,
 }
 
 #colophon .site-info {
-	max-width: 720px;
+	max-width: 888px;
 }
 
 #primary .alignwide .blocks-gallery-grid {

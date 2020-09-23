@@ -199,7 +199,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 
 	$query = array(
 		'post_type'      => 'mcm_talk',
-		'post_status'    => 'publish, draft',
+		'post_status'    => 'publish',
 		'posts_per_page' => -1,
 		'fields'         => 'ids',
 		'meta_query'     => array(
@@ -268,7 +268,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
-							<h2 class='talk-time' data-time='2020-09-20T17:45:00Z'>17:45 UTC</h2>
+							<h2 class='talk-time' data-time='2020-10-02T17:45:00Z'>17:45 UTC</h2>
 							<p class='speaker'>Joe Dolson</p>
 						</div>
 						<div class='wp-block-column'>
@@ -289,4 +289,116 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
 function wp_talk_time() {
 	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
+}
+
+class WPad_Walker_Comment extends Walker_Comment {
+ 
+	/**
+	 * Outputs a comment in the HTML5 format.
+	 *
+	 * @see wp_list_comments()
+	 *
+	 * @param WP_Comment $comment Comment to display.
+	 * @param int        $depth   Depth of the current comment.
+	 * @param array      $args    An array of arguments.
+	 */
+	protected function html5_comment( $comment, $depth, $args ) {
+		global $post;
+		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+ 
+		?>
+		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '', $comment ); ?>>
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<?php
+						/*
+						 * Eliminate comment author avatar.
+						$comment_author_link = get_comment_author_link( $comment );
+						$comment_author_url  = get_comment_author_url( $comment );
+						$comment_author      = get_comment_author( $comment );
+						$avatar              = get_avatar( $comment, $args['avatar_size'] );
+						if ( 0 != $args['avatar_size'] ) {
+							if ( empty( $comment_author_url ) ) {
+								echo $avatar;
+							} else {
+								printf( '<a href="%s" rel="external nofollow" class="url">', $comment_author_url );
+								echo $avatar;
+							}
+						}
+						 */
+						/*
+						 * Using the `check` icon instead of `check_circle`, since we can't add a
+						 * fill color to the inner check shape when in circle form.
+						 */
+						if ( $comment->user_id === $post->post_author ) {
+							print( '<span class="post-author-badge"><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span> Speaker Response</span>' );
+						}
+ 
+						/*
+						 * Eliminate comment author link
+						 *
+						printf(
+							wp_kses(
+								__( '%s <span class="screen-reader-text says">says:</span>', 'custom' ),
+								array(
+									'span' => array(
+										'class' => array(),
+									),
+								)
+							),
+							'<b class="fn">' . get_comment_author_link( $comment ) . '</b>'
+						);
+ 
+						if ( ! empty( $comment_author_url ) ) {
+							echo '</a>';
+						}
+						*/
+						?>
+					</div><!-- .comment-author -->
+ 
+					<div class="comment-metadata">
+						<a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">
+							<?php
+								/* translators: 1: comment date, 2: comment time */
+								$comment_timestamp = sprintf( __( '%1$s at %2$s', 'custom' ), get_comment_date( '', $comment ), get_comment_time() );
+							?>
+							<time datetime="<?php comment_time( 'c' ); ?>" title="<?php echo $comment_timestamp; ?>">
+								<?php echo $comment_timestamp; ?>
+							</time>
+						</a>
+						<?php
+							edit_comment_link( __( 'Edit', 'custom' ), ' <span class="edit-link">', '</span>' );
+						?>
+					</div><!-- .comment-metadata -->
+ 
+					<?php if ( '0' == $comment->comment_approved ) : ?>
+					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'custom' ); ?></p>
+					<?php endif; ?>
+				</footer><!-- .comment-meta -->
+ 
+				<div class="comment-content">
+					<?php comment_text(); ?>
+				</div><!-- .comment-content -->
+ 
+			</article><!-- .comment-body -->
+ 
+			<?php
+			comment_reply_link(
+				array_merge(
+					$args,
+					array(
+						'add_below'     => 'div-comment',
+						'depth'         => $depth,
+						'max_depth'     => $args['max_depth'],
+						'before'        => '<div class="comment-reply">',
+						'after'         => '</div>',
+						'reply_text'    => 'Answer',
+						'reply_to_text' => 'Add an Answer',
+					)
+				)
+			);
+			?>
+		<?php
+	}
 }
