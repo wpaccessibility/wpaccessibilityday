@@ -391,6 +391,10 @@ ol.comment-list {
 	list-style: none;
 }
 
+ol.comment-list > li > article .comment-content {
+	font-weight: 700;
+}
+
 ol.children {
 	margin-right: -.5em;
 }
