@@ -282,12 +282,31 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 					</div>
 				</div>
 			</div>";
+	$closing_remarks = "<div class='wp-block-group alignwide trapezoid schedule'>
+				<div class='wp-block-group__inner-container'>
+					<div class='wp-block-columns'>
+						<div class='wp-block-column'>
+							<h2 class='talk-time' data-time='2020-10-03T17:45:00Z'>~17:45 UTC</h2>
+							<p class='speaker'>Stefano Minoia</p>
+						</div>
+						<div class='wp-block-column'>
+							<div class='pearl-box'>
+								<h3>Closing Remarks</h3>
+								<div class='talk-description'>
+									<p>Stefano, our incoming lead organizer for WP Accessibility Day 2021 will deliver closing remarks immediately following the end of the last talk's Q and A session.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>";
 
-	return $opening_remarks .implode( PHP_EOL, $output );
+	return $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
 }
 
 add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
 function wp_talk_time() {
+	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
 }
 
