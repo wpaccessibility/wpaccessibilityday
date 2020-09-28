@@ -711,6 +711,12 @@ button:focus,
 	margin: 0 0 20px;
 }
 
+blockquote {
+	font-style: italic;
+	background: rgba( 255, 255, 255, .15 );
+	padding: .5em;
+}
+
 .event-sponsors ul {
 	display: flex;
 	margin: 0;
@@ -725,7 +731,7 @@ button:focus,
 }
 
 .event-sponsors .bronze {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 
