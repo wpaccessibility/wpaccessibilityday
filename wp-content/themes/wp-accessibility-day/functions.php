@@ -310,6 +310,14 @@ function wp_talk_time() {
 	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
 }
 
+add_filter( 'wp_dropdown_users_args', 'wpad_add_subscribers_to_dropdown', 10, 2 );
+function wpad_add_subscribers_to_dropdown( $query_args, $r ) {
+	$query_args['who'] = '';
+
+	return $query_args;
+
+}
+
 class WPad_Walker_Comment extends Walker_Comment {
  
 	/**
