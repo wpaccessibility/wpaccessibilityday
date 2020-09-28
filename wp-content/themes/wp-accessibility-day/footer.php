@@ -36,6 +36,7 @@
 			<li><a href="https://www.joedolson.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/08/awd_logo_sm_print.jpg" alt="Joe Dolson Accessible Web Design"></a></li>
 			<li><a href="https://www.codegeek.net/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/09/CG-Logo-Lines-Pos-RGB-300dpi-1024x712.png" alt="CodeGeek"></a></li>
 			<li><a href="https://bhmbizsites.com/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/09/bhm-2020-logo.jpg" alt="Bet Hannon Business Websites"></a></li>
+			<li><a href="https://www.nerdpress.net/"><img src="https://wpaccessibilityday.org/wpaccessibilityday/wp-content/uploads/2020/09/nerdpress-logo-blue-transparent-3630x820-1-1024x231.png" alt="nerdpress"></a></li>
 		</ul>
 		</div>
 		<?php
