@@ -711,6 +711,18 @@ button:focus,
 	margin: 0 0 20px;
 }
 
+.sponsored {
+	padding: .5em !important;
+	background: rgba( 255, 255, 255, .15 );
+	border: 2px solid var(--purple);
+}
+
+.contents-table {
+	padding: .25em 1em !important;
+	font-size: 80%;
+	background: rgba( 255,255,255,.15 );
+}
+
 blockquote {
 	font-style: italic;
 	background: rgba( 255, 255, 255, .15 );
