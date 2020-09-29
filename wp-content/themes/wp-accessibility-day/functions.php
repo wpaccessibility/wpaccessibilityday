@@ -51,6 +51,24 @@ function wpad_home_subtitle() {
 }
 add_action( 'wpad_entry_header', 'wpad_home_subtitle' );
 
+add_action( 'wp', 'wpad_custom_canonical' );
+/**
+ * Filter in a custom canonical URL for Yoast. Because I can't get the advanced panel to show up.
+ */
+function wpad_custom_canonical() {
+	if ( is_single( 542 ) ) {
+		add_action( 'wp_head', 'wpad_canonical' );
+		remove_action( 'wp_head', 'rel_canonical' );
+		add_filter( 'wpseo_canonical', 'wpad_disable_yoast_canonical' );
+	}
+}
+
+function wpad_canonical() {
+	$link = 'https://yoast.com/image-seo-alt-tag-and-title-tag-optimization/';
+
+	echo "<link rel='canonical' href='$link' />\n";
+}
+
 /**
  * Return HTML from a WordPress profile via shortcode.
  *
