@@ -259,11 +259,12 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			if ( $auth ) {
 				$author = get_post( $auth );
 			}
-			$talk        = get_post( $talk_ID );
-			$time_output = $time_html . get_the_post_thumbnail( $auth, 'medium' ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
-			$permalink   = get_the_permalink( $talk_ID );
-			$talk_output = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
-			$speaker_id  = sanitize_title( $author->post_title );
+			$talk         = get_post( $talk_ID );
+			$time_output  = $time_html . get_the_post_thumbnail( $auth, 'medium' ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
+			$time_output .= ( $slides ) ? '<p class="slides"><a href="' . $slides . '">View Slides for presentation by ' . $author->post_title . '</a></p>' : '';
+			$permalink    = get_the_permalink( $talk_ID );
+			$talk_output  = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
+			$speaker_id   = sanitize_title( $author->post_title );
 
 			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
 				<div class='wp-block-group__inner-container'>
@@ -318,8 +319,32 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 					</div>
 				</div>
 			</div>";
+	$output = wpad_youtube_links();
 
-	return $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
+	return $output . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
+}
+
+function wpad_youtube_links() {
+	$time = time();
+	if ( $time < strtotime( '2020-10-03 0:00 UTC' ) ) {
+		if ( $time < strtotime( '2020-10-02 18:00 UTC' ) ) {
+			$until = human_time_diff( $time, strtotime( '2020-10-02 18:00 UTC' ) );
+			$append = "Starts in only <strong>$until</strong>!";
+		}
+		$output = "<a href='https://youtu.be/X0BcKR2Go1E'>Watch the stream at YouTube!</a> $append";
+	}
+	if ( $time > strtotime( '2020-10-03 0:00 UTC' ) && $time < strtotime( '2020-10-03 6:00 UTC' ) ) {
+		$output = "<a href='https://youtu.be/-fKkptFna9E'>Watch the stream at YouTube!</a>";
+	}
+	if ( $time > strtotime( '2020-10-03 6:00 UTC' ) && $time < strtotime( '2020-10-03 12:00 UTC' ) ) {
+		$output = "<a href='https://youtu.be/V0yJ_qJBvoc'>Watch the stream at YouTube!</a>";
+	}
+	if ( $time > strtotime( '2020-10-03 12:00 UTC' ) && $time < strtotime( '2020-10-03 18:00 UTC' ) ) {
+		$output = "<a href='https://youtu.be/9J7JlYjahMU'>Watch the stream at YouTube!</a>";
+	}
+	$output = '<p class="youtube-link">' . $output . '</p>';
+
+	return $output;
 }
 
 add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
