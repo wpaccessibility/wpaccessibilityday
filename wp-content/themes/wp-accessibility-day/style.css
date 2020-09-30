@@ -703,12 +703,31 @@ button:focus,
 	border-radius: 5px 5px 200px 5px;
 }
 
+.wp-block-column .slides a {
+	font-size: 1rem;
+	padding: 4px 6px;
+	border: 1px solid var(--purple);
+	background: var(--pearl);
+	text-decoration: none;
+}
+
+.wp-block-column .slides a:hover,
+.wp-block-column .slides a:focus {
+	border-bottom: 3px solid;
+}
+
 .home .entry-content .trapezoid.schedule .pearl-box {
 	margin-top: 20px;
 }
 
 .home .entry-content .trapezoid.schedule .pearl-box h3 {
 	margin: 0 0 20px;
+}
+
+.entry-header img {
+	display: block;
+	border-radius: 10px;
+	margin: .5em 0;
 }
 
 .sponsored {
