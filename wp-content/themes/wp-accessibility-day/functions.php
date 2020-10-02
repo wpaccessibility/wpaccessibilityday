@@ -252,6 +252,11 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		if ( date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
 			$is_current = true;
 		}
+		if ( (int) date( 'i' ) < 50 ) {
+			$text = "Now speaking: ";
+		} else {
+			$text = "Up next: ";
+		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
 		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '">' . $time . ':00 UTC' . '</h2>';
 		$talk_ID   = $schedule[ $time ];
@@ -270,7 +275,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk_output  = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
 			$speaker_id   = sanitize_title( $author->post_title );
 			if ( $is_current ) {
-				$current_talk = "<p class='current-talk alignwide'><strong>Now speaking:</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
+				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
 			}
 
 			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
@@ -448,12 +453,11 @@ class WPad_Walker_Comment extends Walker_Comment {
 								/* translators: 1: comment date, 2: comment time */
 								$comment_timestamp = sprintf( __( '%1$s at %2$s', 'custom' ), get_comment_date( '', $comment ), get_comment_time() );
 							?>
-							<time datetime="<?php comment_time( 'c' ); ?>" title="<?php echo $comment_timestamp; ?>">
+							<time datetime="<?php comment_time( 'c' ); ?>">
 								<?php echo $comment_timestamp; ?>
 							</time>
-						</a>
-						<?php
-							edit_comment_link( __( 'Edit', 'custom' ), ' <span class="edit-link">', '</span>' );
+						</a> <?php
+							edit_comment_link( __( 'Edit', 'custom' ), '<span class="edit-link">', '</span>' );
 						?>
 					</div><!-- .comment-metadata -->
  
