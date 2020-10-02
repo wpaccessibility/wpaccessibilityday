@@ -703,6 +703,13 @@ button:focus,
 	border-radius: 5px 5px 200px 5px;
 }
 
+.youtube-link .dashicons {
+	font-size: 1.5em;
+	line-height: 1.2;
+	margin-right: 10px;
+	color: red;
+}
+
 .wp-block-column .slides a {
 	font-size: 1rem;
 	padding: 4px 6px;

@@ -319,9 +319,9 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 					</div>
 				</div>
 			</div>";
-	$output = wpad_youtube_links();
+	$links = wpad_youtube_links();
 
-	return $output . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
+	return $links . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
 }
 
 function wpad_youtube_links() {
@@ -342,7 +342,7 @@ function wpad_youtube_links() {
 	if ( $time > strtotime( '2020-10-03 12:00 UTC' ) && $time < strtotime( '2020-10-03 18:00 UTC' ) ) {
 		$output = "<a href='https://youtu.be/9J7JlYjahMU'>Watch the stream at YouTube!</a>";
 	}
-	$output = '<p class="youtube-link">' . $output . '</p>';
+	$output = '<p class="youtube-link"><span class="dashicons dashicons-youtube" aria-hidden="true"></span>' . $output . '</p>';
 
 	return $output;
 }
