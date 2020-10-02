@@ -247,7 +247,11 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$base = $i;
 		}
 
-		$time      = str_pad( $base, 2, '0', STR_PAD_LEFT );
+		$time = str_pad( $base, 2, '0', STR_PAD_LEFT );
+		$is_current = false;
+		if ( date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
+			$is_current = true;
+		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
 		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '">' . $time . ':00 UTC' . '</h2>';
 		$talk_ID   = $schedule[ $time ];
@@ -265,6 +269,9 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$permalink    = get_the_permalink( $talk_ID );
 			$talk_output  = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
 			$speaker_id   = sanitize_title( $author->post_title );
+			if ( $is_current ) {
+				$current_talk = "<p class='current-talk alignwide'><strong>Now speaking:</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
+			}
 
 			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
 				<div class='wp-block-group__inner-container'>
@@ -321,7 +328,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			</div>";
 	$links = wpad_youtube_links();
 
-	return $links . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
+	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
 }
 
 function wpad_youtube_links() {
