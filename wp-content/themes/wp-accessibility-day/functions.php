@@ -249,6 +249,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 
 		$time = str_pad( $base, 2, '0', STR_PAD_LEFT );
 		$is_current = false;
+
 		if ( date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
 			$is_current = true;
 		}
@@ -271,11 +272,15 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk         = get_post( $talk_ID );
 			$time_output  = $time_html . get_the_post_thumbnail( $auth, 'medium' ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
 			$time_output .= ( $slides ) ? '<p class="slides"><a href="' . $slides . '">View Slides for presentation by ' . $author->post_title . '</a></p>' : '';
+			if ( current_user_can( 'manage_options' ) ) {
+				$time_output .= ( $slides ) ? '' : '<p class="slides">Slides not yet provided.</p>';
+			}
 			$permalink    = get_the_permalink( $talk_ID );
 			$talk_output  = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
 			$speaker_id   = sanitize_title( $author->post_title );
 			if ( $is_current ) {
-				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
+				// Don't display current talk now that event is over.
+				// $current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
 			}
 
 			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
@@ -338,23 +343,25 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 
 function wpad_youtube_links() {
 	$time = time();
-	if ( $time < strtotime( '2020-10-03 0:00 UTC' ) ) {
+	if ( $time < strtotime( '2020-10-02 11:50 UTC' ) ) {
 		if ( $time < strtotime( '2020-10-02 18:00 UTC' ) ) {
 			$until = human_time_diff( $time, strtotime( '2020-10-02 18:00 UTC' ) );
 			$append = "Starts in only <strong>$until</strong>!";
 		}
 		$output = "<a href='https://youtu.be/X0BcKR2Go1E'>Watch the stream at YouTube!</a> $append";
 	}
-	if ( $time > strtotime( '2020-10-03 0:00 UTC' ) && $time < strtotime( '2020-10-03 6:00 UTC' ) ) {
-		$output = "<a href='https://youtu.be/-fKkptFna9E'>Watch the stream at YouTube!</a>";
+	if ( $time > strtotime( '2020-10-02 11:50 UTC' ) && $time < strtotime( '2020-10-03 5:50 UTC' ) ) {
+		$output = "<a href='https://youtu.be/-fKkptFna9E'>Watch the stream at YouTube (for Sessions 7-12!)</a>";
 	}
-	if ( $time > strtotime( '2020-10-03 6:00 UTC' ) && $time < strtotime( '2020-10-03 12:00 UTC' ) ) {
-		$output = "<a href='https://youtu.be/V0yJ_qJBvoc'>Watch the stream at YouTube!</a>";
+	if ( $time > strtotime( '2020-10-03 5:50 UTC' ) && $time < strtotime( '2020-10-03 11:50 UTC' ) ) {
+		$output = "<a href='https://youtu.be/V0yJ_qJBvoc'>Watch the stream at YouTube (for Sessions 13-18!)!</a>";
 	}
-	if ( $time > strtotime( '2020-10-03 12:00 UTC' ) && $time < strtotime( '2020-10-03 18:00 UTC' ) ) {
-		$output = "<a href='https://youtu.be/9J7JlYjahMU'>Watch the stream at YouTube!</a>";
+	if ( $time > strtotime( '2020-10-03 11:50 UTC' ) && $time < strtotime( '2020-10-03 18:00 UTC' ) ) {
+		$output = "<a href='https://youtu.be/9J7JlYjahMU'>Watch the stream at YouTube (for Sessions 19-24!)!</a>";
 	}
 	$output = '<p class="youtube-link"><span class="dashicons dashicons-youtube" aria-hidden="true"></span>' . $output . '</p>';
+
+	$output = '<p>WP Accessibility Day is over! Watch our YouTube channel for the posting of the edited and captioned videos!</p>';
 
 	return $output;
 }
