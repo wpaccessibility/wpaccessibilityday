@@ -18,7 +18,6 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
-wp-content/plugins/
 wp-content/uploads/
 wp-content/wp-rocket-config/
 wp-content/upgrade/
