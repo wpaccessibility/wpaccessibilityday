@@ -33,6 +33,7 @@ wp-content/themes/index.php
 
 # ignore everything in the "wp-content" directory, except:
 !wp-content/themes/wp-accessibility-day/
+!wp-content/plugins/questions-and-answers/
 
 # ignore node dependency directories
 node_modules/
