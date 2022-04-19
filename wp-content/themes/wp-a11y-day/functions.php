@@ -72,6 +72,62 @@ if ( ! function_exists( 'wp_accessibility_day_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		// Disable Custom Colors
+		add_theme_support( 'disable-custom-colors' );
+
+		// Editor Color Palette
+		add_theme_support(
+			'editor-color-palette',
+			array(
+				array(
+					'name'  => __( 'Dark Gray', 'wp-accessibility-day' ),
+					'slug'  => 'dark-gray',
+					'color' => '#2F3B41',
+				),
+				array(
+					'name'  => __( 'Mid Gray', 'wp-accessibility-day' ),
+					'slug'  => 'mid-gray',
+					'color' => '#b2bdc2',
+				),
+				array(
+					'name'  => __( 'Light Gray', 'wp-accessibility-day' ),
+					'slug'  => 'light-gray',
+					'color' => '#EBF0F6',
+				),
+				array(
+					'name'  => __( 'Dark Purple', 'wp-accessibility-day' ),
+					'slug'  => 'dark-purple',
+					'color' => '#7F1177',
+				),
+				array(
+					'name'  => __( 'Light Purple', 'wp-accessibility-day' ),
+					'slug'  => 'light-purple',
+					'color' => '#EFE6F0',
+				),
+				array(
+					'name'  => __( 'Dark Blue', 'wp-accessibility-day' ),
+					'slug'  => 'dark-blue',
+					'color' => '#115A7F',
+				),
+				array(
+					'name'  => __( 'Light Blue', 'wp-accessibility-day' ),
+					'slug'  => 'light-blue',
+					'color' => '#e4eff5',
+				),
+				array(
+					'name'  => __( 'Black', 'wp-accessibility-day' ),
+					'slug'  => 'black',
+					'color' => '#000000',
+				),
+				array(
+					'name'  => __( 'White', 'wp-accessibility-day' ),
+					'slug'  => 'white',
+					'color' => '#FFFFFF',
+				),
+			)
+		);
+
 	}
 endif;
 add_action( 'after_setup_theme', 'wp_accessibility_day_setup' );

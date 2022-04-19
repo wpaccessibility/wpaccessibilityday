@@ -40,6 +40,80 @@
 	--sky-blue: #e6eff3;
 	--sky-blue-transparent: #e6eff388;
 	--teal: #7dacbf;
+
+	--logo-light: #7f1177;
+	--logo-dark: #b2bdc2;
+
+	--color-dark-gray: #2F3B41;
+	--color-mid-gray: #b2bdc2;
+	--color-light-gray: #EBF0F6;
+	--color-dark-purple: #7F1177;
+	--color-light-purple: #EFE6F0;
+	--color-dark-blue: #115A7F;
+	--color-light-blue: #e4eff5;
+}
+
+.logo-light {
+	fill: var(--logo-light);
+}
+
+.logo-dark {
+	fill: var(--logo-dark);
+}
+
+.has-dark-gray-color {
+	color: var(--color-dark-gray);
+}
+.has-mid-gray-color {
+	color: var(--color-mid-gray);
+}
+.has-light-gray-color {
+	color: var(--color-light-gray);
+}
+.has-dark-purple-color {
+	color: var(--color-dark-purple);
+}
+.has-light-purple-color {
+	color: var(--color-light-purple);
+}
+.has-dark-blue-color {
+	color: var(--color-dark-blue);
+}
+.has-light-blue-color {
+	color: var(--color-light-blue);
+}
+.has-white-color {
+	color: #fff;
+}
+.has-black-color {
+	color: #000;
+}
+.has-dark-gray-background-color {
+	background: var(--color-dark-gray);
+}
+.has-mid-gray-background-color {
+	background: var(--color-mid-gray);
+}
+.has-light-gray-background-color {
+	background: var(--color-light-gray);
+}
+.has-dark-purple-background-color {
+	background: var(--color-dark-purple);
+}
+.has-light-purple-background-color {
+	background: var(--color-light-purple);
+}
+.has-dark-blue-background-color {
+	background: var(--color-dark-blue);
+}
+.has-light-blue-background-color {
+	background: var(--color-light-blue);
+}
+.has-white-background-color {
+	color: #fff;
+}
+.has-black-background-color {
+	color: #000;
 }
 
 /* ============================================ */
