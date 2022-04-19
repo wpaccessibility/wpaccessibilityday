@@ -555,7 +555,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				// $current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
 			}
 
-			$output[] = "<div class='wp-block-group alignwide trapezoid schedule' id='$speaker_id'>
+			$output[] = "<div class='wp-block-group alignwide schedule' id='$speaker_id'>
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
