@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-
+<div id="outer" class="has-sidebar">
 	<main id="primary" class="site-main">
 
 	<?php
@@ -31,5 +31,9 @@ get_header(); ?>
 
 	</main><!-- #primary -->
 
+<?php
+get_sidebar();
+?>
+</div>
 <?php
 get_footer();

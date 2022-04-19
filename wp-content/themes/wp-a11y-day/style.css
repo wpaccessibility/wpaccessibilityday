@@ -544,7 +544,7 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.main-navigation {
+.utility-navigation {
 	clear: both;
 	display: block;
 	margin: 0 auto;
@@ -552,14 +552,14 @@ a:hover, a:active {
 	text-align: center;
 }
 
-.main-navigation ul {
+.utility-navigation ul {
 	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 }
 
-.main-navigation ul ul {
+.utility-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
@@ -569,43 +569,43 @@ a:hover, a:active {
 	text-align: left;
 }
 
-.main-navigation ul ul ul {
+.utility-navigation ul ul ul {
 	left: -999em;
 	top: 0;
 }
 
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
+.utility-navigation ul ul li:hover > ul,
+.utility-navigation ul ul li.focus > ul {
 	left: 100%;
 }
 
-.main-navigation ul ul a {
+.utility-navigation ul ul a {
 	width: 200px;
 }
 
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
+.utility-navigation ul li:hover > ul,
+.utility-navigation ul li.focus > ul {
   display: block;
 	left: auto;
 }
 
-.main-navigation li {
+.utility-navigation li {
 	position: relative;
 }
 
-.main-navigation a {
+.utility-navigation a {
 	display: block;
 	text-decoration: none;
 }
 
 .menu-toggle {
-  padding: 1em;
+	padding: 1em;
 }
 
 @media screen and (max-width: 37.5em) {
 	/* Small menu. */
 	.menu-toggle,
-	.main-navigation.toggled ul {
+	.utility-navigation.toggled ul {
 		display: block;
 		margin: 0 auto;
 	}
@@ -615,13 +615,13 @@ a:hover, a:active {
 	.menu-toggle {
 		display: none;
 	}
-	.main-navigation ul {
+	.utility-navigation ul {
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
 	}
 
-	.main-navigation a {
+	.utility-navigation a {
 		padding: 0 .5em;
 	}
 }
@@ -738,7 +738,6 @@ a:hover, a:active {
   margin-right: auto;
 }
 
-
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
@@ -787,6 +786,19 @@ a:hover, a:active {
 
 .site-footer {
   margin: 1em 0;
+}
+
+.has-sidebar {
+	display: grid;
+	column-gap: 30px;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+@media screen and (min-width: 37.5em) {
+	.has-sidebar {
+		grid-template-columns: 66.6666% auto;
+	}
 }
 
 /*--------------------------------------------------------------

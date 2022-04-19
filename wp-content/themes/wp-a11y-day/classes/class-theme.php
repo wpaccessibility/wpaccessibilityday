@@ -36,8 +36,8 @@ class Theme {
 		$parent_style = 'wp-accessibility-day-style';
 
 		wp_enqueue_style(
-			'inter-font',
-			'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap',
+			'wpad-font',
+			'https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap',
 			array( $parent_style ),
 			wp_get_theme()->get( 'Version' )
 		);
