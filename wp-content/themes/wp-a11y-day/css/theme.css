@@ -260,14 +260,6 @@ h2.event-time {
 	}
 }
 
-.a11y-background-svg {
-	right: 0;
-	position: absolute;
-	top: 0;
-	width: 80%;
-	z-index: -10;
-}
-
 /* 3.1 Header Branding */
 
 .site-branding {
@@ -657,25 +649,6 @@ button:focus,
 .button:hover,
 .button:focus {
 	background: var(--purple);
-}
-
-.wpcf7 .wpcf7-response-output {
-	margin: 0;
-	background: var(--pearl);
-}
-
-.mc4wp-form input[type=email] {
-	margin-bottom: 4px;
-}
-
-.mc4wp-response {
-	font-size: 18px;
-	font-size: 1.125rem;
-	font-style: italic;
-}
-
-#colophon .site-info {
-	max-width: 888px;
 }
 
 #primary .alignwide .blocks-gallery-grid {

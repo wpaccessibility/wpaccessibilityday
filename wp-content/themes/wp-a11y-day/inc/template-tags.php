@@ -100,3 +100,36 @@ if ( ! function_exists( 'wp_accessibility_day_entry_footer' ) ) :
 		);
 	}
 endif;
+
+/**
+ * Render footer sidebars.
+ */
+function wp_accessibility_day_footer_sidebars() {
+	$active_sidebars = array();
+	$sidebars        = array( 'footer-col-one-widget-area', 'footer-col-two-widget-area', 'footer-col-three-widget-area', 'footer-col-four-widget-area' );
+	$i = 0;
+	foreach ( $sidebars as $area ) {
+		if ( is_active_sidebar( $area ) ) {
+			$active_sidebars[] = $area;
+			$i ++;
+		}
+	}
+	if ( is_active_sidebar( 'footer-widget-area' ) ) {
+		?>
+		<div id="footer-sidebar-full" class="footer-sidebar full-width widget-area">
+			<?php dynamic_sidebar( 'footer-widget-area' ); ?>
+		</div>
+		<?php
+	}
+	if ( $i > 0 ) {
+		?>
+		<aside id="footer-sidebar-columns" class="footer-sidebar widget-area footer-columns footer-columns-<?php echo $i; ?>" aria-label="Footer Sidebars">
+			<?php
+				foreach ( $active_sidebars as $sidebar ) {
+					dynamic_sidebar( $sidebar );
+				}
+			?>
+		</aside>
+		<?php
+	}
+}

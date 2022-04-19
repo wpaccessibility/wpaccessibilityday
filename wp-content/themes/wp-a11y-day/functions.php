@@ -127,10 +127,78 @@ if ( ! function_exists( 'wp_accessibility_day_setup' ) ) :
 				),
 			)
 		);
-
 	}
 endif;
 add_action( 'after_setup_theme', 'wp_accessibility_day_setup' );
+
+
+/**
+ * Register Widgets.
+ */
+function wp_accessibility_day_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => __( 'Sidebar', 'wp-accessibility-day' ),
+			'id'            => 'sidebar-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer - Full Width', 'wp-accessibility-day' ),
+			'id'            => 'footer-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer - Column 1', 'wp-accessibility-day' ),
+			'id'            => 'footer-col-one-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer - Column 2', 'wp-accessibility-day' ),
+			'id'            => 'footer-col-two-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer - Column 3', 'wp-accessibility-day' ),
+			'id'            => 'footer-col-three-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => __( 'Footer - Column 4', 'wp-accessibility-day' ),
+			'id'            => 'footer-col-four-widget-area',
+			'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+			'after_widget'  => "</div>",
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+}
+add_action( 'widgets_init', 'wp_accessibility_day_widgets_init' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -149,7 +217,7 @@ add_action( 'after_setup_theme', 'wp_accessibility_day_content_width', 0 );
  */
 function wp_accessibility_day_scripts() {
 	wp_enqueue_style( 'wp-accessibility-day-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'wp-accessibility-day-theme', get_template_directory_uri() . '/css/theme.css', array( 'wp-accessibility-day-style' ) );
+	wp_enqueue_style( 'wp-accessibility-day-theme', get_template_directory_uri() . '/css/theme.css', array( 'wp-accessibility-day-style' ), '1.0.0' );
 	wp_enqueue_style( 'wp-accessibility-day-blocks-style', get_template_directory_uri() . '/css/blocks.css' );
 	wp_enqueue_script( 'wp-accessibility-day-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
