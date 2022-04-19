@@ -114,6 +114,32 @@
 	color: #000;
 }
 
+.angled {
+	background: rgb(235,240,246);
+	background: radial-gradient(circle, rgba(235,240,246,1) 52%, rgba(239,230,240,1) 100%);
+	color: #2F3B41;
+	margin-bottom: 150px;
+	overflow: visible;
+	position: relative;
+	z-index: 1;
+}
+.angled:before, .angled:after {
+	background: inherit;
+	bottom: 0;
+	content: '';
+	height: 100%;
+	position: absolute;
+	transform-origin: left bottom;
+	transform: skewY(3deg);
+	width: 100%;
+	z-index: -1;
+}
+.angled:after {
+	bottom: 0;
+	transform-origin: left bottom;
+	transform: skewY(3deg);
+}
+
 /* ============================================ */
 
 /* 2. General */
@@ -221,6 +247,7 @@ h2.event-time {
 	grid-template-columns: 1fr;
 	margin: 0 auto;
 	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 @media screen and (min-width: 37.5em) {
@@ -233,11 +260,6 @@ h2.event-time {
 }
 
 /* 3.1 Header Branding */
-
-.site-branding {
-	margin: 1em 0;
-	text-align: unset;
-}
 
 .site-branding .site-title {
 	margin-top: 0;
@@ -255,6 +277,7 @@ h2.event-time {
 	margin-right: 16px;
 	width: 140px;
 	height: 140px;
+	transform: rotate(-4deg);
 }
 
 .site-branding .site-title .wrapper > span {
@@ -263,6 +286,7 @@ h2.event-time {
 	font-size: 2.125rem;
 	font-weight: 600;
 	word-break: normal;
+	color: var(--color-dark-purple);
 }
 
 /* 3.2 Header Menu */
@@ -272,11 +296,11 @@ h2.event-time {
 	outline: 2px solid var(--color-dark-purple);
 	outline-offset: 2px;
 	text-decoration: underline;
+	border-radius: 4px;
 }
 
 #utility-menu .current_page_item a {
 	background: var(--color-dark-purple);
-	border-radius: 4px;
 	color: #fff;
 }
 
@@ -328,13 +352,13 @@ h2.event-time {
 	}
 
 	#main-navigation {
-		background: var(--color-dark-purple);
+		background: var(--color-light-purple);
 		color: #fff;
-		padding: .25rem 0;
 	}
 
 	#main-navigation a {
 		color: #fff;
+		background: var(--color-dark-purple);
 	}
 
 	.site-header .utility-navigation {
@@ -371,7 +395,7 @@ h2.event-time {
 		position: static;
 		left: auto;
 		padding: 0 .5em;
-		border-left: 3px solid var(--green);
+		border-left: 3px solid var(--color-dark-blue);
 		background: transparent;
 		margin: 0 .5em;
 	}
@@ -381,7 +405,7 @@ h2.event-time {
 	}
 
 	.site-header .main-navigation.toggled #primary-menu .sub-menu li.current_page_item a {
-		color: var(--pearl);
+		color: #fff;
 	}
 
 	.site-header {
@@ -460,25 +484,25 @@ ol.comment-list li:nth-of-type(even) {
 }
 
 .comment-author {
-	background: var(--pearl);
+	background: #fff;
 	padding: 4px;
 }
 
 #respond {
-	background: var(--pearl);
+	background: #fff;
 	padding: 1em;
 }
 
 .comment-reply a {
 	border-radius: 3px;
 	border: 1px solid var(--purple);
-	background: var(--pearl);
+	background: #fff;
 	padding: 5px 10px;
 }
 
 .comment-reply a:hover,
 .comment-reply a:focus {
-	border: 1px solid var(--pearl);
+	border: 1px solid #fff;
 }
 
 h3#reply-title {
@@ -558,8 +582,8 @@ input[type="text"],
 input[type="email"],
 select,
 textarea {
-	background: var(--sky-blue);
-	border: 2px solid var(--teal);
+	background: var(--color-light-blue);
+	border: 2px solid var(--color-dark-purple);
 	border-radius: 2px;
 	display: block;
 	max-width: 492px;
@@ -577,20 +601,17 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
-	background: var(--pearl);
+	background: #fff;
 }
 
 input[type="submit"],
 button,
 .button {
-	background: var(--green);
-	color: var(--pearl);
+	background: var(--color-dark-purple);
+	color: #fff;
 	border: none;
-	color: var(--pearl);
-	font-size: 12px;
-	font-size: .75em;
 	font-weight: 600;
-	padding: 10px 20px;
+	padding: 12px 24px;
 }
 
 input[type="submit"]:hover,
@@ -599,7 +620,7 @@ button:hover,
 button:focus,
 .button:hover,
 .button:focus {
-	background: var(--purple);
+	background: var(--color-dark-purple);
 }
 
 #primary .alignwide .blocks-gallery-grid {
@@ -625,9 +646,9 @@ button:focus,
 }
 
 .wp-block-button a {
-	background: var(--green);
+	background: var(--color-dark-purple);
 	border-radius: 3px !important;
-	color: var(--pearl);
+	color: #fff;
 	font-weight: 600;
 	font-size: 22px;
 	font-size: 1.375rem;
@@ -639,13 +660,13 @@ button:focus,
 }
 
 .wp-block-button.is-style-outline a {
-	background: var(--pearl);
-	border: 1px solid var(--green);
-	color: var(--purple);
+	background: #fff;
+	border: 1px solid var(--color-dark-blue);
+	color: #000;
 }
 
 .pearl-box {
-	background: var(--pearl);
+	background: #fff;
 	border-radius: 6px;
 	padding: 2em;
 }
@@ -655,7 +676,7 @@ button:focus,
 }
 
 .current-talk {
-	background: var(--pearl);
+	background: #fff;
 	padding: 1em !important;
 	margin: 0 -1em !important;
 }
@@ -664,14 +685,14 @@ button:focus,
 	font-size: 1.5em;
 	line-height: 1.2;
 	margin-right: 10px;
-	color: red;
+	color: #e00;
 }
 
 .wp-block-column .slides a {
 	font-size: 1rem;
 	padding: 4px 6px;
-	border: 1px solid var(--purple);
-	background: var(--pearl);
+	border: 1px solid var(--color-dark-purple);
+	background: #fff;
 	text-decoration: none;
 }
 
@@ -689,7 +710,7 @@ button:focus,
 .sponsored {
 	padding: .5em !important;
 	background: rgba( 255, 255, 255, .15 );
-	border: 2px solid var(--purple);
+	border: 2px solid var(--color-dark-purple);
 }
 
 .contents-table {
@@ -704,63 +725,19 @@ blockquote {
 	padding: .5em;
 }
 
-.event-sponsors ul {
-	display: flex;
-	margin: 0;
-	padding: 0;
-	column-gap: 10px;
-	align-items: center;
-}
-
-.event-sponsors .silver {
-	width: 90%;
-	margin: 0 auto;
-}
-
-.event-sponsors .bronze {
-	width: 100%;
-	margin: 0 auto;
-}
-
 .event-info {
 	font-size: 1.2em;
 }
 
-.event-sponsors li {
-	list-style: none;
-	margin: 0;
-	padding: 10px;
-	flex-basis: 0;
-	flex-grow: 1;
-	background: #fff;
-	border-radius: 3px;
-	text-align: center;
-}
-
-.event-sponsors li a:hover, 
-.event-sponsors li a:focus {
-	box-shadow: 2px 2px 4px #333;
-	display: block;
-}
-
-.event-sponsors img {
-	max-height: 100px;
-	width: auto;
-}
-
-.event-sponsors .bronze img {
-	max-height: 70px;
-}
-
 /* Organizers */
 .reorder {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .reorder img {
-  order: -1;
-  margin: 0 auto;
+	order: -1;
+	margin: 0 auto;
 }
 
 .lead-organizers .wp-block-group__inner-container {

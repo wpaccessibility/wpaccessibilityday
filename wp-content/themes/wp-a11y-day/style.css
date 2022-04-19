@@ -352,10 +352,6 @@ big {
   font-size: 125%;
 }
 
-.archive .site-header {
-	margin-bottom: 3.5em;
-}
-
 .site-title {
 	margin: .4375em 0 0;
 	font-size: 38px;
@@ -366,10 +362,6 @@ big {
 .site-title a {
 	text-decoration: none;
 	color: inherit;
-}
-
-.site-branding {
-	margin-bottom: 1.75em;
 }
 
 .site-description {
@@ -777,11 +769,6 @@ a:hover, a:active {
 #page {
   margin: 0 auto;
   max-width: 100%;
-}
-
-.site-branding {
-  text-align: center;
-  margin: 60px 0;
 }
 
 .site-footer {
