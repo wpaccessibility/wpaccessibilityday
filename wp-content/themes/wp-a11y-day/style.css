@@ -543,54 +543,64 @@ a:hover, a:active {
 	text-align: center;
 }
 
-.utility-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
+.main-navigation .menu-item-has-children {
+	display: flex;
+	column-gap: 1px;
 }
 
-.utility-navigation ul ul {
+.main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
 	position: absolute;
+	display: none;
 	top: 100%;
-	left: -999em;
+	left: -0;
 	z-index: 99999;
 	text-align: left;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 
-.utility-navigation ul ul ul {
-	left: -999em;
+.main-navigation ul ul.toggled-on {
+	display: block;
+}
+
+.main-navigation ul ul ul {
+	left: 0;
 	top: 0;
 }
 
-.utility-navigation ul ul li:hover > ul,
-.utility-navigation ul ul li.focus > ul {
+.main-navigation ul ul li:hover > ul,
+.main-navigation ul ul li.focus > ul {
 	left: 100%;
 }
 
-.utility-navigation ul ul a {
-	width: 200px;
+.main-navigation ul ul a {
+	width: 16rem;
 }
 
-.utility-navigation ul li:hover > ul,
-.utility-navigation ul li.focus > ul {
-  display: block;
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.focus > ul {
+	display: block;
 	left: auto;
 }
 
-.utility-navigation li {
+.navigation li {
 	position: relative;
 }
 
-.utility-navigation a {
+.navigation a {
 	display: block;
 	text-decoration: none;
 }
 
 .menu-toggle {
 	padding: 1em;
+}
+
+.dropdown-toggle {
+	padding: 4px 8px;
+	border-radius: 0;
 }
 
 @media screen and (max-width: 37.5em) {

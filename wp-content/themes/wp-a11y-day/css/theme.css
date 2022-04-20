@@ -183,12 +183,9 @@ h2 {
 
 a:hover,
 a:focus {
-	color: var(--light-purple);
+	outline: 2px solid var(--color-dark-purple);
+	outline-offset: 2px;
 	text-decoration: none;
-}
-
-a:focus {
-	outline: var(--purple) thin dotted;
 }
 
 code, kbd, tt, var {
@@ -202,17 +199,17 @@ code, kbd, tt, var {
 .entry-footer,
 .nav-breadcrumbs,
 #comments {
-	max-width: 960px !important;
+	max-width: 960px;
 	margin: 0 auto;
-	padding-left: 36px !important;
-	padding-right: 36px !important;
+	padding-left: 36px;
+	padding-right: 36px;
 }
 
 .entry-content > * {
 	max-width: 660px;
-	margin: 36px 0 !important;
-	padding-left: 0 !important;
-	padding-right: 0 !important;
+	margin: 36px 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 h2.event-time {
@@ -222,14 +219,14 @@ h2.event-time {
 
 @media (max-width:720px) {
 	.wp-block-column {
-		flex-basis: 100% !important;
+		flex-basis: 100%;
 		flex-grow: 1;
-		margin-left: 0 !important;
+		margin-left: 0;
 	}
 }
 
 .wp-block-group > .wp-block-group__inner-container > * {
-	max-width: 100% !important;
+	max-width: 100%;
 }
 
 .entry-meta,
@@ -293,8 +290,6 @@ h2.event-time {
 
 #utility-menu a:hover,
 #utility-menu a:focus {
-	outline: 2px solid var(--color-dark-purple);
-	outline-offset: 2px;
 	text-decoration: underline;
 	border-radius: 4px;
 }
@@ -341,6 +336,7 @@ h2.event-time {
 		display: flex;
 		margin: 0;
 		padding: 0;
+		column-gap: 6px;
 	}
 
 	.navigation .menu li {
@@ -359,6 +355,9 @@ h2.event-time {
 	#main-navigation a {
 		color: #fff;
 		background: var(--color-dark-purple);
+		font-size: 20px;
+		font-size: 1.25rem;
+		border-radius: 2px;
 	}
 
 	.site-header .utility-navigation {
@@ -371,13 +370,13 @@ h2.event-time {
 	}
 
 	.entry-header .entry-title {
-		font-size: 64px !important;
-		font-size: 4rem !important;
+		font-size: 64px;
+		font-size: 4rem;
 	}
 	
 	.blog .entry-header .entry-title {
-		font-size: 48px !important;
-		font-size: 3rem !important;
+		font-size: 48px;
+		font-size: 3rem;
 	}
 }
 
@@ -647,7 +646,7 @@ button:focus,
 
 .wp-block-button a {
 	background: var(--color-dark-purple);
-	border-radius: 3px !important;
+	border-radius: 3px;
 	color: #fff;
 	font-weight: 600;
 	font-size: 22px;
@@ -677,8 +676,8 @@ button:focus,
 
 .current-talk {
 	background: #fff;
-	padding: 1em !important;
-	margin: 0 -1em !important;
+	padding: 1em;
+	margin: 0 -1em;
 }
 
 .youtube-link .dashicons {
@@ -708,13 +707,13 @@ button:focus,
 }
 
 .sponsored {
-	padding: .5em !important;
+	padding: .5em;
 	background: rgba( 255, 255, 255, .15 );
 	border: 2px solid var(--color-dark-purple);
 }
 
 .contents-table {
-	padding: .25em 1em !important;
+	padding: .25em 1em;
 	font-size: 80%;
 	background: rgba( 255,255,255,.15 );
 }
