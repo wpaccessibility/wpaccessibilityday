@@ -157,16 +157,6 @@ body {
 	background: var(--white);
 }
 
-b,
-strong {
-	font-weight: 600;
-}
-
-h1,
-h2 {
-	font-weight: 800;
-}
-
 .localtime {
 	display: block;
 	font-size: 1rem;
@@ -276,7 +266,7 @@ h2.event-time {
 	color: var(--color-dark-purple);
 }
 
-/* 3.2 Header Menu */
+/* 3.2 Header Menus */
 
 #utility-menu a:hover,
 #utility-menu a:focus {
@@ -699,18 +689,6 @@ button:focus,
 	display: block;
 	border-radius: 10px;
 	margin: .5em 0;
-}
-
-.sponsored {
-	padding: .5em;
-	background: rgba( 255, 255, 255, .15 );
-	border: 2px solid var(--color-dark-purple);
-}
-
-.contents-table {
-	padding: .25em 1em;
-	font-size: 80%;
-	background: rgba( 255,255,255,.15 );
 }
 
 blockquote {
