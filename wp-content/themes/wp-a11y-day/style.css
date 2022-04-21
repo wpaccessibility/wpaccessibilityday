@@ -570,7 +570,6 @@ a:hover, a:active {
 	top: 0;
 }
 
-.main-navigation ul ul li.hover > ul,
 .main-navigation ul ul li.focus > ul {
 	left: 100%;
 }
@@ -579,7 +578,6 @@ a:hover, a:active {
 	width: 16rem;
 }
 
-.main-navigation ul li.hover > ul,
 .main-navigation ul li.focus > ul {
 	display: block;
 	left: auto;

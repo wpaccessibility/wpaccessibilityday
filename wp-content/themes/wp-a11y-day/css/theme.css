@@ -31,14 +31,6 @@
 /* 1. Variables */
 
 :root {
-	--green: #317a69;
-	--light-purple: #565676;
-	--pearl: #fafafa;
-	--purple: #3d3d54;
-	--sky-blue: #e6eff3;
-	--sky-blue-transparent: #e6eff388;
-	--teal: #7dacbf;
-
 	--logo-light: #7f1177;
 	--logo-dark: #115A7F;
 
@@ -152,7 +144,7 @@ select,
 button,
 optgroup,
 textarea {
-	color: var(--purple);
+	color: var(--color-dark-gray);
 	font-family: 'Noto Serif', sans-serif;
 	font-weight: 400;
 }
@@ -265,7 +257,6 @@ h2.event-time {
 .site-branding .site-title .wrapper {
 	align-items: center;
 	display: flex;
-	color: var(--purple);
 }
 
 .site-branding .site-title .wrapper svg {
@@ -499,7 +490,7 @@ ol.comment-list li:nth-of-type(even) {
 
 .comment-reply a {
 	border-radius: 3px;
-	border: 1px solid var(--purple);
+	border: 1px solid var(--color-dark-purple);
 	background: #fff;
 	padding: 5px 10px;
 }
@@ -570,7 +561,7 @@ h3#reply-title small {
 input:focus,
 select:focus,
 textarea:focus {
-	outline: var(--purple) 2px dotted;
+	outline: var(--color-dark-purple) 2px solid;
 	outline-offset: 2px
 }
 
