@@ -594,10 +594,6 @@ a:hover, a:active {
 	text-decoration: none;
 }
 
-.menu-toggle {
-	padding: 1em;
-}
-
 .dropdown-toggle {
 	padding: 4px 8px;
 	border-radius: 0;
@@ -606,9 +602,30 @@ a:hover, a:active {
 @media screen and (max-width: 37.5em) {
 	/* Small menu. */
 	.menu-toggle,
-	.utility-navigation.toggled ul {
+	.main-navigation.toggled-on .menu-primary-navigation-container {
 		display: block;
-		margin: 0 auto;
+		margin: 1rem auto;
+	}
+
+	.main-navigation .menu-primary-navigation-container {
+		display: none;
+	}
+
+	#main-navigation {
+		padding: 1rem;
+	}
+
+	#primary-menu {
+		display: grid;
+	}
+
+	.main-navigation #primary-menu .menu-item-has-children {
+		display: grid;
+		grid-template-columns: auto 3rem;
+	}
+
+	.main-navigation #primary-menu .sub-menu {
+		position: static;
 	}
 }
 
@@ -823,7 +840,7 @@ a:hover, a:active {
   margin: 1.5em auto;
   padding-left: 14px;
   padding-right: 14px;
-  max-width: 580px;
+  max-width: 660px;
 }
 
 .entry-header .wp-post-image {
@@ -834,9 +851,8 @@ a:hover, a:active {
   margin-right: 1em;
 }
 
-.entry-footer{
+.entry-footer {
 	padding-bottom: 40px;
-	border-bottom: 1px solid #e2e4e7;
 }
 
 @media screen and (min-width: 608px) {

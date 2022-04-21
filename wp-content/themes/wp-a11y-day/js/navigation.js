@@ -11,8 +11,8 @@ https://github.com/wpaccessibility/a11ythemepatterns/tree/master/menu-keyboard-a
 
 (function($) {
 
-	var menuContainer    = $('#main-navigation');
-	var menuToggle       = menuContainer.find( '.menu-toggle' );
+	var menuContainer = $('#main-navigation');
+	var menuToggle    = menuContainer.find( '.menu-toggle' );
 
 	// Toggles the menu button.
 	if ( ! menuToggle.length ) {
