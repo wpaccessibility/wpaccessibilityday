@@ -86,6 +86,14 @@ https://github.com/wpaccessibility/a11ythemepatterns/tree/master/menu-keyboard-a
 	// Adds a class to sub-menus for styling
 	$('.sub-menu .menu-item-has-children').parent('.sub-menu').addClass('has-sub-menu');
 
+	$( '.menu-item-has-children a, .sub-menu' ).on( 'mouseover', function(e) {
+		$(this).parent( 'li' ).addClass( 'focus' );
+	});
+
+	$( '.menu-item-has-children a, .sub-menu' ).on( 'mouseleave', function(e) {
+		$(this).parent( 'li' ).removeClass( 'focus' );
+	});
+
 	// Keyboard navigation
 	$( '.menu-item a, button.dropdown-toggle' ).on('keydown', function(e) {
 

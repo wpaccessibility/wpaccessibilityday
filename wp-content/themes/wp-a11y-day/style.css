@@ -570,7 +570,7 @@ a:hover, a:active {
 	top: 0;
 }
 
-.main-navigation ul ul li:hover > ul,
+.main-navigation ul ul li.hover > ul,
 .main-navigation ul ul li.focus > ul {
 	left: 100%;
 }
@@ -579,7 +579,7 @@ a:hover, a:active {
 	width: 16rem;
 }
 
-.main-navigation ul li:hover > ul,
+.main-navigation ul li.hover > ul,
 .main-navigation ul li.focus > ul {
 	display: block;
 	left: auto;
@@ -787,12 +787,24 @@ a:hover, a:active {
 # Content
 --------------------------------------------------------------*/
 #page {
-  margin: 0 auto;
-  max-width: 100%;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.entry-meta,
+.entry-footer,
+.site-footer {
+	color: var(--dark-gray);
+}
+
+.gradient-background,
+.main-navigation,
+.site-footer {
+	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
 }
 
 .site-footer {
-  margin: 1em 0;
+	padding: 50px 0;
 }
 
 .has-sidebar {

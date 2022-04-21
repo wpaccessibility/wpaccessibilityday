@@ -234,17 +234,6 @@ h2.event-time {
 	max-width: 100%;
 }
 
-.entry-meta,
-.entry-footer,
-.site-footer {
-	color: var(--dark-gray);
-}
-
-.site-footer {
-	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
-	padding: 50px 0;
-}
-
 /* ============================================ */
 
 /* 3. Header */
@@ -356,8 +345,8 @@ h2.event-time {
 }
 
 #main-navigation {
-	background: var(--color-light-purple);
 	color: #fff;
+	padding: 10px 0;
 }
 
 #main-navigation a {
