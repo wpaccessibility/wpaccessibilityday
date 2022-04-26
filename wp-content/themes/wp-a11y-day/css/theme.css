@@ -171,11 +171,16 @@ body {
 	font-size: 1.25rem;
 }
 
+button:hover,
+button:focus,
+.button:hover,
+.button:focus,
 a:hover,
 a:focus {
 	outline: 2px solid var(--color-dark-purple);
 	outline-offset: 2px;
 	text-decoration: none;
+	border-radius: 2px;
 }
 
 code, kbd, tt, var {
