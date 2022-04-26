@@ -334,6 +334,22 @@ h2.event-time {
 	padding: 4px 12px;
 }
 
+#footer-menu li a {
+	padding: 0;
+}
+
+#footer-menu li {
+	margin: 0 12px;
+}
+
+#footer-menu li:nth-of-type(1) {
+	margin: 0 12px 0 0;
+}
+
+#colophon nav {
+	margin: 1em auto;
+}
+
 #main-navigation {
 	color: #fff;
 	padding: 10px 0;
