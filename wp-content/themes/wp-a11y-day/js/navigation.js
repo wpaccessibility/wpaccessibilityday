@@ -30,7 +30,7 @@ https://github.com/wpaccessibility/a11ythemepatterns/tree/master/menu-keyboard-a
 	// Adds the dropdown toggle button.
 	$('.menu-item-has-children > a').not(this).each( function() {
 		var linkText         = $(this).text();
-		var screenReaderText = { 'expand' : 'sub-menu', 'collapse' : 'sub-menu' };
+		var screenReaderText = { 'expand' : 'submenu', 'collapse' : 'submenu' };
 		var dropdownToggle   = $(
 				'<button />',
 				{
@@ -51,9 +51,6 @@ https://github.com/wpaccessibility/a11ythemepatterns/tree/master/menu-keyboard-a
 		//console.log($(this).text());
 		$(this).after( dropdownToggle );
 	});
-
-	// Adds aria attribute
-	menuContainer.find( '.menu-item-has-children' ).attr( 'aria-haspopup', 'true' );
 
 	// Toggles the sub-menu when dropdown toggle button clicked
 	menuContainer.find( '.dropdown-toggle' ).on( 'click', function(e) {
