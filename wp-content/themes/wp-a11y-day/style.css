@@ -397,7 +397,12 @@ hr {
 }
 
 ul, ol {
-  margin: 0 0 1.5em 3em;
+  margin: 0 0 1.5em 1.5em;
+}
+
+.entry-content > ul,
+.entry-content > ol {
+	margin: 36px 0 36px 1.5em;
 }
 
 ul {
@@ -619,6 +624,10 @@ a:hover, a:active {
 		padding-right: 0;
 	}
 
+	.main-navigation.navigation .menu {
+		justify-content: initial;
+	}
+
 	#main-navigation {
 		padding: 1rem;
 	}
@@ -770,6 +779,10 @@ a:hover, a:active {
 	margin: 30px;
 }
 
+.widget a[aria-current=page] {
+	font-weight: 700;
+}
+
 #footer-sidebar-columns {
 	display: grid;
 	column-gap: 30px;
@@ -788,7 +801,7 @@ a:hover, a:active {
 }
 
 .widget {
-  margin: 0 0 1.5em;
+  margin: 60px 0 1.5em;
   /* Make sure select elements fit in widgets. */
 }
 
