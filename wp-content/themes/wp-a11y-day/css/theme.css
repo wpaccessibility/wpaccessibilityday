@@ -325,6 +325,7 @@ h2.event-time {
 	margin: 0;
 	padding: 0;
 	column-gap: 6px;
+	justify-content: center;
 }
 
 .navigation .menu li {
@@ -349,6 +350,18 @@ h2.event-time {
 
 #colophon nav {
 	margin: 1em auto;
+}
+
+#colophon #footer-sidebar-full p {
+	text-align: center;
+}
+
+#colophon .site-logo {
+	text-align: center;
+}
+
+#colophon .site-logo svg {
+	transform: rotate( -4deg );
 }
 
 #main-navigation {

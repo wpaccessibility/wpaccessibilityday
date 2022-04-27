@@ -548,6 +548,10 @@ a:hover, a:active {
 	column-gap: 1px;
 }
 
+.main-navigation.navigation .menu {
+	justify-content: left;
+}
+
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	position: absolute;
