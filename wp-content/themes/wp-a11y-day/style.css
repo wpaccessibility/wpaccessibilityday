@@ -602,11 +602,17 @@ a:hover, a:active {
 	.menu-toggle,
 	.main-navigation.toggled-on .menu-primary-navigation-container {
 		display: block;
-		margin: 1rem auto;
+		margin: .5em auto;
+	}
+
+	button.menu-toggle {
+		padding: 18px 36px;
 	}
 
 	.main-navigation .menu-primary-navigation-container {
 		display: none;
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	#main-navigation {
@@ -625,16 +631,21 @@ a:hover, a:active {
 	.main-navigation #primary-menu .sub-menu {
 		position: static;
 	}
+
+	.main-navigation #primary-menu a {
+		border-radius: 0;
+		border-bottom: 1px solid #fff;
+	}
+
+	.entry-header h1.entry-title {
+		font-size: 36px;
+		font-size: 2rem;
+	}
 }
 
 @media screen and (min-width: 37.5em) {
 	.menu-toggle {
 		display: none;
-	}
-	.utility-navigation ul {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
 	}
 
 	.utility-navigation a {
