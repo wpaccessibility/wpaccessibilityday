@@ -336,6 +336,17 @@ h2.event-time {
 	padding: 4px 12px;
 }
 
+#sidebar-widgets .widget .menu {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 1.125rem;
+}
+
+#sidebar-widgets .widget .menu li {
+	margin-bottom: .5rem;
+}
+
 #footer-menu li a {
 	padding: 0;
 }
