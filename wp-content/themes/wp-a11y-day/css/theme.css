@@ -190,7 +190,7 @@ code, kbd, tt, var {
 .site-header,
 .menu-primary-navigation-container,
 .entry-header,
-.entry-content,
+.entry-content > *,
 .entry-footer,
 .nav-breadcrumbs,
 .site-footer > *,
@@ -202,10 +202,15 @@ code, kbd, tt, var {
 }
 
 .entry-content > * {
-	max-width: 660px;
-	margin: 36px 0;
-	padding-left: 0;
-	padding-right: 0;
+	margin: 36px auto;
+}
+
+.entry-content > .alignfull {
+	max-width: 100%;
+}
+
+.entry-content > .alignwide {
+	max-width: 1280px;
 }
 
 h2.event-time {
