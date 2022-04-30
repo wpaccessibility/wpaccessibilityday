@@ -107,41 +107,6 @@ function wp_accessibility_day_enable_align_wide() {
 }
 add_action( 'after_setup_theme', 'wp_accessibility_day_enable_align_wide' );
 
-
-/**
- * Enable custom theme colors if the wp-accessibility-day-editor-color-palette setting is active.
- */
-function wp_accessibility_day_enable_editor_color_palette() {
-	if ( get_option( 'wp-accessibility-day-editor-color-palette', 1 ) == 1 ) {
-		
-		// Add support for a custom color scheme.
-		add_theme_support( 'editor-color-palette', array(
-			array(
-				'name'  => __( 'Strong Blue', 'wp-accessibility-day' ),
-				'slug'  => 'strong-blue',
-				'color' => '#0073aa',
-			),
-			array(
-				'name'  => __( 'Lighter Blue', 'wp-accessibility-day' ),
-				'slug'  => 'lighter-blue',
-				'color' => '#229fd8',
-			),
-			array(
-				'name'  => __( 'Very Light Gray', 'wp-accessibility-day' ),
-				'slug'  => 'very-light-gray',
-				'color' => '#eee',
-			),
-			array(
-				'name'  => __( 'Very Dark Gray', 'wp-accessibility-day' ),
-				'slug'  => 'very-dark-gray',
-				'color' => '#444',
-			),
-		) );
-	}
-}
-add_action( 'after_setup_theme', 'wp_accessibility_day_enable_editor_color_palette' );
-
-
 /**
  * Enable dark mode if wp-accessibility-day-dark-mode setting is active.
  */
