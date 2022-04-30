@@ -599,12 +599,6 @@ h3#reply-title small {
 	position: relative;
 }
 
-.entry-header .entry-title {
-	font-size: 48px;
-	font-size: 3rem;
-	margin-bottom: 0;
-}
-
 .entry-header .subtitle {
 	font-size: 40px;
 	font-size: 2.5rem;
