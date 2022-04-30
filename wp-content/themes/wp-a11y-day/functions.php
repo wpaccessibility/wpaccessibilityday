@@ -309,35 +309,6 @@ add_action( 'after_setup_theme', 'wp_accessibility_day_text_domain' );
 // Instantiate theme.
 Theme::get_instance();
 
-// Add subtitle to home page
-function wpad_home_subtitle() {
-	global $post;
-	if ( function_exists( 'get_field' ) ) {
-		//echo '<div class="subtitle">' . get_field( 'subtitle_content', $post->ID ) . '</div>';
-	} else {
-		//echo '<div class="subtitle"><p class="event-date">October 2nd, 2020</p><p><a href="https://www.timeanddate.com/worldclock/fixedtime.html?hour=18&amp;min=00&amp;sec=0" class="customize-unpreviewable">From 18:00 UTC</a></p></div>';
-	}
-}
-add_action( 'wpad_entry_header', 'wpad_home_subtitle' );
-
-add_action( 'wp', 'wpad_custom_canonical' );
-/**
- * Filter in a custom canonical URL for Yoast. Because I can't get the advanced panel to show up.
- */
-function wpad_custom_canonical() {
-	if ( is_single( 542 ) ) {
-		add_action( 'wp_head', 'wpad_canonical' );
-		remove_action( 'wp_head', 'rel_canonical' );
-		add_filter( 'wpseo_canonical', 'wpad_disable_yoast_canonical' );
-	}
-}
-
-function wpad_canonical() {
-	$link = 'https://yoast.com/image-seo-alt-tag-and-title-tag-optimization/';
-
-	echo "<link rel='canonical' href='$link' />\n";
-}
-
 /**
  * Return HTML from a WordPress profile via shortcode.
  *
@@ -479,6 +450,14 @@ function wpaccessibilityday_time() {
 }
 
 add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
+/**
+ * Generate schedule for WP Accessibility Day.
+ *
+ * @param array  $atts Shortcode attributes.
+ * @param string $content Contained content.
+ *
+ * @return string
+ */
 function wpaccessibilityday_schedule( $atts, $content ) {
 	$args = shortcode_atts( array(
 		'start'     => '18',
@@ -610,6 +589,11 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
 }
 
+/**
+ * Swap the YouTube link based on current time.
+ *
+ * @return string
+ */
 function wpad_youtube_links() {
 	$time = time();
 	if ( $time < strtotime( '2020-10-02 11:50 UTC' ) ) {
@@ -635,20 +619,30 @@ function wpad_youtube_links() {
 	return $output;
 }
 
-add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
+/**
+ * Show user's local time for talks.
+ */
 function wp_talk_time() {
 	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
 }
+add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
 
-add_filter( 'wp_dropdown_users_args', 'wpad_add_subscribers_to_dropdown', 10, 2 );
+/**
+ * This was, I believe, because we made speakers a non-publishing level of user, but assigned them as authors of their own talks.
+ *
+ * @return array
+ */
 function wpad_add_subscribers_to_dropdown( $query_args, $r ) {
 	$query_args['who'] = '';
 
 	return $query_args;
-
 }
+add_filter( 'wp_dropdown_users_args', 'wpad_add_subscribers_to_dropdown', 10, 2 );
 
+/**
+ * Custom walker for comments to handle Q & A.
+ */
 class WPad_Walker_Comment extends Walker_Comment {
  
 	/**
@@ -675,48 +669,13 @@ class WPad_Walker_Comment extends Walker_Comment {
 					<div class="comment-author vcard">
 						<?php
 						/*
-						 * Eliminate comment author avatar.
-						$comment_author_link = get_comment_author_link( $comment );
-						$comment_author_url  = get_comment_author_url( $comment );
-						$comment_author      = get_comment_author( $comment );
-						$avatar              = get_avatar( $comment, $args['avatar_size'] );
-						if ( 0 != $args['avatar_size'] ) {
-							if ( empty( $comment_author_url ) ) {
-								echo $avatar;
-							} else {
-								printf( '<a href="%s" rel="external nofollow" class="url">', $comment_author_url );
-								echo $avatar;
-							}
-						}
-						 */
-						/*
 						 * Using the `check` icon instead of `check_circle`, since we can't add a
 						 * fill color to the inner check shape when in circle form.
 						 */
 						if ( $comment->user_id === $post->post_author ) {
 							print( '<span class="post-author-badge"><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span> Speaker Response</span>' );
 						}
- 
-						/*
-						 * Eliminate comment author link
-						 *
-						printf(
-							wp_kses(
-								__( '%s <span class="screen-reader-text says">says:</span>', 'custom' ),
-								array(
-									'span' => array(
-										'class' => array(),
-									),
-								)
-							),
-							'<b class="fn">' . get_comment_author_link( $comment ) . '</b>'
-						);
- 
-						if ( ! empty( $comment_author_url ) ) {
-							echo '</a>';
-						}
-						*/
-						?>
+ 						?>
 					</div><!-- .comment-author -->
 						<?php
 					} else {
