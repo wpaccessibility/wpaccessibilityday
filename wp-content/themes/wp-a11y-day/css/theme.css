@@ -647,7 +647,6 @@ textarea {
 	border: 2px solid var(--color-dark-purple);
 	border-radius: 2px;
 	display: block;
-	max-width: 492px;
 	margin-bottom: 12px;
 	width: 100%;
 }
