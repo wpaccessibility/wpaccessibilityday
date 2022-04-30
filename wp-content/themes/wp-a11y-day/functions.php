@@ -736,3 +736,20 @@ function wpad_site_logo() {
 add_shortcode( 'logo', 'wpad_site_logo' );
 add_filter( 'widget_text', 'do_shortcode');
 add_filter( 'widget_text', 'shortcode_unautop');
+
+/**
+ * Change speakers rewrite slug for more generic use.
+ *
+ * @param array  $args Post type arguments.
+ * @param string $post_type Post type name.
+ *
+ * @return array
+ */
+function wpad_speakers_slug( $args, $post_type ) {
+	if ( 'wpcsp_speaker' === $post_type ){
+		$args['rewrite']['slug'] = 'people';
+	}
+ 
+	return $args;
+}
+add_filter( 'register_post_type_args', 'wpad_speakers_slug', 10, 2 );
