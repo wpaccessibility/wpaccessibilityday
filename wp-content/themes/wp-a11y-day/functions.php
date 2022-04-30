@@ -269,12 +269,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Theme Settings
- */
-require get_template_directory() . '/inc/theme-options.php';
-
-
 use WP_Accessibility_Day\Theme;
 
 /**
