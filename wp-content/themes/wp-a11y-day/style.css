@@ -35,6 +35,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Content
 	## Posts and pages
 	## Comments
+	## Sponsor Levels
 # Infinite scroll
 # Media
 	## Captions
@@ -444,6 +445,18 @@ table {
   width: 100%;
 }
 
+.border-radius {
+	border-radius: 30px;
+}
+
+.box-shadow {
+	box-shadow: 30px 40px 60px 0 rgb(0 0 0 / 10%);
+}
+
+.margin-top-0 {
+	margin-top: 0
+}
+
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
@@ -823,6 +836,7 @@ a:hover, a:active {
 	color: var(--dark-gray);
 }
 
+.sponsor-levels-container,
 .gradient-background,
 .main-navigation,
 .site-footer {
@@ -917,6 +931,39 @@ a:hover, a:active {
 
 .bypostauthor {
   display: block;
+}
+
+/*--------------------------------------------------------------
+## Sponsor Levels
+--------------------------------------------------------------*/
+.sponsor-levels h3 {
+    color: var(--color-dark-purple);
+    margin: 0;
+}
+
+.sponsor-levels .price {
+	margin: 0;
+	font-weight: 700;
+}
+
+.sponsor-spots {
+    color: var(--color-dark-blue);
+    margin-top: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.sponsor-benefits {
+	margin-left: 0;
+	padding-left: 0;
+}
+.sponsor-benefits li {
+	list-style: none;
+	border-bottom: 1px solid #105a7f;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-size: 1rem;
 }
 
 /*--------------------------------------------------------------
