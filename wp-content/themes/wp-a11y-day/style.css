@@ -698,6 +698,19 @@ a:hover, a:active {
 		font-size: 36px;
 		font-size: 2rem;
 	}
+
+	#sponsorship-levels .gb-container-c9734134 {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+	#sponsorship-levels .gb-grid-column-c9734134 {
+		margin-bottom: 30px;
+	}
+
+	#sponsorship-levels .gb-grid-column-c9734134:last-of-type() {
+		margin-bottom: 0;
+	}
 }
 
 @media screen and (min-width: 37.5em) {
