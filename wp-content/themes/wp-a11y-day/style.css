@@ -465,11 +465,6 @@ figure.box-shadow {
 	padding: 0;
 }
 
-.gb-container {
-	margin: 0 auto !important;
-	overflow: hidden;
-}
-
 .wp-block-separator {
 	border-top:none;
 	margin: 30px auto;
