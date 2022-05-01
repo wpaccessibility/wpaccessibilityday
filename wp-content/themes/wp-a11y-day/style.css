@@ -296,10 +296,13 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 
+
+
 .entry-header .entry-title {
-	font-size: 2.44em;
-	line-height: 1.4;
-	margin: 1em 0 1rem;
+		font-size: 48px;
+		font-size: 3rem;
+		line-height: 1.4;
+		margin-top: 10px;
 }
 
 dfn, cite, em, i {
@@ -449,14 +452,33 @@ table {
 	border-radius: 30px;
 }
 
-.box-shadow {
-	box-shadow: 30px 40px 60px 0 rgb(0 0 0 / 10%);
+.box-shadow,
+.box-shadow img {
+	box-shadow: 20px 30px 60px 0 rgb(0 0 0 / 10%);
 }
 
 .margin-top-0 {
-	margin-top: 0
+	margin-top: 0 !important;
 }
 
+figure.box-shadow {
+	padding: 0;
+}
+
+.gb-container {
+	margin: 0 auto !important;
+	overflow: hidden;
+}
+
+.wp-block-separator {
+	border-top:none;
+	margin: 30px auto;
+}
+
+.button-small a {
+	font-size: 1.1rem !important;
+    padding: 10px 18px;
+}
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
@@ -534,8 +556,18 @@ select {
 
 textarea {
   width: 100%;
+	max-width: 100%;
 }
 
+.gform_wrapper.gravity-theme .field_description_above .gfield_description,
+.gform_wrapper.gravity-theme .gfield_label {
+	margin-bottom:0;
+	padding-bottom:0;
+}
+
+.gform_wrapper.gravity-theme .gfield {
+	margin-bottom: 16px;
+}
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -617,6 +649,10 @@ a:hover, a:active {
 .dropdown-toggle {
 	padding: 4px 8px;
 	border-radius: 0;
+}
+
+.nav-social {
+	margin: 0 !important;
 }
 
 @media screen and (max-width: 37.5em) {
@@ -793,7 +829,11 @@ a:hover, a:active {
 }
 
 .widget a[aria-current=page] {
-	font-weight: 700;
+	background: var(--color-dark-blue);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 #footer-sidebar-columns {
@@ -822,6 +862,10 @@ a:hover, a:active {
   max-width: 100%;
 }
 
+.widget:first-of-type {
+    margin-top: 0;
+}
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
@@ -830,10 +874,31 @@ a:hover, a:active {
 	max-width: 100%;
 }
 
+.nav-breadcrumbs {
+	margin-top: 60px !important;
+}
+
+.nav-breadcrumbs p {
+	margin-bottom: 0;
+}
+
 .entry-meta,
 .entry-footer,
 .site-footer {
 	color: var(--dark-gray);
+}
+
+.entry-meta {
+	margin-bottom: 20px;
+}
+
+.entry-header img {
+	border-radius: 30px !important;
+}
+
+.single-post .entry-footer {
+	border-top: 2px solid var(--color-dark-purple);
+    padding-top: 8px;
 }
 
 .sponsor-levels-container,
@@ -861,14 +926,52 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
+## Home page
+--------------------------------------------------------------*/
+.home .entry-header {
+	margin: 60px auto 0;
+    text-align: center;
+}
+
+.home h1 {
+	color: var(--color-dark-purple);
+	margin-bottom:0;
+}
+
+.home #gform_1 {
+	display: flex;
+}
+
+.home #gform_1 .gform-body {
+	width:75%;
+
+}
+.home #gform_1 .gform-footer{
+	padding:0;
+}
+
+.home #gform_1 .gform_footer input {
+	margin:0;
+	padding: 14px 24px;
+}
+
+.home .wp-block-latest-posts {
+	margin-left: 0;
+}
+
+.home .wp-block-latest-posts__featured-image img {
+	border-radius: 30px;
+}
+/*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
+
 .sticky {
   display: block;
 }
 
 .hentry {
-  margin: 60px 0;
+  margin: 0 0 60px;
 }
 
 .updated:not(.published) {
