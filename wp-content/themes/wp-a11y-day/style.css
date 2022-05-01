@@ -987,6 +987,7 @@ a:hover, a:active {
 .home #gform_1 .gform_footer input {
 	margin:0;
 	padding: 14px 24px;
+	line-height: 1;
 }
 
 .home .wp-block-latest-posts {
