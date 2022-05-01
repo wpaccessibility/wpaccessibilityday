@@ -215,8 +215,7 @@ code, kbd, tt, var {
 .entry-content > h5,
 .entry-content > h6,
 .entry-content > ul,
-.entry-content > ol,
-.entry-content > li {
+.entry-content > ol {
 	margin: 36px auto;
 }
 
