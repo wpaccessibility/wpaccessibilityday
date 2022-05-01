@@ -296,13 +296,15 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 
-
-
 .entry-header .entry-title {
-		font-size: 48px;
-		font-size: 3rem;
-		line-height: 1.4;
-		margin-top: 10px;
+	font-size: 48px;
+	font-size: 3rem;
+	line-height: 1.4;
+	margin-top: 10px;
+}
+
+.entry-header .entry-title a {
+	display: block;
 }
 
 dfn, cite, em, i {
@@ -651,6 +653,14 @@ a:hover, a:active {
 }
 
 @media screen and (max-width: 60em) {
+	h2 {
+		font-size: 1.6em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+	}
+
 	/* Small screen menu. */
 	.menu-toggle,
 	.main-navigation.toggled-on .menu-primary-navigation-container {
@@ -911,7 +921,9 @@ a:hover, a:active {
 }
 
 .entry-meta {
+	padding: 9px;
 	margin-bottom: 20px;
+	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
 }
 
 .entry-header img {
