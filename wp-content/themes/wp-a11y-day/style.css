@@ -650,7 +650,7 @@ a:hover, a:active {
 	margin: 0 !important;
 }
 
-@media screen and (max-width: 37.5em) {
+@media screen and (max-width: 60em) {
 	/* Small menu. */
 	.menu-toggle,
 	.main-navigation.toggled-on .menu-primary-navigation-container {
@@ -713,7 +713,7 @@ a:hover, a:active {
 	}
 }
 
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 60em) {
 	.menu-toggle {
 		display: none;
 	}
@@ -927,7 +927,7 @@ a:hover, a:active {
 	margin: 0 auto;
 }
 
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 60em) {
 	.has-sidebar {
 		grid-template-columns: 66.6666% auto;
 	}

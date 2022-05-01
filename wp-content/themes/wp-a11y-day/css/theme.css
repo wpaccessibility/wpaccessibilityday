@@ -13,7 +13,7 @@
 /*
  General information:
  Colors: see 1. Variables.
- Breakpoints: 37.5em(600px),
+ Breakpoints: 60em(600px),
 
  TOC
  1. Variables
@@ -249,7 +249,7 @@ h2.event-time {
 	padding-bottom: 30px;
 }
 
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 60em) {
 
 	.site-header {
 		justify-content: center;
@@ -432,7 +432,7 @@ h2.event-time {
 	justify-content: flex-start;
 }
 
-@media screen and (max-width: 37.5em) {
+@media screen and (max-width: 60em) {
 	.site-header {
 		padding-top: 15px;
 		padding-bottom: 15px;
@@ -488,7 +488,7 @@ h2.event-time {
 
 /* 4. Main Content */
 
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 60em) {
 
 	.home .entry-content {
 		position: relative;
@@ -798,7 +798,7 @@ blockquote {
 	grid-template-columns: 1fr 1fr;
 }
 
-@media screen and (min-width: 37.5em) {
+@media screen and (min-width: 60em) {
 	.lead-organizers .wp-block-group__inner-container {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
