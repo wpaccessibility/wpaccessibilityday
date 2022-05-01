@@ -220,7 +220,7 @@ add_action( 'widgets_init', 'wp_accessibility_day_widgets_init' );
  * @global int $content_width
  */
 function wp_accessibility_day_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'wp_accessibility_day_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'wp_accessibility_day_content_width', 781 );
 }
 add_action( 'after_setup_theme', 'wp_accessibility_day_content_width', 0 );
 
