@@ -990,6 +990,14 @@ a:hover, a:active {
 	line-height: 1;
 }
 
+.home #gform_1 #input_1_1 {
+	border-radius: 2px 0 0 2px;
+}
+
+.home #gform_submit_button_1 {
+	border-radius: 0 2px 2px 0;
+}
+
 .home .wp-block-latest-posts {
 	margin-left: 0;
 }
