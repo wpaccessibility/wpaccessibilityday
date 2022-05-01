@@ -712,6 +712,16 @@ a:hover, a:active {
 		margin-bottom: 0;
 	}
 
+	#primary .gb-grid-wrapper-72cb1313 .gb-inside-container {
+		padding: 0;
+	}
+
+	#primary .gb-container-f3440c00 {
+		border-left-width: 0;
+		border-top-width: 2px;
+		border-top-style: solid;
+	}
+
 	#sidebar-widgets {
 		margin: 0 36px 60px;
 	}
