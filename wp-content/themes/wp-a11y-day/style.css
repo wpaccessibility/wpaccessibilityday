@@ -950,6 +950,15 @@ a:hover, a:active {
 	margin: 0 auto;
 }
 
+/* Override WP Accessibility longdesc styles. */
+.border-radius .wpa-ld {
+	border-radius: 30px;
+}
+
+.wp-block-image .wpa-ld img {
+	display: initial;
+}
+
 @media screen and (min-width: 60em) {
 	.has-sidebar {
 		grid-template-columns: 66.6666% auto;
