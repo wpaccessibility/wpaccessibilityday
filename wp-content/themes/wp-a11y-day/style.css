@@ -496,7 +496,7 @@ figure.box-shadow {
 
 .button-small a {
 	font-size: 1.1rem !important;
-    padding: 10px 18px;
+	padding: 10px 18px;
 }
 /*--------------------------------------------------------------
 # Forms
@@ -591,46 +591,46 @@ textarea {
 /* Buttonize Radio & Checkbox Fields */
  .gform_wrapper .gfield.buttonized .gfield_radio .gchoice,
  .gform_wrapper .gfield.buttonized .gfield_checkbox .gchoice {
-    position: relative;
-    text-align: center;
+	position: relative;
+	text-align: center;
  }
  .gform_wrapper .gfield.buttonized input[type="radio"],
  .gform_wrapper .gfield.buttonized input[type="checkbox"] {
-    position: absolute;
-    left: -9999px;
+	position: absolute;
+	left: -9999px;
  }
  .gform_wrapper .gfield.buttonized .gfield_radio label,
  .gform_wrapper .gfield.buttonized .gfield_checkbox label {
-    display: block !important;
-    position: relative;
-    max-width: 100%;
-    font-size: 28px;
-    border: 2px solid var(--color-dark-purple);
+	display: block !important;
+	position: relative;
+	max-width: 100%;
+	font-size: 28px;
+	border: 2px solid var(--color-dark-purple);
 	 border-radius: 5px;
-    background: var(--color-light-blue);
-    cursor: pointer;
+	background: var(--color-light-blue);
+	cursor: pointer;
 	 margin-bottom: .5em;
  }
  .gform_wrapper .gfield.buttonized input[type="radio"]:focus+label,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:focus+label {
-    border-color: var(--color-dark-blue);
+	border-color: var(--color-dark-blue);
 	 	 outline-offset: 2px;
  }
  .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label {
-    border-color: var(--color-dark-blue);
-    background-color: var(--color-dark-blue);
+	border-color: var(--color-dark-blue);
+	background-color: var(--color-dark-blue);
 	 color: #fff;
-    overflow: hidden;
+	overflow: hidden;
  }
 .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label::before {
-    content: "\2713\0020";
-    display: block;
-    position: absolute;
-    left: 18%;
-    width: 1.5em;
-    height: 1.5em;
+	content: "\2713\0020";
+	display: block;
+	position: absolute;
+	left: 18%;
+	width: 1.5em;
+	height: 1.5em;
  }
 
 /*--------------------------------------------------------------
@@ -931,10 +931,10 @@ a:hover, a:active {
 
 .widget a[aria-current=page] {
 	background: var(--color-dark-blue);
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    text-decoration: none;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	text-decoration: none;
 }
 
 #footer-sidebar-columns {
@@ -964,7 +964,7 @@ a:hover, a:active {
 }
 
 .widget:first-of-type {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 /*--------------------------------------------------------------
@@ -1002,7 +1002,7 @@ a:hover, a:active {
 
 .single-post .entry-footer {
 	border-top: 2px solid var(--color-dark-purple);
-    padding-top: 8px;
+	padding-top: 8px;
 	margin-top: 36px;
 }
 
@@ -1081,9 +1081,9 @@ a:hover, a:active {
 .home .wp-block-latest-posts {
 	margin-left: 0;
 	display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
+	grid-template-columns: repeat(3,1fr);
+	grid-column-gap: 2rem;
+	grid-row-gap: 2rem;
 }
 
 .home .wp-block-latest-posts__featured-image img {
@@ -1101,7 +1101,7 @@ a:hover, a:active {
 	}
 	.mobile-left {
 		justify-content: flex-start!important;
-    	margin-bottom: 20px;
+		margin-bottom: 20px;
 	}
 	
 }
@@ -1164,8 +1164,8 @@ a:hover, a:active {
 ## Sponsor Levels
 --------------------------------------------------------------*/
 .sponsor-levels h3 {
-    color: var(--color-dark-purple);
-    margin: 0;
+	color: var(--color-dark-purple);
+	margin: 0;
 }
 
 .sponsor-levels .price {
@@ -1174,10 +1174,10 @@ a:hover, a:active {
 }
 
 .sponsor-spots {
-    color: var(--color-dark-blue);
-    margin-top: 0;
-    font-size: 1rem;
-    font-weight: 700;
+	color: var(--color-dark-blue);
+	margin-top: 0;
+	font-size: 1rem;
+	font-weight: 700;
 }
 
 .sponsor-benefits {
