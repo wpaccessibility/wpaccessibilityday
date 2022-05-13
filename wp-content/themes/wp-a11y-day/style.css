@@ -601,20 +601,14 @@ textarea {
 	 color: #fff;
     overflow: hidden;
  }
- .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
+.gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label::before {
-    content: '';
+    content: "\2713\0020";
     display: block;
     position: absolute;
-    top: -.75em;
-    right: -.75em;
-    left: auto;
+    left: 18%;
     width: 1.5em;
     height: 1.5em;
-    background-color: var(--color-light-blue);
-    border-radius: 0;
-    border: 0;
-    transform: rotate(45deg);
  }
 
 /*--------------------------------------------------------------
