@@ -417,6 +417,7 @@ ul {
 
 ol {
   list-style: decimal;
+  list-style-position: inside;
 }
 
 li > ul,
@@ -565,6 +566,52 @@ textarea {
 .gform_wrapper.gravity-theme .gfield {
 	margin-bottom: 16px;
 }
+
+/* Buttonize Radio & Checkbox Fields */
+ .gform_wrapper .gfield.buttonized .gfield_radio .gchoice,
+ .gform_wrapper .gfield.buttonized .gfield_checkbox .gchoice {
+    position: relative;
+    text-align: center;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"],
+ .gform_wrapper .gfield.buttonized input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+ }
+ .gform_wrapper .gfield.buttonized .gfield_radio label,
+ .gform_wrapper .gfield.buttonized .gfield_checkbox label {
+    display: block !important;
+    position: relative;
+    max-width: 100%;
+    font-size: 28px;
+    border: 2px solid var(--color-dark-purple);
+	 border-radius: 5px;
+    background: var(--color-light-blue);
+    cursor: pointer;
+	 margin-bottom: .5em;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:focus+label,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:focus+label {
+    border-color: var(--color-dark-blue);
+	 	 outline-offset: 2px;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label {
+    border-color: var(--color-dark-blue);
+    background-color: var(--color-dark-blue);
+	 color: #fff;
+    overflow: hidden;
+ }
+.gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label::before {
+    content: "\2713\0020";
+    display: block;
+    position: absolute;
+    left: 18%;
+    width: 1.5em;
+    height: 1.5em;
+ }
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -1006,10 +1053,25 @@ a:hover, a:active {
 
 .home .wp-block-latest-posts {
 	margin-left: 0;
+	display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
 }
 
 .home .wp-block-latest-posts__featured-image img {
 	border-radius: 30px;
+}
+
+@media screen and (max-width: 769px) {
+	.home .wp-block-latest-posts {
+		grid-template-columns: none;
+	}
+	.mobile-left {
+		justify-content: flex-start!important;
+    	margin-bottom: 20px;
+	}
+	
 }
 /*--------------------------------------------------------------
 ## Posts and pages
