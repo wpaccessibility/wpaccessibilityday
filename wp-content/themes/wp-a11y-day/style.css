@@ -1053,10 +1053,25 @@ a:hover, a:active {
 
 .home .wp-block-latest-posts {
 	margin-left: 0;
+	display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
 }
 
 .home .wp-block-latest-posts__featured-image img {
 	border-radius: 30px;
+}
+
+@media screen and (max-width: 769px) {
+	.home .wp-block-latest-posts {
+		grid-template-columns: none;
+	}
+	.mobile-left {
+		justify-content: flex-start!important;
+    	margin-bottom: 20px;
+	}
+	
 }
 /*--------------------------------------------------------------
 ## Posts and pages
