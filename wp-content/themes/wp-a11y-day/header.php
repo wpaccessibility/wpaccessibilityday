@@ -39,7 +39,7 @@
 			</nav><!-- #site-navigation -->
 		</div><!-- .header-1 -->
 		<nav id="main-navigation" class="main-navigation navigation" aria-label="Main">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary', 'wp-accessibility-day' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'wp-accessibility-day' ); ?></button>
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
