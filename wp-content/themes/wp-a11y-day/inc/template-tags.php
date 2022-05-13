@@ -26,8 +26,8 @@ if ( ! function_exists( 'wp_accessibility_day_posted_on' ) ) :
 
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'wp-accessibility-day' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+			esc_html_x( 'Posted %s', 'post date', 'wp-accessibility-day' ),
+			'<span class="posted-on">' . $time_string . '</span>'
 		);
 
 		$byline = sprintf(
