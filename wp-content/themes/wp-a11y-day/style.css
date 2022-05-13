@@ -303,8 +303,29 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 10px;
 }
 
+.archive .entry-header .entry-title,
+.blog .entry-header .entry-title {
+	font-size: 36px;
+	font-size: 2rem;
+}
+
 .entry-header .entry-title a {
 	display: block;
+}
+
+.entry-header .header-section {
+	display: grid;
+}
+
+.header-section img {
+	order: -1;
+}
+
+.entry-list {
+	max-width: 1280px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat( 2, minmax(0,1fr) );
 }
 
 dfn, cite, em, i {
@@ -753,6 +774,10 @@ a:hover, a:active {
 		font-size: 2rem;
 	}
 
+	.entry-list {
+		grid-template-columns: 1fr;
+	}
+
 	#sponsorship-levels .gb-container-c9734134 {
 		margin-right: 0;
 		margin-left: 0;
@@ -972,11 +997,13 @@ a:hover, a:active {
 
 .entry-header img {
 	border-radius: 30px !important;
+	width: 100%;
 }
 
 .single-post .entry-footer {
 	border-top: 2px solid var(--color-dark-purple);
     padding-top: 8px;
+	margin-top: 36px;
 }
 
 .sponsor-levels-container,
@@ -1017,7 +1044,7 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .home .entry-header {
 	margin: 60px auto 0;
-    text-align: center;
+	text-align: center;
 }
 
 .home h1 {
@@ -1061,6 +1088,11 @@ a:hover, a:active {
 
 .home .wp-block-latest-posts__featured-image img {
 	border-radius: 30px;
+	width: 100%;
+}
+
+.home .wp-block-latest-posts a {
+	display: block;
 }
 
 @media screen and (max-width: 769px) {
@@ -1104,13 +1136,9 @@ a:hover, a:active {
 .not-found .page-content,
 .search .entry-summary {
   margin: 1.5em auto;
-  padding-left: 14px;
-  padding-right: 14px;
-  max-width: 660px;
-}
-
-.entry-header .wp-post-image {
-  margin-bottom: 1.5em;
+  padding-left: 36px;
+  padding-right: 36px;
+  max-width: 1280px;
 }
 
 .entry-footer span{
@@ -1119,21 +1147,6 @@ a:hover, a:active {
 
 .entry-footer {
 	padding-bottom: 40px;
-}
-
-@media screen and (min-width: 608px) {
-  .entry-header,
-  .page-header,
-  .entry-footer,
-  .posts-navigation,
-  .post-navigation,
-  .page-navigation,
-  .comments-area,
-  .not-found .page-content,
-  .search .entry-summary {
-	padding-left: 0;
-	padding-right: 0;
-  }
 }
 
 /*--------------------------------------------------------------

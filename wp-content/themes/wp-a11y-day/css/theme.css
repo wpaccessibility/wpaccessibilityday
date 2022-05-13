@@ -187,6 +187,9 @@ code, kbd, tt, var {
 	font-size: 1.3rem;
 }
 
+.single .nav-breadcrumbs,
+.archive .nav-breadcrumbs,
+.blog .nav-breadcrumbs,
 .page-template-page-sidebar .nav-breadcrumbs,
 .site-header,
 .menu-primary-navigation-container {
@@ -374,6 +377,7 @@ h2.event-time {
 }
 
 
+#sidebar-widgets .widget.widget_recent_entries ul,
 #sidebar-widgets .widget .menu {
 	margin: 0;
 	padding: 0;
@@ -381,8 +385,15 @@ h2.event-time {
 	font-size: 1.125rem;
 }
 
+#sidebar-widgets .widget.widget_recent_entries li,
 #sidebar-widgets .widget .menu li {
-	margin-bottom: .5rem;
+	margin-bottom: 1rem;
+}
+
+
+#sidebar-widgets .widget.widget_recent_entries a,
+#sidebar-widgets .widget .menu a {
+	display: block;
 }
 
 #footer-menu li a {
