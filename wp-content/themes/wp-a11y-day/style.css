@@ -565,6 +565,58 @@ textarea {
 .gform_wrapper.gravity-theme .gfield {
 	margin-bottom: 16px;
 }
+
+/* Buttonize Radio & Checkbox Fields */
+ .gform_wrapper .gfield.buttonized .gfield_radio .gchoice,
+ .gform_wrapper .gfield.buttonized .gfield_checkbox .gchoice {
+    position: relative;
+    text-align: center;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"],
+ .gform_wrapper .gfield.buttonized input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+ }
+ .gform_wrapper .gfield.buttonized .gfield_radio label,
+ .gform_wrapper .gfield.buttonized .gfield_checkbox label {
+    display: block !important;
+    position: relative;
+    max-width: 100%;
+    font-size: 28px;
+    border: 2px solid var(--color-dark-purple);
+	 border-radius: 5px;
+    background: var(--color-light-blue);
+    cursor: pointer;
+	 margin-bottom: .5em;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:focus+label,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:focus+label {
+    border-color: var(--color-dark-blue);
+	 	 outline-offset: 2px;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label {
+    border-color: var(--color-dark-blue);
+    background-color: var(--color-dark-blue);
+	 color: #fff;
+    overflow: hidden;
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -.75em;
+    right: -.75em;
+    left: auto;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: var(--color-light-blue);
+    border-radius: 0;
+    border: 0;
+    transform: rotate(45deg);
+ }
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
