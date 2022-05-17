@@ -753,3 +753,19 @@ function wpad_speakers_slug( $args, $post_type ) {
 	return $args;
 }
 add_filter( 'register_post_type_args', 'wpad_speakers_slug', 10, 2 );
+
+/**
+ * Replace the table of contents script with customized version.
+ *
+ * @param string Original src url.
+ *
+ * @return string
+ */
+function wpad_replace_optout( $src ) {
+	if ( false !== strpos( $src, 'optout.js' ) ) {
+		return get_stylesheet_directory_uri() . '/js/optout.js';
+	}
+
+	return $src;
+}
+add_filter( 'script_loader_src', 'wpad_replace_optout', 10 );

@@ -730,6 +730,15 @@ a:hover, a:active {
 	margin: 0 !important;
 }
 
+label[for=matomo_optout_checkbox] {
+	display: inline;
+}
+
+#matomo_opted_out_intro {
+	padding: 1rem;
+	border: 2px solid var(--color-dark-purple);
+}
+
 @media screen and (max-width: 60em) {
 	h2 {
 		font-size: 1.6em;
