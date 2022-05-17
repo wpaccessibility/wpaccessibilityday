@@ -35,6 +35,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Content
 	## Posts and pages
 	## Comments
+	## WP Conference Schedule
 	## Sponsor Levels
 # Infinite scroll
 # Media
@@ -1171,6 +1172,23 @@ a:hover, a:active {
 
 .bypostauthor {
   display: block;
+}
+
+/*--------------------------------------------------------------
+## WP Conference Schedule
+--------------------------------------------------------------*/
+.single-wpcsp_speaker .has-post-thumbnail .wpcsp-speaker-grid {
+	max-width: 1200px;
+	padding-top: 20px;
+}
+
+.single-wpcsp_speaker #breadcrumbs {
+	padding: 0 36px;
+}
+
+.wpcsp-speakers .wpcsp-speaker-image {
+    border-radius: 20px;
+    margin-bottom: 5px;
 }
 
 /*--------------------------------------------------------------
