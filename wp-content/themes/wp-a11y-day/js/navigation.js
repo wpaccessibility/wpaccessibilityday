@@ -19,12 +19,13 @@ https://github.com/wpaccessibility/a11ythemepatterns/tree/master/menu-keyboard-a
 		return;
 	}
 
-	menuToggle.add( menuContainer ).attr( 'aria-expanded', 'false' );
 	menuToggle.on( 'click', function() {
+		if ( $(this).hasClass('toggled-on') ) {
+			$(this).attr('aria-expanded', 'false');
+		} else {
+			$(this).attr('aria-expanded', 'true');
+		}
 		$(this).add( menuContainer ).toggleClass('toggled-on');
-		// jscs:disable
-		$(this).add( menuContainer ).attr( 'aria-expanded', $( this ).add( menuContainer ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
-		// jscs:enable
 	});
 
 	// Adds the dropdown toggle button.
