@@ -811,6 +811,12 @@ a:hover, a:active {
 	#sidebar-widgets {
 		margin: 0 36px 60px;
 	}
+
+	.gb-container-75220bd1 {
+		margin-right: 0;
+		margin-bottom:10px;
+		margin-top: 30px;
+	}
 }
 
 @media screen and (min-width: 60em) {
