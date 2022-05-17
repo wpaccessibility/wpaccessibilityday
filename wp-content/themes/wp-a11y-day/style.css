@@ -609,18 +609,25 @@ textarea {
 	 border-radius: 5px;
 	background: var(--color-light-blue);
 	cursor: pointer;
-	 margin-bottom: .5em;
+	margin-bottom: .5em;
  }
  .gform_wrapper .gfield.buttonized input[type="radio"]:focus+label,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:focus+label {
 	border-color: var(--color-dark-blue);
-	 	 outline-offset: 2px;
+	outline-offset: 2px;
+	outline: 2px solid var(--color-dark-purple);
+ }
+ .gform_wrapper .gfield.buttonized input[type="radio"]:hover+label,
+ .gform_wrapper .gfield.buttonized input[type="checkbox"]:hover+label {
+	border-color: var(--color-dark-blue);
+	outline-offset: 2px;
+	outline: 2px solid var(--color-dark-purple);
  }
  .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label,
  .gform_wrapper .gfield.buttonized input[type="checkbox"]:checked+label {
 	border-color: var(--color-dark-blue);
 	background-color: var(--color-dark-blue);
-	 color: #fff;
+	color: #fff;
 	overflow: hidden;
  }
 .gform_wrapper .gfield.buttonized input[type="radio"]:checked+label::before,
@@ -628,7 +635,7 @@ textarea {
 	content: "\2713\0020";
 	display: block;
 	position: absolute;
-	left: 18%;
+	left: auto;
 	width: 1.5em;
 	height: 1.5em;
  }
