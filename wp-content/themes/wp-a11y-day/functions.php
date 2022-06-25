@@ -234,7 +234,7 @@ function wp_accessibility_day_scripts() {
 	$ts_ver    = gmdate( 'ymd-Gis', filemtime( get_stylesheet_directory() . '/js/talk-time.js' ) );
 
 	wp_enqueue_style( 'wp-accessibility-day-style', get_stylesheet_uri(), array(), $style_ver );
-	wp_enqueue_style( 'wp-accessibility-day-theme', get_template_directory_uri() . '/css/theme.css', array( 'wp-accessibility-day-style' ), $css_ver );
+	wp_enqueue_style( 'wp-accessibility-day-theme', get_template_directory_uri() . '/css/theme.css', array( 'wp-accessibility-day-style', 'dashicons' ), $css_ver );
 	wp_enqueue_script( 'wp-accessibility-day-navigation', get_template_directory_uri() . '/js/navigation.js', array(), $js_ver, true );
 	wp_enqueue_script( 'wp-accessibility-day-time', get_template_directory_uri() . '/js/talk-time.js', array(), $ts_ver, true );
 
@@ -620,15 +620,6 @@ function wpad_youtube_links() {
 
 	return $output;
 }
-
-/**
- * Show user's local time for talks.
- */
-function wp_talk_time() {
-	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_script( 'wp-talk-time', get_stylesheet_directory_uri() . '/js/talk-time.js', array( 'jquery' ), '1.0.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'wp_talk_time' );
 
 /**
  * This was, I believe, because we made speakers a non-publishing level of user, but assigned them as authors of their own talks.

@@ -19,6 +19,7 @@
 
 			$( this ).append( '<span class="localtime">' + userTime + ' ' + zone + '</span>' );
 		});
+
 		$( '#input_8_36 .gfield-choice-input' ).each( function( index ) {
 			var id    = $( this ).attr( 'id' );
 			var label = $( 'label[for=' + id + ']' );
