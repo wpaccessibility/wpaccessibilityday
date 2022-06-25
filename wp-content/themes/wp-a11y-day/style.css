@@ -589,6 +589,14 @@ textarea {
 	padding-bottom:0;
 }
 
+.gform_wrapper .gfield.gf_list_3col #input_8_38.gfield_checkbox, .gform_wrapper .gfield.gf_list_3col .gfield_radio {
+	grid-column-gap: 10px;
+}
+
+#primary .gform_wrapper.gravity-theme .gfield-choice-input + label {
+	vertical-align: text-top;
+}
+
 .gform_wrapper.gravity-theme .gfield {
 	margin-bottom: 16px;
 }
