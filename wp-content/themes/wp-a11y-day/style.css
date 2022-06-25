@@ -579,6 +579,10 @@ textarea {
 	max-width: 100%;
 }
 
+#input_8_36 {
+	columns: 2;
+}
+
 .gform_wrapper.gravity-theme .field_description_above .gfield_description,
 .gform_wrapper.gravity-theme .gfield_label {
 	margin-bottom:0;
