@@ -35,8 +35,7 @@ get_header(); ?>
 							
 							ob_start();
 
-							echo '<a class="wpcsp-speaker-social-icon-link" href="'.$url.'" target="_blank" aria-label="'.$social_label.'"><span class="dashicons dashicons-'.$social_icon.'"></span></a>';
-
+							echo '<a class="wpcsp-speaker-social-icon-link" href="'. esc_url( $url ) .'" target="_blank" aria-label="'. $social_label .'"><span class="dashicons dashicons-'.$social_icon.'"></span></a>';
 
 							$social_icons[] = ob_get_clean();
 						}
@@ -67,11 +66,11 @@ get_header(); ?>
 							<?php if(has_post_thumbnail()) the_post_thumbnail( 'full', array( 'alt' => $full_name ) ); ?>
 
 							<div>
-								<h1 class="entry-title"><?php echo $full_name; ?></h1>
+								<h1 class="entry-title"><?php echo esc_html( $full_name ); ?></h1>
 								
 								<div class="wpcsp-speaker-details">
-									<?php if($title) echo '<p class="wpcsp-speaker-title">'.$title.'</p>'; ?>
-									<?php if($organization) echo '<p class="wpcsp-speaker-organization">'.$organization.'</p>'; ?>
+									<?php if($title) echo '<p class="wpcsp-speaker-title">'. esc_html( $title ).'</p>'; ?>
+									<?php if($organization) echo '<p class="wpcsp-speaker-organization">'. esc_html( $organization ) .'</p>'; ?>
 								</div>
 
 								<?php
@@ -84,7 +83,7 @@ get_header(); ?>
 									</ul>
 								<?php } ?>
 
-								<h2>About <?php echo $full_name; ?></h2>
+								<h2>About <?php echo esc_html( $full_name ); ?></h2>
 						
 								<?php the_content();?>
 
@@ -93,7 +92,7 @@ get_header(); ?>
 									<ul>
 										<?php foreach ($sessions as $session) { ?>
 											<li>
-												<a href="<?php echo get_the_permalink($session->ID); ?>"><?php echo $session->post_title; ?></a>
+												<a href="<?php echo get_the_permalink($session->ID); ?>"><?php echo esc_html( $session->post_title ); ?></a>
 											</li>
 										<?php } ?>
 									</ul>
@@ -102,11 +101,11 @@ get_header(); ?>
 								<?php if($speaker_page_url || $schedule_page_url){ ?>
 									<p class="wpcsp-speaker-links">
 										<?php if($speaker_page_url){ ?>
-											<a class="wpcsp-speaker-link wpcsp-speaker-link-speakers" href="<?php echo $speaker_page_url; ?>">Go to Speakers List</a>
+											<a class="wpcsp-speaker-link wpcsp-speaker-link-speakers" href="<?php echo esc_url( $speaker_page_url ); ?>">Go to Speakers List</a>
 										<?php } ?>
 
 										<?php if($schedule_page_url){ ?>
-											<a class="wpcsp-speaker-link-schedule" href="<?php echo get_bloginfo('url'); ?>">Go to Conference Home</a>
+											<a class="wpcsp-speaker-link-schedule" href="<?php echo esc_url( get_bloginfo('url') ); ?>">Go to Conference Home</a>
 										<?php } ?>
 									</p>
 								<?php } ?>
