@@ -66,56 +66,50 @@ get_header(); ?>
 
 						</div><!-- .meta-info -->
 
-						<?php if(!WPCSP_ACTIVE) echo $session_speakers; ?>
-
 					</header>
 					<?php
-					if(WPCSP_ACTIVE){
-						$sponsor_list = get_post_meta($post->ID,'wpcsp_session_sponsors',true);
-						if(!empty($sponsor_list)){
-							?>
-							<div class="wpcsp-sponsor-single">
-								<h2>Presented by</h2>
-								<div class="wpcsp-sponsor-single-row">
-									<?php
-										$sponser_url = "";
-										$target = "";
-										foreach($sponsor_list as $sponser_li){ 
-											$sponsor_img = get_the_post_thumbnail_url($sponser_li);
-											if(!empty($sponsor_img)){
-												$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
-												$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
-					
-												if($sponsor_url == "sponsor_site"){
-													if(!empty($wpcsp_website_url)){
-														$sponser_url = $wpcsp_website_url;
-														$target = "_blank";
-													}else{
-														$sponser_url = "#";
-														$target = "";
-													}
+					$sponsor_list = get_post_meta($post->ID,'wpcsp_session_sponsors',true);
+					if(!empty($sponsor_list)){
+						?>
+						<div class="wpcsp-sponsor-single">
+							<h2>Presented by</h2>
+							<div class="wpcsp-sponsor-single-row">
+								<?php
+									$sponser_url = "";
+									$target = "";
+									foreach($sponsor_list as $sponser_li){ 
+										$sponsor_img = get_the_post_thumbnail_url($sponser_li);
+										if(!empty($sponsor_img)){
+											$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
+											$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
+				
+											if($sponsor_url == "sponsor_site"){
+												if(!empty($wpcsp_website_url)){
+													$sponser_url = $wpcsp_website_url;
+													$target = "_blank";
 												}else{
-
-													$sponser_url =  get_the_permalink($sponser_li);
+													$sponser_url = "#";
+													$target = "";
 												}
-												?>
-												<div class="wpcsp-sponsor-single-image">
-													<a href="<?php echo $sponser_url;?>" target="<?php echo $target; ?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
-												</div>
-											<?php
+											}else{
+
+												$sponser_url =  get_the_permalink($sponser_li);
 											}
+											?>
+											<div class="wpcsp-sponsor-single-image">
+												<a href="<?php echo $sponser_url;?>" target="<?php echo $target; ?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
+											</div>
+										<?php
 										}
-									?>
-								</div>
+									}
+								?>
 							</div>
-						<?php } ?>
+						</div>
 					<?php } ?>
 					<div class="entry-content">
 						<?php the_content();?>
 					</div><!-- .entry-content -->
 
-					<?php if(WPCSP_ACTIVE) echo $session_speakers; ?>
-					
 					<?php if(get_option('wpcs_field_schedule_page_url')){ ?>
 						<footer class="entry-footer">	
 							<p><a href="<?php echo get_option('wpcs_field_schedule_page_url'); ?>">Return to Schedule</a></p>

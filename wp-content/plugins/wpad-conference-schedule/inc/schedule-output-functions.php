@@ -232,7 +232,7 @@ function wpcs_scheduleOutput( $props ) {
 		
 		$current_tab = (isset($_GET['wpcs-tab']) && !empty($_GET['wpcs-tab'])) ? intval($_GET['wpcs-tab']) : null;
 
-		if(WPCSP_ACTIVE && count($dates) > 1){
+		if( count($dates) > 1){
 
 			$output .= '<div class="wpcsp-tabs tabs">';
 
@@ -370,10 +370,10 @@ function wpcs_scheduleOutput( $props ) {
 
 				$content .= $session_title_html;
 
-				if(WPCSP_ACTIVE && $attr['content'] == 'full'){
+				if($attr['content'] == 'full'){
 					$session_content = get_post_field('post_content', $session->ID);
 					if($session_content) $content .= $session_content;
-				}elseif(WPCSP_ACTIVE && $attr['content'] == 'excerpt'){
+				}elseif( $attr['content'] == 'excerpt'){
 					$session_excerpt = get_the_excerpt($session->ID);
 					if($session_excerpt) $content .= '<p>'.$session_excerpt.'</p>';
 				}
@@ -664,10 +664,10 @@ function wpcs_scheduleOutput( $props ) {
 						// Add tracks to the output string
 						$html .= '<div class="wpcs-session-track">'.implode(", ", $tracks_names_array).'</div>';
 						
-						if(WPCSP_ACTIVE && $attr['content'] == 'full'){
+						if( $attr['content'] == 'full'){
 							$content = get_post_field('post_content', $session->ID);
 							if($content) $html .= $content;
-						}elseif(WPCSP_ACTIVE && $attr['content'] == 'excerpt'){
+						}elseif( $attr['content'] == 'excerpt'){
 							$excerpt = get_the_excerpt($session->ID);
 							if($excerpt) $html .= '<p>'.$excerpt.'</p>';
 						}
