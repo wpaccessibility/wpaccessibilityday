@@ -1,0 +1,9 @@
+[
+	{
+		"name": "WP Conference Schedule",
+		"host": "wordpress",
+		"slug": "wp-conference-schedule/wp-conference-schedule.php",
+		"uri": "https://wordpress.org/plugins/wp-conference-schedule/",
+		"required": true
+	}
+]
