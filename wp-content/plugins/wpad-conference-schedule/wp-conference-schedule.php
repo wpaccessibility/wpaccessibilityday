@@ -5,16 +5,15 @@
  * @package           wp_conference_schedule
  *
  * @wordpress-plugin
- * Plugin Name:       WP Conference Schedule
+ * Plugin Name:       WP Accessibility Day - Conference Schedule
  * Plugin URI:        https://wpconferenceschedule.com
- * Description:       Creates sessions post types for conference websites. Includes shortcode and custom block for fully mobile-responsive conference schedule in table format.
- * Version:           1.1.1
- * Author:            Road Warrior Creative
- * Author URI:        https://roadwarriorcreative.com
+ * Description:       Forked from WP Conference Schedule by Road Warrior Creative.
+ * Version:           1.0.0
+ * Author:            WP Accessibility Day
+ * Author URI:        https://wpaccessibility.day
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-conference-schedule
- * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
@@ -529,11 +528,9 @@ class WPAD_Conference_Schedule {
 	 */
 	function admin_menu() {
 		$page = add_submenu_page( 'edit.php?post_type=wpcsp_sponsor', __( 'Order Sponsor Levels', 'wpcsp' ), __( 'Order Sponsor Levels', 'wpcsp' ), 'edit_posts', 'sponsor_levels', array( $this, 'render_order_sponsor_levels' ) );
-
 		add_action( "admin_print_scripts-$page", array( $this, 'enqueue_order_sponsor_levels_scripts' ) );
 
 		$page = add_submenu_page( 'edit.php?post_type=wpcsp_speaker', __( 'Order Speaker Groups', 'wpcsp' ), __( 'Order Speaker Groups', 'wpcsp' ), 'edit_posts', 'speaker_levels', array( $this, 'render_order_speaker_levels' ) );
-
 		add_action( "admin_print_scripts-$page", array( $this, 'enqueue_order_sponsor_levels_scripts' ) );
 	}
 
