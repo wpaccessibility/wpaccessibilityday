@@ -1212,6 +1212,10 @@ label[for=matomo_optout_checkbox] {
     margin-bottom: 5px;
 }
 
+.wpcsp_speaker .wp-block-latest-posts.wp-block-latest-posts__list li {
+	list-style: disc;
+}
+
 /*--------------------------------------------------------------
 ## Sponsor Levels
 --------------------------------------------------------------*/
