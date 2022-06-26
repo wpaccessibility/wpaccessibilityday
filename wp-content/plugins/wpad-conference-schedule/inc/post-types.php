@@ -138,7 +138,7 @@ function wpcs_change_title_text( $translation ) {
 	if( isset( $post ) ) {
 		switch( $post->post_type ){
 			case 'wpcs_session' :
-				if( $translation == 'Add title' ) return 'Enter Session Title Here';
+				if( $translation == 'Add title' ) return 'Session Title';
 			break;
 		}
 	}
@@ -189,10 +189,10 @@ function wpcsp_change_title_text( $translation ) {
 	if( isset( $post ) ) {
 		switch( $post->post_type ){
 			case 'wpcsp_speaker' :
-				if( $translation == 'Add title' ) return 'Enter Speaker Full Name Here';
+				if( $translation == 'Add title' ) return 'Speaker Full Name';
 			break;
             case 'wpcsp_sponsor' :
-                if( $translation == 'Add title' ) return 'Enter Sponsoring Company Name Here';
+                if( $translation == 'Add title' ) return 'Sponsoring Company Name';
             break;
 		}
 	}

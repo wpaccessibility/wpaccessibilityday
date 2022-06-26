@@ -97,7 +97,7 @@ get_header(); ?>
 											}
 											?>
 											<div class="wpcsp-sponsor-single-image">
-												<a href="<?php echo $sponser_url;?>" target="<?php echo $target; ?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
+												<a href="<?php echo $sponser_url;?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
 											</div>
 										<?php
 										}

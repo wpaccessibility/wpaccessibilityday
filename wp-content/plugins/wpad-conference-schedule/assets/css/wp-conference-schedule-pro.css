@@ -53,6 +53,7 @@
 .single-wpcsp_speaker .entry .entry-content > * {
   max-width: 100%;
 }
+
 .single-wpcsp_speaker .entry h2 {
   font-size: 1.2em;
 }
@@ -71,12 +72,13 @@
 .single-wpcsp_speaker .wpcsp-speaker-details p {
   margin: 0;
   font-weight: bold;
-  font-size: 1.1em;
 }
 .single-wpcsp_speaker .wpcsp-speaker-social {
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .single-wpcsp_speaker .wpcsp-speaker-social-icon {
   display: inline-block;

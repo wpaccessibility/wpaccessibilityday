@@ -25,24 +25,26 @@ get_header(); ?>
 
 				function wpcsp_get_social_links(){
 					$social_icons = [];
-					foreach (['facebook','twitter','instagram','linkedin','youtube','website'] as $social_icon) {
+					foreach (['Facebook','Twitter','Instagram','LinkedIn','YouTube','WordPress','GitHub','Website'] as $social_icon) {
+						$social_label = $social_icon;
+						$social_icon = strtolower( $social_icon );
 						$url = get_post_meta( get_the_ID(), 'wpcsp_'.$social_icon.'_url', true );
 						if($url){
-							
-							$social_label = $social_icon;
+
 							if($social_icon == 'website') $social_icon = 'admin-site-alt3';
 							if($social_icon == 'facebook') $social_icon = 'facebook-alt';
-							
+							if($social_icon == 'github') $social_icon = ' fa-brands fa-github';
+
 							ob_start();
 
-							echo '<a class="wpcsp-speaker-social-icon-link" href="'. esc_url( $url ) .'" target="_blank" aria-label="'. $social_label .'"><span class="dashicons dashicons-'.$social_icon.'"></span></a>';
+							echo '<a class="wpcsp-speaker-social-icon-link" href="'. esc_url( $url ) .'"><span class="dashicons dashicons-'.$social_icon.'" aria-hidden="true"></span><span class="screen-reader-text">' . $social_label . '</a>';
 
 							$social_icons[] = ob_get_clean();
 						}
 					}
 					return $social_icons;
 				}
-				
+
 				$args = [
 					'numberposts' => -1,
 					'post_type'   => 'wpcs_session',
@@ -58,7 +60,7 @@ get_header(); ?>
 				?>
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				
+
 					<div class="entry-content">
 
 						<div class="wpcsp-speaker-grid">
@@ -67,7 +69,7 @@ get_header(); ?>
 
 							<div>
 								<h1 class="entry-title"><?php echo esc_html( $full_name ); ?></h1>
-								
+
 								<div class="wpcsp-speaker-details">
 									<?php if($title) echo '<p class="wpcsp-speaker-title">'. esc_html( $title ).'</p>'; ?>
 									<?php if($organization) echo '<p class="wpcsp-speaker-organization">'. esc_html( $organization ) .'</p>'; ?>
@@ -84,7 +86,7 @@ get_header(); ?>
 								<?php } ?>
 
 								<h2>About <?php echo esc_html( $full_name ); ?></h2>
-						
+
 								<?php the_content();?>
 
 								<?php if($sessions){ ?>
@@ -97,7 +99,7 @@ get_header(); ?>
 										<?php } ?>
 									</ul>
 								<?php } ?>
-								
+
 								<?php if($speaker_page_url || $schedule_page_url){ ?>
 									<p class="wpcsp-speaker-links">
 										<?php if($speaker_page_url){ ?>
@@ -115,7 +117,7 @@ get_header(); ?>
 						</div>
 
 					</div><!-- .entry-content -->
-						
+
 				</article><!-- #post-${ID} -->
 
 				<?php
