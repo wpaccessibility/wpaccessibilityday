@@ -843,6 +843,12 @@ label[for=matomo_optout_checkbox] {
 	}
 }
 
+@media screen and (max-width: 37em) {
+	#primary .gb-grid-wrapper-72cb1313 .gb-inside-container {
+		padding: 0;
+	}
+}
+
 @media screen and (min-width: 60em) {
 	.menu-toggle {
 		display: none;
