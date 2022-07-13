@@ -852,3 +852,21 @@ blockquote {
 	font-size: .85em;
 	margin: 0;
 }
+
+/* Override share links. */
+#primary .shared-counts-wrap {
+	overflow: auto;
+}
+
+#primary .shared-counts-wrap a {
+	padding: 5px;
+}
+
+#primary .shared-counts-wrap .anww-external-link-icon {
+	line-height: .7;
+	color: #fff;
+}
+
+#primary .shared-counts-wrap .shared-counts-button.twitter {
+	background-color: #0066a1;
+}
