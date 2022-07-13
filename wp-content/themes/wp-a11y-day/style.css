@@ -820,10 +820,6 @@ label[for=matomo_optout_checkbox] {
 		margin-bottom: 0;
 	}
 
-	#primary .gb-grid-wrapper-72cb1313 .gb-inside-container {
-		padding: 0;
-	}
-
 	/* Commenting this out because borders should be controlled in the block settings not hard coded - Amber
 	#primary .gb-container-f3440c00 {
 		border-left-width: 0;
@@ -843,7 +839,7 @@ label[for=matomo_optout_checkbox] {
 	}
 }
 
-@media screen and (max-width: 37em) {
+@media screen and (max-width: 40em) {
 	#primary .gb-grid-wrapper-72cb1313 .gb-inside-container {
 		padding: 0;
 	}
