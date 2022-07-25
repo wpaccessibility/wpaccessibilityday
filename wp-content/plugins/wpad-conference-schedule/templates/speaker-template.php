@@ -23,28 +23,6 @@ get_header(); ?>
 				$schedule_page_url = get_option('wpcs_field_schedule_page_url');
 				$speaker_page_url = get_option('wpcsp_field_speakers_page_url');
 
-				function wpcsp_get_social_links(){
-					$social_icons = [];
-					foreach (['Facebook','Twitter','Instagram','LinkedIn','YouTube','WordPress','GitHub','Website'] as $social_icon) {
-						$social_label = $social_icon;
-						$social_icon = strtolower( $social_icon );
-						$url = get_post_meta( get_the_ID(), 'wpcsp_'.$social_icon.'_url', true );
-						if($url){
-
-							if($social_icon == 'website') $social_icon = 'admin-site-alt3';
-							if($social_icon == 'facebook') $social_icon = 'facebook-alt';
-							if($social_icon == 'github') $social_icon = ' fa-brands fa-github';
-
-							ob_start();
-
-							echo '<a class="wpcsp-speaker-social-icon-link" href="'. esc_url( $url ) .'"><span class="dashicons dashicons-'.$social_icon.'" aria-hidden="true"></span><span class="screen-reader-text">' . $social_label . '</a>';
-
-							$social_icons[] = ob_get_clean();
-						}
-					}
-					return $social_icons;
-				}
-
 				$args = [
 					'numberposts' => -1,
 					'post_type'   => 'wpcs_session',
@@ -76,7 +54,7 @@ get_header(); ?>
 								</div>
 
 								<?php
-								$social_icons = wpcsp_get_social_links();
+								$social_icons = wpcsp_get_social_links( get_the_ID() );
 								if($social_icons){ ?>
 									<ul class="wpcsp-speaker-social">
 										<?php foreach ($social_icons as $social_icon) { ?>

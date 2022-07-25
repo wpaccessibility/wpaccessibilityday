@@ -27,9 +27,23 @@ get_header(); ?>
 					<div class="entry-content">
 
 						<div class="wpcsp-sponsor-grid">
+							<div class="wpcsp-media">
+								<?php if(has_post_thumbnail()) the_post_thumbnail( 'full', array( 'alt' => get_the_title() ) ); ?>
 
-							<?php if(has_post_thumbnail()) the_post_thumbnail( 'full', array( 'alt' => get_the_title() ) ); ?>
+								<?php
+								$social_icons = wpcsp_get_social_links( get_the_ID() );
+								if($social_icons){ ?>
+									<ul class="wpcsp-sponsor-social">
+										<?php foreach ($social_icons as $social_icon) { ?>
+											<li class="wpcsp-sponsor-social-icon"><?php echo $social_icon; ?></li>
+										<?php } ?>
+									</ul>
+								<?php } ?>
 
+								<?php if($website_url){ ?>
+									<p class="wpcsp-sponsor-website-link"><a target="_blank" href="<?php echo esc_url( $website_url ); ?>">Visit <?php echo get_the_title(); ?> Website</a></p>
+								<?php } ?>
+							</div>
 							<div>
 								<?php the_title('<h1 class="entry-title">','</h1>'); ?>
 								
@@ -39,9 +53,6 @@ get_header(); ?>
 						
 								<?php the_content();?>
 
-								<?php if($website_url){ ?>
-									<p class="wpcsp-sponsor-website-link"><a target="_blank" href="<?php echo esc_url( $website_url ); ?>">Visit <?php echo get_the_title(); ?> Website</a></p>
-								<?php } ?>
 							</div>
 
 						</div>

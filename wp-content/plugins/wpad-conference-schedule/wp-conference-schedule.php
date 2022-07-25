@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'WPCS_DIR' , plugin_dir_path( __FILE__ ) );
 
 // Version
-define( 'WPCS_VERSION', '1.0.2' );
+define( 'WPCS_VERSION', '1.0.3' );
 
 // Plugin File URL
 define( 'PLUGIN_FILE_URL' , __FILE__);

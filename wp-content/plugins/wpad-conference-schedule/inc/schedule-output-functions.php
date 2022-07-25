@@ -7,6 +7,33 @@
 defined( 'WPINC' ) || die();
 
 /**
+ * Get social media links for a speaker or sponsor.
+ *
+ * @param int $post_id Post ID.
+ *
+ * @return string
+ */
+function wpcsp_get_social_links( $post_id ){
+	$social_icons = [];
+	$post_type    = ( 'wpcsp_sponsor' === get_post_type( $post_id ) ) ? 'sponsor' : 'speaker';
+	foreach (['Facebook','Twitter','Instagram','LinkedIn','YouTube','WordPress','GitHub','Website'] as $social_icon) {
+		
+		$social_label = $social_icon;
+		$social_icon = strtolower( $social_icon );
+		$url = get_post_meta( get_the_ID(), 'wpcsp_'.$social_icon.'_url', true );
+		if($url){
+
+			if($social_icon == 'website') $social_icon = 'admin-site-alt3';
+			if($social_icon == 'facebook') $social_icon = 'facebook-alt';
+			if($social_icon == 'github') $social_icon = ' fa-brands fa-github';
+
+			$social_icons[] = '<a class="wpcsp-' . $post_type . '-social-icon-link" href="'. esc_url( $url ) .'"><span class="dashicons dashicons-'.$social_icon.'" aria-hidden="true"></span><span class="screen-reader-text">' . $social_label . '</a>';
+		}
+	}
+	return $social_icons;
+}
+
+/**
  * Return an associative array of term_id -> term object mapping for all selected tracks.
  *
  * In case of 'all' is used as a value for $selected_tracks, information for all available tracks
