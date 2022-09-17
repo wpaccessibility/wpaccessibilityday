@@ -42,5 +42,14 @@
 			label.html( '<span class="localtime">' + userTime + ' on ' + userDate + ' (' + zone + ')</span>' );
 
 		});
+
+		var passwordButton = $( 'button.gform_show_password' );
+		var label          = passwordButton.attr( 'label' );
+		passwordButton.attr( 'aria-label', label );
+		passwordButton.on( 'click', function(e) {
+			label = $( this ).attr( 'label' );
+			$( this ).attr( 'aria-label', label );
+		});
+
 	});
 }(jQuery));
