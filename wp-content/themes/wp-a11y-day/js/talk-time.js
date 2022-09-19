@@ -24,7 +24,6 @@
 			var id    = $( this ).attr( 'id' );
 			var label = $( 'label[for=' + id + ']' );
 			var labelText = label.text();
-			console.log( labelText.indexOf( '2nd' ) );
 			if ( -1 !== labelText.indexOf( '2nd' ) ) {
 				var time = labelText.replace( ' UTC on November 2nd', '' );
 				time = ( time.length === 4 ) ? '0' + time : time;
@@ -34,7 +33,6 @@
 				time = ( time.length === 4 ) ? '0' + time : time;
 				var date = '2022-11-03T' + time + ':00Z';
 			}
-			console.log( date );
 			var utc   = Date.parse( date );
 			var userTime = new Date( utc ).toLocaleTimeString().replace( ':00', '' );
 			var userDate = new Date( utc ).toLocaleDateString();
