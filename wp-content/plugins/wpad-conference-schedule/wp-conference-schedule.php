@@ -908,7 +908,7 @@ class WPAD_Conference_Schedule {
 				<!-- Organizers note: The id attribute is deprecated and only remains for backwards compatibility, please use the corresponding class to target individual speakers -->
 				<div class="wpcsp-speaker" id="wpcsp-speaker-<?php echo sanitize_html_class( $post->post_name ); ?>" class="<?php echo implode( ' ', $speaker_classes ); ?>">
 
-					<?php if(has_post_thumbnail($post_id) && $attr['show_image'] == true) echo get_the_post_thumbnail($post_id, [$attr['image_size'],$attr['image_size']], array( 'alt' => $full_name, 'class' => 'wpcsp-speaker-image' ) ); ?>
+					<?php if(has_post_thumbnail($post_id) && $attr['show_image'] == true) echo get_the_post_thumbnail($post_id, [$attr['image_size'], $attr['image_size']], array( 'class' => 'wpcsp-speaker-image' ) ); ?>
 
 					<h2 class="wpcsp-speaker-name">
 						<?php if ( 'permalink' === $attr['speaker_link'] ) : ?>
@@ -1104,7 +1104,7 @@ class WPAD_Conference_Schedule {
 					?>
 					<div class="wpcsp-single-session-speakers-speaker">
 
-						<?php if(has_post_thumbnail($post_id)) echo get_the_post_thumbnail($post_id, 'thumbnail', array( 'alt' => $full_name, 'class' => 'wpcsp-single-session-speakers-speaker-image' ) ); ?>
+						<?php if(has_post_thumbnail($post_id)) echo get_the_post_thumbnail($post_id, 'thumbnail', array( 'class' => 'wpcsp-single-session-speakers-speaker-image' ) ); ?>
 
 						<?php if($full_name){ ?>
 							<h3 class="wpcsp-single-session-speakers-speaker-name">

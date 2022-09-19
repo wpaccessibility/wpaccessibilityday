@@ -43,7 +43,7 @@ get_header(); ?>
 
 						<div class="wpcsp-speaker-grid">
 
-							<?php if(has_post_thumbnail()) the_post_thumbnail( 'full', array( 'alt' => $full_name ) ); ?>
+							<?php if(has_post_thumbnail()) the_post_thumbnail( 'full' ); ?>
 
 							<div>
 								<h1 class="entry-title"><?php echo esc_html( $full_name ); ?></h1>
