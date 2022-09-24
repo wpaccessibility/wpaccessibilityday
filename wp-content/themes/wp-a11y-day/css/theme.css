@@ -166,6 +166,19 @@ body {
 	font-size: 1rem;
 }
 
+span .localtime {
+	display: inline;
+	font-size: inherit;
+}
+
+span .localtime:before {
+	content: ' (';
+}
+
+span .localtime:after {
+	content: ')';
+}
+
 #primary {
 	font-size: 20px;
 	font-size: 1.25rem;

@@ -6,7 +6,7 @@
 		if ( undefined === zone ) {
 			zone = 'your local time';
 		}
-		$( 'h2.event-time' ).each( function ( index ) {
+		$( '.event-time' ).each( function ( index ) {
 			var utcTime  = $( this ).attr( 'data-time' );
 			var userTime = new Date( utcTime ).toLocaleTimeString().replace( ':00 ', ' ' );
 			var userDate = new Date( utcTime ).toLocaleDateString();
@@ -48,6 +48,12 @@
 			label = $( this ).attr( 'label' );
 			$( this ).attr( 'aria-label', label );
 		});
+
+		var slido = document.getElementById( 'slido' );
+		if ( slido ) {
+			var content = slido.contentWindow;
+			console.log( content );
+		}
 
 	});
 }(jQuery));
