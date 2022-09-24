@@ -17,6 +17,9 @@ if ( ! function_exists( 'wp_accessibility_day_setup' ) ) :
 		 */
 		load_theme_textdomain( 'wp-accessibility-day', get_template_directory() . '/languages' );
 
+		// Support responsive embedding.
+		add_theme_support( 'responsive-embeds' );
+
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
