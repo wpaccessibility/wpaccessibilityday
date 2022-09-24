@@ -166,16 +166,16 @@ body {
 	font-size: 1rem;
 }
 
-span .localtime {
+time .localtime {
 	display: inline;
 	font-size: inherit;
 }
 
-span .localtime:before {
+time .localtime:before {
 	content: ' (';
 }
 
-span .localtime:after {
+time .localtime:after {
 	content: ')';
 }
 
