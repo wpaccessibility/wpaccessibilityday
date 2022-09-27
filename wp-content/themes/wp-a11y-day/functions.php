@@ -766,7 +766,6 @@ function wpad_replace_optout( $src ) {
 }
 add_filter( 'script_loader_src', 'wpad_replace_optout', 10 );
 
-
 /**
  * Inline shortcode to generate event start time.
  *
@@ -776,3 +775,90 @@ function wpad_event_start( $atts = array(), $content = '' ) {
 	return '<time class="event-time" datetime="2022-11-02T14:45:00Z" data-time="2022-11-02T14:45:00Z">14:45 UTC</span>';
 }
 add_shortcode( 'wpad', 'wpad_event_start' );
+
+/**
+ * Fetch Gravity Forms donors.
+ */
+function wpad_get_donors() {
+	global $wpdb;
+	$donors  = array();
+	$query   = "SELECT * FROM wp_gf_entry WHERE form_id = 6";
+	$entries = $wpdb->get_results( $query );
+	foreach ( $entries as $entry ) {
+		$meta_query = "SELECT * FROM wp_gf_entry_meta WHERE entry_id = $entry->id";
+		$meta       = $wpdb->get_results( $meta_query );
+		$data       = array();
+		foreach ( $meta as $value ) {
+			$data['payment_date'] = $entry->payment_date;
+			$data['paid']         = $entry->payment_status;
+			switch ( $value->meta_key ) {
+				case '6':
+					$data['amount'] = $entry->payment_amount;
+					break;
+				case '3.3':
+					$data['first_name'] = $value->meta_value;
+					break;
+				case '3.6':
+					$data['last_name'] = $value->meta_value;
+					break;
+				case '5':
+					$data['email'] = $value->meta_value;
+					break;
+				case '4':
+					$data['company'] = $value->meta_value;
+					break;
+				case '8.3':
+					$data['city'] = $value->meta_value;
+					break;
+				case '8.4':
+					$data['state'] = $value->meta_value;
+					break;
+				case '8.6':
+					$data['country'] = $value->meta_value;
+					break;
+				case '11':
+					$data['public'] = $value->meta_value;
+					break;
+			}
+		}
+		if ( $data['public'] !== 'Yes, you can list my name, company, and location on the WP Accessibility Day list of donors.' || $data['paid'] !== 'Paid' ) {
+			continue;
+		} else {
+			$donors[] = $data;
+		}
+	}
+
+	return $donors;
+}
+
+/**
+ * Display donors who agreed to be displayed.
+ *
+ * @param string $content Contained content.
+ * @param array  $atts Shortcode attributes.
+ *
+ * @return string
+ */
+function wpad_display_donors( $content = '', $atts = array() ) {
+	$donors = wpad_get_donors();
+	$output = '';
+	foreach ( $donors as $donor ) {
+		$name     = $donor['first_name'] . ' ' . $donor['last_name'];
+		$company  = $donor['company'];
+		if ( $donor['city'] === $donor['state'] ) {
+			$loc = $donor['city'];
+		} else {
+			$loc = $donor['city'] . ', ' . $donor['state'];
+		}
+		$location = $loc . ', ' . $donor['country'];
+		$location = ( $company ) ? ', ' . $location : $location;
+		$output .= '<li><strong>' . esc_html( $name ) . '</strong><br /> ' . esc_html( $company . $location ) . '</li>';
+	}
+
+	return '<ul class="wpad-donors">' . $output . '</ul>';
+}
+
+/**
+ * Add donor shortcode.
+ */
+add_shortcode( 'donors', 'wpad_display_donors', 10, 2 ); 
