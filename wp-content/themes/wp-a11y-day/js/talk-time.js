@@ -61,12 +61,12 @@
 
 		if ( readCookie( 'streamtext.hidden' ) ) {
 			streamtext.classList.add( 'hidden' );
-			transcript.setAttribute( 'aria-expanded', 'true' );
+			transcript.setAttribute( 'aria-expanded', 'false' );
 		}
 
 		if ( readCookie( 'slido.hidden' ) ) {
 			slido.classList.add( 'hidden' );
-			chat.setAttribute( 'aria-expanded', 'true' );
+			chat.setAttribute( 'aria-expanded', 'false' );
 		}
 
 		transcript.addEventListener( 'click', function() {
