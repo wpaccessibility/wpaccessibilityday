@@ -83,6 +83,7 @@ audio:not([controls]) {
   height: 0;
 }
 
+iframe.hidden,
 [hidden],
 template {
   display: none;
