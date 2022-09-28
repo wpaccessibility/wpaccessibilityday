@@ -861,4 +861,14 @@ function wpad_display_donors( $content = '', $atts = array() ) {
 /**
  * Add donor shortcode.
  */
-add_shortcode( 'donors', 'wpad_display_donors', 10, 2 ); 
+add_shortcode( 'donors', 'wpad_display_donors', 10, 2 );
+
+/**
+ * Filter 'Protected:' out of password protected post titles.
+ *
+ * @return string
+ */
+function wpad_remove_protected_text() {
+	return '%s';
+}
+add_filter( 'protected_title_format', 'wpad_remove_protected_text' );
