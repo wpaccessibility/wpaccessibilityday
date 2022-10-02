@@ -999,6 +999,10 @@ label[for=matomo_optout_checkbox] {
   /* Make sure select elements fit in widgets. */
 }
 
+footer .widget {
+	margin: 10px;
+}
+
 .widget select {
   max-width: 100%;
 }
@@ -1054,7 +1058,50 @@ label[for=matomo_optout_checkbox] {
 }
 
 .site-footer {
-	padding: 50px 0;
+	padding: 50px 0 0;
+}
+
+#footer-sidebar-columns {
+	max-width: 1280px;
+}
+
+#bottom-credits {
+    background: #fff;
+    max-width: 100%;
+    padding: 20px;
+	text-align: right;
+}
+
+#bottom-credits .wrap {
+	max-width: 1280px;
+	padding-left: 36px;
+    padding-right: 36px;
+	margin: 0 auto;
+	display: grid;
+	grid-gap: 30px;
+    grid-template-columns: 1fr 3fr;
+}
+
+#colophon #bottom-credits .site-logo {
+	text-align: left;
+}
+
+#bottom-credits .site-logo svg {
+    float: left;
+    margin-right: 10px;
+    width: 40px;
+}
+
+#bottom-credits .site-logo p {
+    margin: 0;
+}
+
+#colophon #bottom-credits nav {
+    margin: 1em 0;
+}
+
+ #bottom-credits .navigation .menu {
+    justify-content: right;
 }
 
 .has-sidebar {
