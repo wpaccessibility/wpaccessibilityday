@@ -1104,6 +1104,27 @@ footer .widget {
     justify-content: right;
 }
 
+@media only screen and (max-width: 950px) {
+  #bottom-credits .wrap {
+		grid-template-columns: 1fr;
+	  	grid-gap: 5px;
+	}
+	
+	#colophon #bottom-credits .site-logo {
+    	text-align: center;
+	}
+	
+	#bottom-credits .site-logo svg {
+    	float: none;
+    	margin-right: 0;
+    	width: 40px;
+	}
+	
+	#bottom-credits .navigation .menu {
+    	justify-content: center;
+	}
+}
+
 .has-sidebar {
 	display: grid;
 	column-gap: 72px;
