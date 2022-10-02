@@ -12,6 +12,7 @@
 ?>
 
 <footer id="colophon" class="site-footer">
+	<h2 class="sr-only">Footer</h2>
 	<?php
 		wp_accessibility_day_footer_sidebars();
 	?>

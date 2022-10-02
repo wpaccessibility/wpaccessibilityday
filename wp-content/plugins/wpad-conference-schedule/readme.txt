@@ -1,5 +1,5 @@
 === WP Accessibility Day - Conference Schedule ===
-Contributors: roadwarriorwp, alh0319, stevejonesdev, joedolson
+Contributors: equalizedigital, alh0319, stevejonesdev, joedolson
 Donate link: https://wpaccessibility.day/donate/
 Tags: conference schedule, conference, schedule, event schedule, event, events, block, blocks, gutenberg, sessions, speakers, events, events calendar
 Requires at least: 5.0.0
