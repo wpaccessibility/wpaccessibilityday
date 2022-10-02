@@ -56,43 +56,46 @@
 		}
 
 		const streamtext = document.getElementById( 'streamtext' );
-		const transcript = document.getElementById( 'transcript' ).querySelector( 'button' );
-		const chat       = document.getElementById( 'chat' ).querySelector( 'button' );
+		const transcript = document.querySelector( '#transcript button' );
+		const chat       = document.querySelector( '#chat button' );
 
-		if ( readCookie( 'streamtext.hidden' ) ) {
-			streamtext.classList.add( 'hidden' );
-			transcript.setAttribute( 'aria-expanded', 'false' );
-		}
-
-		if ( readCookie( 'slido.hidden' ) ) {
-			slido.classList.add( 'hidden' );
-			chat.setAttribute( 'aria-expanded', 'false' );
-		}
-
-		transcript.addEventListener( 'click', function() {
-			if ( streamtext.classList.contains( 'hidden' ) ) {
-				streamtext.classList.remove( 'hidden' );
-				transcript.setAttribute( 'aria-expanded', 'true' );
-				eraseCookie( 'streamtext.hidden' );
-			} else {
+		if ( transcript ) {
+			if ( readCookie( 'streamtext.hidden' ) ) {
 				streamtext.classList.add( 'hidden' );
 				transcript.setAttribute( 'aria-expanded', 'false' );
-				createCookie( 'streamtext.hidden', 1 );
 			}
-		});
 
-		chat.addEventListener( 'click', function() {
-			if ( slido.classList.contains( 'hidden' ) ) {
-				slido.classList.remove( 'hidden' );
-				chat.setAttribute( 'aria-expanded', 'true' );
-				eraseCookie( 'slido.hidden' );
-			} else {
+			transcript.addEventListener( 'click', function() {
+				if ( streamtext.classList.contains( 'hidden' ) ) {
+					streamtext.classList.remove( 'hidden' );
+					transcript.setAttribute( 'aria-expanded', 'true' );
+					eraseCookie( 'streamtext.hidden' );
+				} else {
+					streamtext.classList.add( 'hidden' );
+					transcript.setAttribute( 'aria-expanded', 'false' );
+					createCookie( 'streamtext.hidden', 1 );
+				}
+			});
+		}
+
+		if ( chat ) {
+			if ( readCookie( 'slido.hidden' ) ) {
 				slido.classList.add( 'hidden' );
 				chat.setAttribute( 'aria-expanded', 'false' );
-				createCookie( 'slido.hidden', 1 );
 			}
-		});
 
+			chat.addEventListener( 'click', function() {
+				if ( slido.classList.contains( 'hidden' ) ) {
+					slido.classList.remove( 'hidden' );
+					chat.setAttribute( 'aria-expanded', 'true' );
+					eraseCookie( 'slido.hidden' );
+				} else {
+					slido.classList.add( 'hidden' );
+					chat.setAttribute( 'aria-expanded', 'false' );
+					createCookie( 'slido.hidden', 1 );
+				}
+			});
+		}
 		// Cookie handler, non-$ style
 		function createCookie(name, value, days) {
 			if (days) {
