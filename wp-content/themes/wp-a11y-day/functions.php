@@ -834,12 +834,12 @@ function wpad_get_donors() {
 /**
  * Display donors who agreed to be displayed.
  *
- * @param string $content Contained content.
  * @param array  $atts Shortcode attributes.
+ * @param string $content Contained content.
  *
  * @return string
  */
-function wpad_display_donors( $content = '', $atts = array() ) {
+function wpad_display_donors( $atts = array(), $content = '' ) {
 	$donors = wpad_get_donors();
 	$output = '';
 	foreach ( $donors as $donor ) {
@@ -862,6 +862,109 @@ function wpad_display_donors( $content = '', $atts = array() ) {
  * Add donor shortcode.
  */
 add_shortcode( 'donors', 'wpad_display_donors', 10, 2 );
+
+
+/**
+ * Fetch Gravity Forms microsponsors.
+ */
+function wpad_get_microsponsors() {
+	global $wpdb;
+	$sponsors = array();
+	$query    = "SELECT * FROM wp_gf_entry WHERE form_id = 13";
+	$entries  = $wpdb->get_results( $query );
+	foreach ( $entries as $entry ) {
+		$meta_query = "SELECT * FROM wp_gf_entry_meta WHERE entry_id = $entry->id";
+		$meta       = $wpdb->get_results( $meta_query );
+		$data       = array();
+		foreach ( $meta as $value ) {
+			$data['payment_date'] = $entry->payment_date;
+			$data['paid']         = $entry->payment_status;
+			switch ( $value->meta_key ) {
+				case '1.3':
+					$data['first_name'] = $value->meta_value;
+					break;
+				case '1.6':
+					$data['last_name'] = $value->meta_value;
+					break;
+				case '5':
+					$data['email'] = $value->meta_value;
+					break;
+				case '6':
+					$data['company'] = $value->meta_value;
+					break;
+				case '1.3':
+					$data['fname'] = $value->meta_value;
+					break;
+				case '1.6':
+					$data['lname'] = $value->meta_value;
+					break;
+				case '16':
+					$data['link'] = $value->meta_value;
+					break;
+				case '12':
+					$data['image'] = $value->meta_value;
+					break;
+				case '23':
+					$data['paid'] = $value->meta_value;
+					break;
+				case '20':
+					$data['public'] = $value->meta_value;
+					break;
+			}
+		}
+		if ( $data['public'] !== 'Yes' || $data['paid'] === '0' ) {
+			continue;
+		} else {
+			$sponsors[] = $data;
+		}
+	}
+
+	return $sponsors;
+}
+
+/**
+ * Display microsponsors who agreed to be displayed.
+ *
+ * @param array  $atts Shortcode attributes.
+ * @param string $content Contained content.
+ *
+ * @return string
+ */
+function wpad_display_microsponsors( $atts = array(), $content = '' ) {
+	$args = shortcode_atts(
+		array(
+			'maxheight' => '80px',
+		),
+		$atts,
+		'microsponsors'
+	);
+	$mh       = $args['maxheight'];
+	$sponsors = wpad_get_microsponsors();
+	$output   = '';
+	if ( is_array( $sponsors ) && count( $sponsors ) > 0 ) {
+		foreach ( $sponsors as $sponsor ) {
+			$name     = $sponsor['first_name'] . ' ' . $sponsor['last_name'];
+			$company  = $sponsor['company'];
+			$link     = $sponsor['link'];
+			$image    = $sponsor['image'];
+			if ( ! $image ) {
+				continue;
+			}
+			$wrap     = ( wp_http_validate_url( $link ) ) ? '<a href="' . esc_url( $link ) . '">' : '';
+			$unwrap   = ( '' !== $wrap ) ? '</a>' : '';
+
+			$label = ( $company ) ? $company : $name;
+			$output .= '<li class="wpcsp-sponsor"><div class="wpcsp-sponsor-description">' . $wrap . '<img class="wpcsp-sponsor-image" src="' . esc_url( $image ) . '" alt="' . esc_html( $label ) . '" style="width: auto; max-height: ' . esc_attr( $mh ) . '" />' . $unwrap . '</div></li>';
+		}
+	}
+
+	return '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>';
+}
+
+/**
+ * Add microsponsor shortcode.
+ */
+add_shortcode( 'microsponsors', 'wpad_display_microsponsors', 10, 2 );
 
 /**
  * Filter 'Protected:' out of password protected post titles.
