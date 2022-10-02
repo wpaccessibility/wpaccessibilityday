@@ -989,7 +989,7 @@ function wpad_breadcrumbs( $link_output, $link ) {
 	$id = isset( $link['id'] ) ? $link['id'] : get_queried_object_id();
 
 	if ( 'wpcsp_sponsor' === get_post_type( $id ) ) {
-		return '<a href="' . home_url( '/sponsors' ) . '">Sponsors</a>' . ' / ' . $link['text'];
+		return '<a href="' . home_url( '/sponsors/' ) . '">Sponsors</a>' . ' / ' . $link['text'];
 	}
 
 	return $link_output;
