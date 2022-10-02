@@ -995,3 +995,21 @@ function wpad_breadcrumbs( $link_output, $link ) {
 	return $link_output;
 }
 add_filter( 'wpseo_breadcrumb_single_link', 'wpad_breadcrumbs', 10, 2 );
+
+/**
+* Gravity Forms Custom Activation Template
+* http://gravitywiz.com/customizing-gravity-forms-user-registration-activation-page
+*/
+function custom_maybe_activate_user() {
+	$template_path    = STYLESHEETPATH . '/templates/gravity-forms/activate.php';
+	$is_activate_page = isset( $_GET['gfur_activation'] );
+
+	if( ! file_exists( $template_path ) || ! $is_activate_page ) {
+		return;
+	}
+
+	require_once( $template_path );
+
+	exit();
+}
+add_action('wp', 'custom_maybe_activate_user', 9);
