@@ -872,3 +872,23 @@ function wpad_remove_protected_text() {
 	return '%s';
 }
 add_filter( 'protected_title_format', 'wpad_remove_protected_text' );
+
+
+/**
+ * Add custom paths to Yoast breadcrumbs.
+ *
+ * @param string $link_output Original string.
+ * @param array  $link Array of link data.
+ *
+ * @return string
+ */
+function wpad_breadcrumbs( $link_output, $link ) {
+	$id = isset( $link['id'] ) ? $link['id'] : get_queried_object_id();
+
+	if ( 'wpcsp_sponsor' === get_post_type( $id ) ) {
+		return '<a href="' . home_url( '/sponsors' ) . '">Sponsors</a>' . ' / ' . $link['text'];
+	}
+
+	return $link_output;
+}
+add_filter( 'wpseo_breadcrumb_single_link', 'wpad_breadcrumbs', 10, 2 );
