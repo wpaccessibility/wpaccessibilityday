@@ -1069,7 +1069,7 @@ footer .widget {
     background: #fff;
     max-width: 100%;
     padding: 20px;
-	text-align: right;
+	margin-top: 50px;
 }
 
 #bottom-credits .wrap {
