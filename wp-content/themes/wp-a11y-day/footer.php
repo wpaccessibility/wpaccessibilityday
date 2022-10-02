@@ -16,15 +16,22 @@
 	<?php
 		wp_accessibility_day_footer_sidebars();
 	?>
-	<nav id="footer-navigation" class="footer-navigation navigation" aria-label="Footer">
-		<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-3',
-				'menu_id'        => 'footer-menu',
-				'depth'          => 1,
-			) );
-		?>
-	</nav><!-- #site-navigation -->
+	<div id="bottom-credits">
+		<div class="site-logo">
+			<?php 
+				echo do_shortcode('[logo]');
+			?>
+		</div>	
+		<nav id="footer-navigation" class="footer-navigation navigation" aria-label="Footer">
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'menu-3',
+					'menu_id'        => 'footer-menu',
+					'depth'          => 1,
+				) );
+			?>
+		</nav><!-- #site-navigation -->
+	</div><!-- #bottom-credits -->
 </footer><!-- #colophon -->
 </div><!-- #page -->
 
