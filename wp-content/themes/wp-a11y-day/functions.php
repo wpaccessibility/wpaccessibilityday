@@ -907,12 +907,12 @@ function wpad_get_microsponsors() {
 				case '23':
 					$data['paid'] = $value->meta_value;
 					break;
-				case '20':
+				case '26':
 					$data['public'] = $value->meta_value;
 					break;
 			}
 		}
-		if ( $data['public'] !== 'Yes' || $data['paid'] === '0' ) {
+		if ( $data['public'] !== 'Yes' || (string) $data['paid'] === '0' ) {
 			continue;
 		} else {
 			$sponsors[] = $data;
