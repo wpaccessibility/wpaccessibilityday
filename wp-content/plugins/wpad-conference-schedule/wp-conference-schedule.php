@@ -209,60 +209,6 @@ class WPAD_Conference_Schedule {
 			// 'closed'     => true, // Keep the metabox closed by default
 		) );
 
-		/* $this->wpcs_update_session_date_meta();
-
-		$cmb->add_field( array(
-			'name' => 'Date',
-			'id'   => '_wpcs_session_date',
-			'type' => 'text_date',
-			// 'timezone_meta_key' => 'wiki_test_timezone',
-			// 'date_format' => 'l jS \of F Y',
-		) );
-
-		$cmb->add_field( array(
-			'name' => 'Start Time',
-			'id' => '_wpcs_session_time',
-			'type' => 'text_time'
-			// Override default time-picker attributes:
-			// 'attributes' => array(
-			//     'data-timepicker' => json_encode( array(
-			//         'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
-			//         'timeFormat' => 'HH:mm',
-			//         'stepMinute' => 1, // 1 minute increments instead of the default 5
-			//     ) ),
-			// ),
-			// 'time_format' => 'h:i:s A',
-		) );
-
-		$cmb->add_field( array(
-			'name' => 'End Time',
-			'id' => '_wpcs_session_end_time',
-			'type' => 'text_time'
-			// Override default time-picker attributes:
-			// 'attributes' => array(
-			//     'data-timepicker' => json_encode( array(
-			//         'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
-			//         'timeFormat' => 'HH:mm',
-			//         'stepMinute' => 1, // 1 minute increments instead of the default 5
-			//     ) ),
-			// ),
-			// 'time_format' => 'h:i:s A',
-		) );
-
-		$cmb->add_field( array(
-			'name'             => 'Type',
-			//'desc'             => 'Select an option',
-			'id'               => '_wpcs_session_type',
-			'type'             => 'select',
-			'show_option_none' => false,
-			'default'          => 'session',
-			'options'          => array(
-				'session' => __( 'Regular Session', 'wpcs' ),
-				'mainstage'   => __( 'Mainstage', 'wpcs' ),
-				'custom'     => __( 'Break, Lunch, etc.', 'wpcs' ),
-			),
-		) ); */
-
 		// filter speaker meta field
 		if(has_filter('wpcs_filter_session_speaker_meta_field')) {
 			$cmb = apply_filters('wpcs_filter_session_speaker_meta_field', $cmb);
@@ -359,8 +305,8 @@ class WPAD_Conference_Schedule {
 			<label for="wpcs-session-type"><?php _e( 'Type:', 'wp-conference-schedule' ); ?></label>
 			<select id="wpcs-session-type" name="wpcs-session-type">
 				<option value="session" <?php selected( $session_type, 'session' ); ?>><?php _e( 'Regular Session', 'wp-conference-schedule' ); ?></option>
-				<option value="mainstage" <?php selected( $session_type, 'mainstage' ); ?>><?php _e( 'Mainstage', 'wp-conference-schedule' ); ?></option>
-				<option value="custom" <?php selected( $session_type, 'custom' ); ?>><?php _e( 'Break, Lunch, etc.', 'wp-conference-schedule' ); ?></option>
+				<option value="panel" <?php selected( $session_type, 'panel' ); ?>><?php _e( 'Panel', 'wp-conference-schedule' ); ?></option>
+				<option value="lightning" <?php selected( $session_type, 'lightning' ); ?>><?php _e( 'Lightning Talks', 'wp-conference-schedule' ); ?></option>
 			</select>
 		</p>
 
@@ -981,13 +927,14 @@ class WPAD_Conference_Schedule {
 				'typed' => __( 'Speaker Names (Typed)', 'wpcsp' ),
 				'cpt'   => __( 'Speaker Select (from Speakers CPT)', 'wpcsp' ),
 			),
-			'default'		   => 'typed'
+			'default' => 'cpt'
 		) );
 
 		// get speakers
 		$args = [
 			'numberposts' => -1,
 			'post_type'   => 'wpcsp_speaker',
+			'post_status' => array( 'pending', 'publish' ),
 		];
 		$speakers = get_posts($args);
 		$speakers = wp_list_pluck( $speakers, 'post_title','ID' );
