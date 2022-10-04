@@ -447,13 +447,6 @@ function wpad_get_people_data( $id ) {
 	return $content;
 }
 
-/**
- * Parse format for time.
- */
-function wpaccessibilityday_time() {
-	// https://www.timeanddate.com/worldclock/fixedtime.html?iso=20201003T1400 - Format.
-}
-
 add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
 /**
  * Generate schedule for WP Accessibility Day.
@@ -465,22 +458,22 @@ add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
  */
 function wpaccessibilityday_schedule( $atts, $content ) {
 	$args = shortcode_atts( array(
-		'start'     => '18',
+		'start'     => '15',
 	), $atts, 'wpaccessibilityday_schedule' );
 
 	$query = array(
-		'post_type'      => 'mcm_talk',
-		'post_status'    => 'publish',
+		'post_type'      => 'wpcs_session',
+		'post_status'    => 'draft',
 		'posts_per_page' => -1,
 		'fields'         => 'ids',
 		'meta_query'     => array(
 			'relation' => 'AND',
 			array(
-				'key'     => '_time-in-utc',
+				'key'     => '_wpcs_session_time',
 				'compare' => 'EXISTS',
 			),
 			array(
-				'key'     => '_time-in-utc',
+				'key'     => '_wpcs_session_time',
 				'value'   => '',
 				'compare' => '!=',
 			),
@@ -489,7 +482,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 	$posts    = get_posts( $query );
 	$schedule = array();
 	foreach( $posts as $post_ID ) {
-		$time = str_replace( ':00', '', get_post_meta( $post_ID, '_time-in-utc', true ) );
+		$time              = gmdate( 'H', get_post_meta( $post_ID, '_wpcs_session_time', true ) );
 		$schedule[ $time ] = $post_ID;
 	}
 	$start = $args['start'] - 24;
@@ -517,26 +510,25 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		if ( ! $talk_ID ) {
 			$output[] = $time_html . '<p>Not yet scheduled</p>';
 		} else {
-			$auth    = get_post_meta( $talk_ID, '_speaker', true );
-			$slides  = esc_url( get_post_meta( $talk_ID, '_slides-url', true ) );
-			if ( $auth ) {
-				$author = get_post( $auth );
-			}
+			$speakers = wpad_session_speakers( $talk_ID );
+			$slides   = esc_url( get_post_meta( $talk_ID, '_slides-url', true ) );
+			
 			$talk         = get_post( $talk_ID );
-			$time_output  = $time_html . get_the_post_thumbnail( $auth, 'medium' ) . '<p class="speaker"><a href="' . esc_url( get_the_permalink( $auth ) ) . '">' . $author->post_title . '</a></p>';
+			$time_output  = $time_html . $speakers;
+			
 			$time_output .= ( $slides ) ? '<p class="slides"><a href="' . $slides . '">View Slides for presentation by ' . $author->post_title . '</a></p>' : '';
 			if ( current_user_can( 'manage_options' ) ) {
-				$time_output .= ( $slides ) ? '' : '<p class="slides">Slides not yet provided.</p>';
+				$time_output .= ( $slides ) ? '' : '<p class="slides">Admin note: Slides not yet provided.</p>';
 			}
 			$permalink    = get_the_permalink( $talk_ID );
 			$talk_output  = '<h3><a href="' . esc_url( $permalink ) . '">' . $talk->post_title . '</a></h3><div class="talk-description">' . $talk->post_content . '</div>';
-			$speaker_id   = sanitize_title( $author->post_title );
+			$session_id   = sanitize_title( $talk->post_title );
 			if ( $is_current ) {
 				// Don't display current talk now that event is over.
-				// $current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$speaker_id'>$time:00 UTC - $author->post_title / $talk->post_title</a></p>";
+				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
 			}
 
-			$output[] = "<div class='wp-block-group alignwide schedule' id='$speaker_id'>
+			$output[] = "<div class='wp-block-group alignwide schedule' id='$session_id'>
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
@@ -557,7 +549,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
-							<h2 class='talk-time' data-time='2020-10-02T17:45:00Z'>17:45 UTC</h2>
+							<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'>14:45 UTC</h2>
 							<p class='speaker'>Joe Dolson</p>
 						</div>
 						<div class='wp-block-column'>
@@ -591,7 +583,55 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			</div>";
 	$links = wpad_youtube_links();
 
-	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output ) . $closing_remarks;
+	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output );
+}
+
+/**
+ * Get speakers for schedule.
+ *
+ * @param int $session_id Talk post ID.
+ *
+ * @return string Output HTML
+ */
+function wpad_session_speakers( $session_id ) {
+
+	$html         = '';
+	$speakers_cpt = get_post_meta( $session_id, 'wpcsp_session_speakers', true );
+
+	if ( $speakers_cpt ) {
+		ob_start();
+		foreach ( $speakers_cpt as $post_id ) {
+			$first_name         = get_post_meta( $post_id, 'wpcsp_first_name', true );
+			$last_name          = get_post_meta( $post_id, 'wpcsp_last_name', true );
+			$full_name          = '<a href="' . get_permalink( $post_id ) . '">' . $first_name . ' ' . $last_name . '</a>';
+			$title_organization = array();
+			$title              = ( get_post_meta( $post_id, 'wpcsp_title', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_title', true ) : null;
+			$organization       = ( get_post_meta( $post_id, 'wpcsp_organization', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_organization', true ) : null;
+			?>
+			<div class="wpcsp-session-speaker">
+				<?php
+				if ( $full_name ) {
+					?>
+					<div class="wpcsp-session-speaker-name">
+						<?php echo $full_name; ?>
+					</div>
+					<?php
+				}
+				if ( $title_organization ) {
+					?>
+					<div class="wpcsp-session-speaker-title-organization">
+						<?php echo implode( ', ', $title_organization ); ?>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+			<?php
+		}
+		$html .= ob_get_clean();
+	}
+
+	return $html;
 }
 
 /**
@@ -600,26 +640,15 @@ function wpaccessibilityday_schedule( $atts, $content ) {
  * @return string
  */
 function wpad_youtube_links() {
-	$time = time();
-	if ( $time < strtotime( '2020-10-02 11:50 UTC' ) ) {
-		if ( $time < strtotime( '2020-10-02 18:00 UTC' ) ) {
-			$until = human_time_diff( $time, strtotime( '2020-10-02 18:00 UTC' ) );
+	$time   = time();
+	$output = '';
+	if ( $time < strtotime( '2022-11-02 14:50 UTC' ) ) {
+		if ( $time < strtotime( '2022-11-02 15:00 UTC' ) ) {
+			$until = human_time_diff( $time, strtotime( '2022-11-02 15:00 UTC' ) );
 			$append = "Starts in only <strong>$until</strong>!";
 		}
-		$output = "<a href='https://youtu.be/X0BcKR2Go1E'>Watch the stream at YouTube!</a> $append";
+		$output = "<div class='wpad-callout'><p><a href='" . home_url( '/attendee-registration/' ) . "'>Register for WP Accessibility Day!</a> $append</p></div>";
 	}
-	if ( $time > strtotime( '2020-10-02 11:50 UTC' ) && $time < strtotime( '2020-10-03 5:50 UTC' ) ) {
-		$output = "<a href='https://youtu.be/-fKkptFna9E'>Watch the stream at YouTube (for Sessions 7-12!)</a>";
-	}
-	if ( $time > strtotime( '2020-10-03 5:50 UTC' ) && $time < strtotime( '2020-10-03 11:50 UTC' ) ) {
-		$output = "<a href='https://youtu.be/V0yJ_qJBvoc'>Watch the stream at YouTube (for Sessions 13-18!)!</a>";
-	}
-	if ( $time > strtotime( '2020-10-03 11:50 UTC' ) && $time < strtotime( '2020-10-03 18:00 UTC' ) ) {
-		$output = "<a href='https://youtu.be/9J7JlYjahMU'>Watch the stream at YouTube (for Sessions 19-24!)!</a>";
-	}
-	$output = '<p class="youtube-link"><span class="dashicons dashicons-youtube" aria-hidden="true"></span>' . $output . '</p>';
-
-	$output = '<p>WP Accessibility Day is over! Watch our YouTube channel for the posting of the edited and captioned videos!</p>';
 
 	return $output;
 }
