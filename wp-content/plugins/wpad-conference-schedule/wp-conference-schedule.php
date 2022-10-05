@@ -234,7 +234,7 @@ class WPAD_Conference_Schedule {
 	function wpcs_metabox_session_info() {
 		$post             = get_post();
 		$session_time     = absint( get_post_meta( $post->ID, '_wpcs_session_time', true ) );
-		$session_date     = ( $session_time ) ? date( 'Y-m-d', $session_time ) : date( 'Y-m-d' );
+		$session_date     = ( $session_time ) ? date( 'Y-m-d', $session_time ) : '11-03-2022';
 		$session_hours    = ( $session_time ) ? date( 'g', $session_time )     : date( 'g' );
 		$session_minutes  = ( $session_time ) ? date( 'i', $session_time )     : '00';
 		$session_meridiem = ( $session_time ) ? date( 'a', $session_time )     : 'am';
@@ -255,6 +255,7 @@ class WPAD_Conference_Schedule {
 			<label><?php _e( 'Time:', 'wp-conference-schedule' ); ?></label>
 
 			<select name="wpcs-session-hour" aria-label="<?php _e( 'Session Start Hour', 'wp-conference-schedule' ); ?>">
+					<option value="">Not assigned</option>
 				<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 					<option value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, $session_hours ); ?>>
 						<?php echo esc_html( $i ); ?>
@@ -307,6 +308,7 @@ class WPAD_Conference_Schedule {
 				<option value="session" <?php selected( $session_type, 'session' ); ?>><?php _e( 'Regular Session', 'wp-conference-schedule' ); ?></option>
 				<option value="panel" <?php selected( $session_type, 'panel' ); ?>><?php _e( 'Panel', 'wp-conference-schedule' ); ?></option>
 				<option value="lightning" <?php selected( $session_type, 'lightning' ); ?>><?php _e( 'Lightning Talks', 'wp-conference-schedule' ); ?></option>
+				<option value="custom" <?php selected( $session_type, 'custom' ); ?>><?php _e( 'Custom', 'wp-conference-schedule' ); ?></option>
 			</select>
 		</p>
 
@@ -336,13 +338,17 @@ class WPAD_Conference_Schedule {
 		if ( isset( $_POST['wpcs-meta-session-info'] ) && wp_verify_nonce( $_POST['wpcs-meta-session-info'], 'edit-session-info' ) ) {
 
 			// Update session time
-			$session_time = strtotime( sprintf(
-				'%s %d:%02d %s',
-				sanitize_text_field( $_POST['wpcs-session-date'] ),
-				absint( $_POST['wpcs-session-hour'] ),
-				absint( $_POST['wpcs-session-minutes'] ),
-				'am' == $_POST['wpcs-session-meridiem'] ? 'am' : 'pm'
-			) );
+			if ( '' !== $_POST['wpcs-session-hour' ) {
+				$session_time = strtotime( sprintf(
+					'%s %d:%02d %s',
+					sanitize_text_field( $_POST['wpcs-session-date'] ),
+					absint( $_POST['wpcs-session-hour'] ),
+					absint( $_POST['wpcs-session-minutes'] ),
+					'am' == $_POST['wpcs-session-meridiem'] ? 'am' : 'pm'
+				) );
+			} else {
+				$session_time = '';
+			}
 			update_post_meta( $post_id, '_wpcs_session_time', $session_time );
 
 			// Update session end time
@@ -357,7 +363,7 @@ class WPAD_Conference_Schedule {
 
 			// Update session type
 			$session_type = sanitize_text_field( $_POST['wpcs-session-type'] );
-			if ( ! in_array( $session_type, array( 'session', 'custom', 'mainstage' ) ) ) {
+			if ( ! in_array( $session_type, array( 'session', 'lightning', 'panel', 'custom' ) ) ) {
 				$session_type = 'session';
 			}
 			update_post_meta( $post_id, '_wpcs_session_type', $session_type );
@@ -433,16 +439,16 @@ class WPAD_Conference_Schedule {
 		}
 
 		$session_type = get_post_meta( $post->ID, '_wpcs_session_type', true );
-		if ( ! in_array( $session_type, array( 'session', 'custom', 'mainstage' ) ) ) {
+		if ( ! in_array( $session_type, array( 'session', 'lightning', 'panel', 'custom' ) ) ) {
 			$session_type = 'session';
 		}
 
 		if ( 'session' == $session_type ) {
 			$states['wpcs-session-type'] = __( 'Session', 'wp-conference-schedule' );
-		} elseif ( 'custom' == $session_type ) {
-			$states['wpcs-session-type'] = __( 'Custom', 'wp-conference-schedule' );
-		} elseif ( 'mainstage' == $session_type ) {
-			$states['wpcs-session-type'] = __( 'Mainstage', 'wp-conference-schedule' );
+		} elseif ( 'lightning' == $session_type ) {
+			$states['wpcs-session-type'] = __( 'Lightning Talks', 'wp-conference-schedule' );
+		} elseif ( 'panel' == $session_type ) {
+			$states['wpcs-session-type'] = __( 'Panel', 'wp-conference-schedule' );
 		}
 
 		return $states;
