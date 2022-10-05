@@ -166,6 +166,56 @@ body {
 	font-size: 1rem;
 }
 
+.schedule .inside.hidden {
+	display: none;
+}
+
+.schedule .wp-block-columns.inside {
+	margin-top: 1em;
+	column-gap: 32px;
+}
+
+.schedule h2 a {
+	font-size: 1.5rem;
+}
+
+.wp-block-group.schedule {
+	transform: skew( -3deg, -1deg );
+}
+
+.wp-block-group.schedule .wp-block-group__inner-container {
+	transform: skew( 3deg, 1deg );
+}
+
+.wp-block-group.schedule {
+	padding: 1em 36px;
+}
+
+.wp-block-group.schedule:nth-of-type(odd) {
+	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
+}
+
+.schedule h2 {
+	margin-top: 0;
+	margin-bottom: .5rem;
+	display: grid;
+	grid-template-columns: 6em 1fr;
+}
+
+.schedule .wpcsp-session-speaker {
+	display: flex;
+	column-gap: 32px;
+	margin-bottom: 1rem;
+}
+
+.schedule img {
+	border-radius: 12px;
+}
+
+.schedule .wp-block-column h3 {
+	margin-top: 0;
+}
+
 time .localtime {
 	display: inline;
 	font-size: inherit;

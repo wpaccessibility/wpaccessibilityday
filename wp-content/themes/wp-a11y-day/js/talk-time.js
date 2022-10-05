@@ -125,5 +125,31 @@
 			createCookie(name, "");
 		}
 
+	var toggleDetails = document.querySelectorAll( '.toggle-details' );
+	if ( null !== toggleDetails ) {
+		toggleDetails.forEach( (el) => {
+			var parentEl = el.parentNode.parentNode;
+			console.log( el );
+			console.log( parentEl );
+			var target   = parentEl.querySelector( '.inside' );
+			target.classList.add( 'hidden' );
+			el.addEventListener( 'click', function(e) {
+				var expanded = this.getAttribute( 'aria-expanded' );
+				if ( 'true' === expanded ) {
+					target.classList.add( 'hidden' );
+					this.setAttribute( 'aria-expanded', 'false' );
+					this.firstChild.classList.add( 'dashicons-plus' );
+					this.firstChild.classList.remove( 'dashicons-minus' );
+				} else {
+					target.classList.remove( 'hidden' );
+					this.setAttribute( 'aria-expanded', 'true' );
+					this.firstChild.classList.add( 'dashicons-minus' );
+					this.firstChild.classList.remove( 'dashicons-plus' );
+				}
+			});
+		});
+	}
+
+
 	});
 }(jQuery));
