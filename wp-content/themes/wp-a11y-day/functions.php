@@ -342,15 +342,15 @@ function wpad_shortcode_people( $atts ) {
 	$users  = get_users( $args );
 	$output = '';
 	foreach ( $users as $user ) {
-		$name     = $user->display_name;
-		$gravatar = get_avatar( $user->user_email );
-		$city     = get_user_meta( $user->ID, 'city', true );
-		$state    = get_user_meta( $user->ID, 'state', true );
-		$country  = get_user_meta( $user->ID, 'country', true );
-		$company  = get_user_meta( $user->ID, 'company', true );
-		$title    = get_user_meta( $user->ID, 'job_title', true );
-		$twitter  = get_user_meta( $user->ID, 'twitter', true );
-		$linked   = get_user_meta( $user->ID, 'linkedin', true );
+		$name      = $user->display_name;
+		$gravatar  = get_avatar( $user->user_email );
+		$city      = get_user_meta( $user->ID, 'city', true );
+		$state     = get_user_meta( $user->ID, 'state', true );
+		$country   = get_user_meta( $user->ID, 'country', true );
+		$company   = get_user_meta( $user->ID, 'company', true );
+		$job_title = get_user_meta( $user->ID, 'job_title', true );
+		$twitter   = get_user_meta( $user->ID, 'twitter', true );
+		$linked    = get_user_meta( $user->ID, 'linkedin', true );
 
 		if ( $city === $state ) {
 			$loc = $city;
