@@ -326,11 +326,59 @@ function wpad_shortcode_people( $atts ) {
 		'id' => '',
 	), $atts );
 
-	$content = ( '' !== $atts['id'] ) ? wpad_get_people_data( $atts['id'] ) : '';
+	$args = array(
+		'orderby'    => 'meta_value',
+		'meta_key'   => 'last_name',
+		'meta_query' => array(
+			array(
+				'key'     => 'show_in_attendee_list',
+				'compare' => '=',
+				'value'   => 'Yes',
+			),
+		),
+		'fields'     => array( 'ID', 'display_name', 'user_email' ),
+	);
+	// get all authorized users.
+	$users  = get_users( $args );
+	$output = '';
+	foreach ( $users as $user ) {
+		$name     = $user->display_name;
+		$gravatar = get_avatar( $user->user_email );
+		$city     = get_user_meta( $user->ID, 'city', true );
+		$state    = get_user_meta( $user->ID, 'state', true );
+		$country  = get_user_meta( $user->ID, 'country', true );
+		$company  = get_user_meta( $user->ID, 'company', true );
+		$title    = get_user_meta( $user->ID, 'job_title', true );
+		$twitter  = get_user_meta( $user->ID, 'twitter', true );
+		$linked   = get_user_meta( $user->ID, 'linkedin', true );
 
-	return $content;
+		if ( $city === $state ) {
+			$loc = $city;
+		} else {
+			$loc = ( '' == $state ) ? $city : $city . ', ' . $state;
+		}
+		$location = ( '' === $country ) ? $loc : $loc . ', ' . $country;
+		if ( $company || $job_title ) {
+			$company = ( $company ) ? $company : '';
+			$company = ( $job_title && $company ) ? $job_title . ', ' . $company : $company;
+		}
+		$company  = ( $company ) ? '<div class="attendee-employment">' . $company . '</div>' : '';
+		$location = ( $location ) ? '<div class="attendee-location">' . $location . '</div>' : '';
+		$icons    = array();
+		if ( $twitter ) {
+			$icons[] = '<a href="' . esc_url( $twitter ) . '"><span class="dashicons dashicons-twitter" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html( $name ) . ' on Twitter</span></a>';
+		}
+		if ( $linkedin ) {
+			$icons[] = '<a href="' . esc_url( $linkedin ) . '"><span class="dashicons dashicons-linkedin" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html( $name ) . ' on LinkedIn</span></a>';
+		}
+		$social = ( ! empty( $icons ) ) ? '<div class="attendee-social">' . implode( ' ', $icons ) . '</div>' : '';
+		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h3 class="attendee-name">' . $name . '</h3>' . $company . $location . '</div></li>';
+	}
+
+
+	return '<ul class="wpad-attendees">' . $output . '</ul>';
 }
-add_shortcode( 'people', 'wpad_shortcode_people' );
+add_shortcode( 'attendees', 'wpad_shortcode_people' );
 
 /**
  * Return HTML from a WordPress profile.
