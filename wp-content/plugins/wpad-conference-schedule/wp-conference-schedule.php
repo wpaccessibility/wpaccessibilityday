@@ -481,7 +481,7 @@ class WPAD_Conference_Schedule {
 		$page = add_submenu_page( 'edit.php?post_type=wpcsp_sponsor', __( 'Order Sponsor Levels', 'wpcsp' ), __( 'Order Sponsor Levels', 'wpcsp' ), 'edit_posts', 'sponsor_levels', array( $this, 'render_order_sponsor_levels' ) );
 		add_action( "admin_print_scripts-$page", array( $this, 'enqueue_order_sponsor_levels_scripts' ) );
 
-		$page = add_submenu_page( 'edit.php?post_type=wpcsp_speaker', __( 'Order Speaker Groups', 'wpcsp' ), __( 'Order Speaker Groups', 'wpcsp' ), 'edit_posts', 'speaker_levels', array( $this, 'render_order_speaker_levels' ) );
+		$page = add_submenu_page( 'edit.php?post_type=wpcsp_speaker', __( 'Order People Groups', 'wpcsp' ), __( 'Order People Groups', 'wpcsp' ), 'edit_posts', 'speaker_levels', array( $this, 'render_order_speaker_levels' ) );
 		add_action( "admin_print_scripts-$page", array( $this, 'enqueue_order_sponsor_levels_scripts' ) );
 	}
 

@@ -17,19 +17,19 @@ function wpcs_register_post_types() {
 
 	// Speaker post type labels.
 	$speakerlabels = array(
-		'name'               => __( 'Speakers',                   'wpcsp' ),
-		'singular_name'      => __( 'Speaker',                    'wpcsp' ),
+		'name'               => __( 'People',                   'wpcsp' ),
+		'singular_name'      => __( 'Person',                    'wpcsp' ),
 		'add_new'            => __( 'Add New',                    'wpcsp' ),
-		'add_new_item'       => __( 'Create New Speaker',         'wpcsp' ),
+		'add_new_item'       => __( 'Create New Person',         'wpcsp' ),
 		'edit'               => __( 'Edit',                       'wpcsp' ),
-		'edit_item'          => __( 'Edit Speaker',               'wpcsp' ),
-		'new_item'           => __( 'New Speaker',                'wpcsp' ),
-		'view'               => __( 'View Speaker',               'wpcsp' ),
-		'view_item'          => __( 'View Speaker',               'wpcsp' ),
-		'search_items'       => __( 'Search Speakers',            'wpcsp' ),
-		'not_found'          => __( 'No speakers found',          'wpcsp' ),
-		'not_found_in_trash' => __( 'No speakers found in Trash', 'wpcsp' ),
-		'parent_item_colon'  => __( 'Parent Speaker:',            'wpcsp' ),
+		'edit_item'          => __( 'Edit Person',               'wpcsp' ),
+		'new_item'           => __( 'New Person',                'wpcsp' ),
+		'view'               => __( 'View Person',               'wpcsp' ),
+		'view_item'          => __( 'View Person',               'wpcsp' ),
+		'search_items'       => __( 'Search People',            'wpcsp' ),
+		'not_found'          => __( 'No people found',          'wpcsp' ),
+		'not_found_in_trash' => __( 'No people found in Trash', 'wpcsp' ),
+		'parent_item_colon'  => __( 'Parent Person:',            'wpcsp' ),
 	);
 
 	// Register speaker post type.
