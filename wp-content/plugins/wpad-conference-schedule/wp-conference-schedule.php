@@ -338,7 +338,7 @@ class WPAD_Conference_Schedule {
 		if ( isset( $_POST['wpcs-meta-session-info'] ) && wp_verify_nonce( $_POST['wpcs-meta-session-info'], 'edit-session-info' ) ) {
 
 			// Update session time
-			if ( '' !== $_POST['wpcs-session-hour' ) {
+			if ( '' !== $_POST['wpcs-session-hour'] ) {
 				$session_time = strtotime( sprintf(
 					'%s %d:%02d %s',
 					sanitize_text_field( $_POST['wpcs-session-date'] ),
