@@ -518,7 +518,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$text = "Up next: ";
 		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
-		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper">' . $time . ':00 UTC' . '</div><div class="talk-wrapper">%s</div></h2>';
+		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper">' . $time . ':00 UTC' . ' </div><div class="talk-wrapper">%s</div></h2>';
 		$talk_ID   = $schedule[ $time ];
 		if ( $talk_ID ) {
 			$talk_type = sanitize_html_class( get_post_meta( $talk_ID, '_wpcs_session_type', true ) );
@@ -533,7 +533,8 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			}
 			$talk_attr_id  = sanitize_title( $talk->post_title );
 			$talk_title    = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
-			$talk_title   .= '<div class="talk-speakers">' . implode( ', ', $speakers['list'] ) . '</div>';
+			$talk_label    = ( 'panel' === $talk_type ) ? '<strong>Panel:</strong> ' : '';
+			$talk_title   .= '<div class="talk-speakers">' . $talk_label . implode( ', ', $speakers['list'] ) . '</div>';
 			$talk_heading  = sprintf( $time_html, ' ' . $talk_title );
 			if ( 'lightning' !== $talk_type ) {
 				$wrap   = '<div class="wp-block-column">';
