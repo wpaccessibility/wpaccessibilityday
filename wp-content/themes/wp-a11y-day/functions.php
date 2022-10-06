@@ -582,7 +582,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
-							<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'>14:45 UTC <span>Opening Remarks</span></h2>
+							<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'><div class='time-wrapper'>14:45 UTC</div> <span>Opening Remarks</span></h2>
 							<div class='talk-description'>
 								<p>Joe Dolson, co-lead organizer of WP Accessibility Day will kick off the event with brief opening comments.</p>
 							</div>

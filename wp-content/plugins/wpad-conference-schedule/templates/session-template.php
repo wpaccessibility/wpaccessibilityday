@@ -34,7 +34,10 @@ get_header(); ?>
 						<?php
 						// Check if end time is available. This is for pre version 1.0.1 as the end time wasn't available.
 						if ( $session_date ) {
-							echo '<h2 class="wpsc-single-session-time"> '.$session_date.' at '.date($time_format, $session_time).'</h2>';
+							$datatime  = date( 'Y-m-d\TH:i:s\Z', $session_time );
+							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.date($time_format, $session_time).'</span></h2>';
+						} else {
+							
 						}
 						?>
 						
