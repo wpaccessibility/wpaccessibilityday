@@ -770,6 +770,10 @@ label {
 	font-size: 1rem;
 }
 
+.search-form label {
+	display: inline-block;
+}
+
 input[type="text"],
 input[type="email"],
 select,
