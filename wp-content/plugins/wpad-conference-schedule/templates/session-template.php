@@ -34,10 +34,14 @@ get_header(); ?>
 						<?php
 						// Check if end time is available. This is for pre version 1.0.1 as the end time wasn't available.
 						if ( $session_date ) {
-							$datatime  = date( 'Y-m-d\TH:i:s\Z', $session_time );
-							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.date($time_format, $session_time).'</span></h2>';
+							$datatime  = gmdate( 'Y-m-d\TH:i:s\Z', $session_time );
+							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.gmdate($time_format, $session_time).'</span></h2>';
 						} else {
-							
+							$parent_session = get_post_meta( $post->ID, '_wpad_session', true );
+							$session_time   = absint( get_post_meta( $parent_session, '_wpcs_session_time', true ) );
+							$session_date   = ( $session_time ) ? gmdate( 'F j, Y', $session_time ) : '';
+							$datatime       = gmdate( 'Y-m-d\TH:i:s\Z', $session_time );
+							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.gmdate($time_format, $session_time).'</span></h2>';
 						}
 						?>
 						
@@ -68,51 +72,55 @@ get_header(); ?>
 						</div><!-- .meta-info -->
 
 					</header>
-					<?php
-					$sponsor_list = get_post_meta($post->ID,'wpcsp_session_sponsors',true);
-					if(!empty($sponsor_list)){
-						?>
-						<div class="wpcsp-sponsor-single">
-							<h2>Presented by</h2>
-							<div class="wpcsp-sponsor-single-row">
-								<?php
-									$sponser_url = "";
-									$target = "";
-									foreach($sponsor_list as $sponser_li){ 
-										$sponsor_img = get_the_post_thumbnail_url($sponser_li);
-										if(!empty($sponsor_img)){
-											$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
-											$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
-				
-											if($sponsor_url == "sponsor_site"){
-												if(!empty($wpcsp_website_url)){
-													$sponser_url = $wpcsp_website_url;
-													$target = "_blank";
-												}else{
-													$sponser_url = "#";
-													$target = "";
-												}
-											}else{
-
-												$sponser_url =  get_the_permalink($sponser_li);
-											}
-											?>
-											<div class="wpcsp-sponsor-single-image">
-												<a href="<?php echo $sponser_url;?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
-											</div>
-										<?php
-										}
-									}
-								?>
-							</div>
-						</div>
-					<?php } ?>
 					<div class="entry-content">
-						<?php the_content();?>
+						<?php
+						$sponsor_list = get_post_meta($post->ID,'wpcsp_session_sponsors',true);
+						if ( ! empty( $sponsor_list ) ){
+							?>
+							<div class="wpcsp-sponsor-single">
+								<h2>Presented by</h2>
+								<div class="wpcsp-sponsor-single-row">
+									<?php
+										$sponser_url = "";
+										$target = "";
+										foreach($sponsor_list as $sponser_li){ 
+											$sponsor_img = get_the_post_thumbnail_url($sponser_li);
+											if(!empty($sponsor_img)){
+												$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
+												$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
+					
+												if($sponsor_url == "sponsor_site"){
+													if(!empty($wpcsp_website_url)){
+														$sponser_url = $wpcsp_website_url;
+														$target = "_blank";
+													}else{
+														$sponser_url = "#";
+														$target = "";
+													}
+												}else{
+
+													$sponser_url =  get_the_permalink($sponser_li);
+												}
+												?>
+												<div class="wpcsp-sponsor-single-image">
+													<a href="<?php echo $sponser_url;?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
+												</div>
+											<?php
+											}
+										}
+									?>
+								</div>
+							</div>
+							<?php
+							}
+							the_content();
+							$speakers = wpad_session_speakers( get_the_ID(), $session_type );
+							echo $speakers['html'];
+						?>
 					</div><!-- .entry-content -->
 
 					<?php if(get_option('wpcs_field_schedule_page_url')){ ?>
-						<footer class="entry-footer">	
+						<footer class="entry-footer">
 							<p><a href="<?php echo get_option('wpcs_field_schedule_page_url'); ?>">Return to Schedule</a></p>
 						</footer>
 					<?php } ?>
