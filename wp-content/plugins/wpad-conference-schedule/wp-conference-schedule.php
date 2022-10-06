@@ -235,7 +235,7 @@ class WPAD_Conference_Schedule {
 		$post             = get_post();
 		$session_time     = absint( get_post_meta( $post->ID, '_wpcs_session_time', true ) );
 		$session_date     = ( $session_time ) ? date( 'Y-m-d', $session_time ) : '11-03-2022';
-		$session_hours    = ( $session_time ) ? date( 'g', $session_time )     : date( 'g' );
+		$session_hours    = ( $session_time ) ? date( 'g', $session_time )     : '';
 		$session_minutes  = ( $session_time ) ? date( 'i', $session_time )     : '00';
 		$session_meridiem = ( $session_time ) ? date( 'a', $session_time )     : 'am';
 		$session_type     = get_post_meta( $post->ID, '_wpcs_session_type', true );
