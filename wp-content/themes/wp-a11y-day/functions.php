@@ -535,7 +535,6 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk_title    = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
 			$talk_title   .= '<div class="talk-speakers">' . implode( ', ', $speakers['list'] ) . '</div>';
 			$talk_heading  = sprintf( $time_html, ' ' . $talk_title );
-			$control       = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
 			if ( 'lightning' !== $talk_type ) {
 				$wrap   = '<div class="wp-block-column">';
 				$unwrap = '</div>';
@@ -548,11 +547,15 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk_output .= $slides . $unwrap;
 			$talk_output .= $wrap . $speakers['html'] . $unwrap;
 
-			$session_id   = sanitize_title( $talk->post_title );
+			$session_id = sanitize_title( $talk->post_title );
+			$hidden     =  ( isset( $_GET['buttonsoff'] ) ) ? '' : 'hidden';
+			$control    = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-expanded="false" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
+
 			if ( $is_current ) {
+				$hidden       = '';
+				$control      = str_replace( '"false"', '"true"', $control );
 				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
 			}
-			$hidden =  ( isset( $_GET['buttonsoff'] ) ) ? '' : 'hidden';
 
 			$output[] = "
 			<div class='wp-block-group alignwide schedule $talk_type' id='$session_id'>
@@ -603,7 +606,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
  *
  * @return string Output HTML
  */
-function wpad_session_speakers( $session_id, $talk_type ) {
+function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 	$html         = '';
 	$list         = array();
 	$speakers_cpt = get_post_meta( $session_id, 'wpcsp_session_speakers', true );
@@ -630,6 +633,10 @@ function wpad_session_speakers( $session_id, $talk_type ) {
 				$unwrap    = '</div>';
 				$result    = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE meta_key = '_wpcs_session_speakers' AND meta_value = %d LIMIT 1", $post_id ) );
 				$talk_html = '<div class="lightning-talk"><h3><a href="' . get_the_permalink( $result[0]->post_id ) . '">' . get_post_field( 'post_title', $result[0]->post_id ) . '</a></h3><div class="talk-description">' . wp_trim_words( get_post_field( 'post_content', $result[0]->post_id ) ) . '</div></div>';
+				$meta      = get_post_meta( $result[0]->post_id, '_wpad_session', true );
+				if ( ! $meta ) {
+					update_post_meta( $result[0]->post_id, '_wpad_session', $session_id );
+				}
 			}
 			echo $wrap;
 			echo $talk_html;
