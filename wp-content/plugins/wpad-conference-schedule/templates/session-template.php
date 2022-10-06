@@ -18,7 +18,7 @@ get_header(); ?>
 				$post             = get_post();
 				$session_time     = absint( get_post_meta( $post->ID, '_wpcs_session_time', true ) );
 				$session_end_time = absint( get_post_meta( $post->ID, '_wpcs_session_end_time', true ) );
-				$session_date     = ( $session_time ) ? date( 'F j, Y', $session_time ) : date( 'F j, Y' );
+				$session_date     = ( $session_time ) ? date( 'F j, Y', $session_time ) : '';
 				$session_type     = get_post_meta( $post->ID, '_wpcs_session_type', true );
 				$session_speakers_text = get_post_meta( $post->ID, '_wpcs_session_speakers',  true );
 				$session_speakers_html = ($session_speakers_text ) ? '<div class="wpsc-single-session-speakers"><strong>Speaker:</strong> '.$session_speakers_text .'</div>' : null;
