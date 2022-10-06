@@ -527,28 +527,38 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$slides    = esc_url( get_post_meta( $talk_ID, '_slides-url', true ) );
 			$talk      = get_post( $talk_ID );
 
-			$slides = ( $slides ) ? '<p class="slides"><a href="' . $slides . '">View Slides for presentation by ' . $author->post_title . '</a></p>' : '';
-			if ( current_user_can( 'manage_options' ) ) {
+			$slides = ( $slides && 'lightning' !== $talk_type ) ? '<p class="slides"><a href="' . $slides . '">View Slides for presentation by ' . $talk->post_title . '</a></p>' : '';
+			if ( current_user_can( 'manage_options' ) && 'lightning' !== $talk_type ) {
 				$slides .= ( $slides ) ? '' : '<p class="slides">Admin note: Slides not yet provided.</p>';
 			}
 			$talk_attr_id = sanitize_title( $talk->post_title );
 			$talk_title   = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
 			$talk_heading = sprintf( $time_html, ' ' . $talk_title );
-			$control      = '<button type="button" class="toggle-details" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
-			$talk_output  = '<div class="wp-block-column">' . $sponsors . '<div class="talk-description">' . $talk->post_content . '</div>';
-			$talk_output .= $slides . '</div>';
-			$talk_output .= '<div class="wp-block-column">' . $speakers . '</div>';
+			$control      = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
+			if ( 'lightning' !== $talk_type ) {
+				$wrap   = '<div class="wp-block-column">';
+				$unwrap = '</div>';
+			} else {
+				$wrap   = '';
+				$unwrap = '';
+			}
+			$talk_output  = $wrap . $sponsors;
+			$talk_output .= ( 'lightning' != $talk_type ) ? '<div class="talk-description">' . $talk->post_content . '</div>' : '';
+			$talk_output .= $slides . $unwrap;
+			$talk_output .= $wrap . $speakers . $unwrap;
+
 			$session_id   = sanitize_title( $talk->post_title );
 			if ( $is_current ) {
 				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
 			}
+			$hidden =  ( isset( $_GET['buttonsoff'] ) ) ? '' : 'hidden';
 
 			$output[] = "
-			<div class='wp-block-group schedule $talk_type' id='$session_id'>
+			<div class='wp-block-group alignwide schedule $talk_type' id='$session_id'>
 				<div class='wp-block-group__inner-container'>
 					$talk_heading
 					$control
-					<div class='wp-block-columns inside hidden'>
+					<div class='wp-block-columns inside $hidden'>
 						$talk_output
 					</div>
 				</div>
@@ -556,7 +566,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		} else {
 			$talk_heading = sprintf( $time_html, '' );
 			$output[]     = "
-			<div class='wp-block-group schedule unset' id='unset'>
+			<div class='wp-block-group alignwide schedule unset' id='unset'>
 				<div class='wp-block-group__inner-container'>
 					$talk_heading
 					<div class='wp-block-columns inside'>
@@ -567,7 +577,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		}
 	}
 
-	$opening_remarks = "<div class='wp-block-group schedule'>
+	$opening_remarks = "<div class='wp-block-group alignwide schedule'>
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
@@ -593,10 +603,10 @@ function wpaccessibilityday_schedule( $atts, $content ) {
  * @return string Output HTML
  */
 function wpad_session_speakers( $session_id, $talk_type ) {
-
 	$html         = '';
 	$speakers_cpt = get_post_meta( $session_id, 'wpcsp_session_speakers', true );
-	$speakers_cpt = array_reverse( $speakers_cpt );
+	$speakers_cpt = ( is_array( $speakers_cpt ) ) ? array_reverse( $speakers_cpt ) : $speakers_cpt;
+
 	if ( $speakers_cpt ) {
 		$speakers_heading = ( count( $speakers_cpt ) > 1 ) ? '<h3>Speakers</h3>' : '<h3>Speaker</h3>';
 		ob_start();
@@ -608,6 +618,18 @@ function wpad_session_speakers( $session_id, $talk_type ) {
 			$title                = ( get_post_meta( $post_id, 'wpcsp_title', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_title', true ) : null;
 			$organization         = ( get_post_meta( $post_id, 'wpcsp_organization', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_organization', true ) : null;
 			$headshot             = get_the_post_thumbnail( $post_id, 'thumbnail' );
+			$talk_html            = '';
+			$wrap                 = '';
+			$unwrap               = '';
+			if ( 'lightning' === $talk_type ) {
+				global $wpdb;
+				$wrap      = '<div class="wp-block-column">';
+				$unwrap    = '</div>';
+				$result    = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE meta_key = '_wpcs_session_speakers' AND meta_value = %d LIMIT 1", $post_id ) );
+				$talk_html = '<div class="lightning-talk"><h3><a href="' . get_the_permalink( $result[0]->post_id ) . '">' . get_post_field( 'post_title', $result[0]->post_id ) . '</a></h3><div class="talk-description">' . wp_trim_words( get_post_field( 'post_content', $result[0]->post_id ) ) . '</div></div>';
+			}
+			echo $wrap;
+			echo $talk_html;
 			?>
 			<div class="wpcsp-session-speaker">
 				<?php
@@ -641,11 +663,12 @@ function wpad_session_speakers( $session_id, $talk_type ) {
 				?>
 			</div>
 			<?php
+			echo $unwrap;
 		}
 		$html .= ob_get_clean();
 	}
 
-	return '<div class="wpcsp-speakers">' . $speakers_heading . $html . '</div>';
+	return ( 'lightning' !== $talk_type ) ? '<div class="wpcsp-speakers">' . $speakers_heading . $html . '</div>' : $html;
 }
 
 

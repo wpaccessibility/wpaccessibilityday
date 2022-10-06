@@ -187,6 +187,14 @@ body {
 	transform: skew( 3deg, 1deg );
 }
 
+.wp-block-group .lightning-talk .talk-description {
+	margin-bottom: 1em;
+}
+
+.lightning .wp-block-column {
+	font-size: 90%;
+}
+
 .wp-block-group.schedule {
 	padding: 1em 36px;
 }
