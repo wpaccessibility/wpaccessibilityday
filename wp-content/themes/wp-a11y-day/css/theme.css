@@ -175,24 +175,40 @@ body {
 	column-gap: 32px;
 }
 
-.schedule h2 a {
-	font-size: 1.5rem;
-}
-
 .wp-block-group.schedule {
 	transform: skew( -3deg, -1deg );
 }
 
 .wp-block-group.schedule .wp-block-group__inner-container {
 	transform: skew( 3deg, 1deg );
+	padding: 1em;
 }
 
 .wp-block-group .lightning-talk .talk-description {
 	margin-bottom: 1em;
 }
 
+.lightning .wp-block-columns {
+	display: block;
+}
+
 .lightning .wp-block-column {
 	font-size: 90%;
+	display: flex;
+	column-gap: 32px;
+}
+
+.lightning .wp-block-column .lightning-talk {
+	max-width: 35em;
+}
+
+.talk-time .talk-speakers {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.schedule .wpcsp-session-speaker img {
+	height: fit-content;
 }
 
 .wp-block-group.schedule {
@@ -207,7 +223,7 @@ body {
 	margin-top: 0;
 	margin-bottom: .5rem;
 	display: grid;
-	grid-template-columns: 6em 1fr;
+	grid-template-columns: 7em 1fr;
 }
 
 .schedule .wpcsp-session-speaker {

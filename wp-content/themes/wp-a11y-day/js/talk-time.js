@@ -17,7 +17,7 @@
 			var utcTime  = $( this ).attr( 'data-time' );
 			var userTime = new Date( utcTime ).toLocaleTimeString().replace( ':00 ', ' ' );
 
-			$( this ).append( '<span class="localtime">' + userTime + ' ' + zone + '</span>' );
+			$( this ).find( '.time-wrapper' ).append( '<span class="localtime">' + userTime + ' ' + zone + '</span>' );
 		});
 
 		$( '#input_8_36 .gfield-choice-input' ).each( function( index ) {

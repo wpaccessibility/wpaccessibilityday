@@ -518,7 +518,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$text = "Up next: ";
 		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
-		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '">' . $time . ':00 UTC' . '%s</h2>';
+		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper">' . $time . ':00 UTC' . '</div><div class="talk-wrapper">%s</div></h2>';
 		$talk_ID   = $schedule[ $time ];
 		if ( $talk_ID ) {
 			$talk_type = sanitize_html_class( get_post_meta( $talk_ID, '_wpcs_session_type', true ) );
@@ -531,10 +531,11 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			if ( current_user_can( 'manage_options' ) && 'lightning' !== $talk_type ) {
 				$slides .= ( $slides ) ? '' : '<p class="slides">Admin note: Slides not yet provided.</p>';
 			}
-			$talk_attr_id = sanitize_title( $talk->post_title );
-			$talk_title   = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
-			$talk_heading = sprintf( $time_html, ' ' . $talk_title );
-			$control      = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
+			$talk_attr_id  = sanitize_title( $talk->post_title );
+			$talk_title    = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
+			$talk_title   .= '<div class="talk-speakers">' . implode( ', ', $speakers['list'] ) . '</div>';
+			$talk_heading  = sprintf( $time_html, ' ' . $talk_title );
+			$control       = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
 			if ( 'lightning' !== $talk_type ) {
 				$wrap   = '<div class="wp-block-column">';
 				$unwrap = '</div>';
@@ -545,7 +546,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk_output  = $wrap . $sponsors;
 			$talk_output .= ( 'lightning' != $talk_type ) ? '<div class="talk-description">' . $talk->post_content . '</div>' : '';
 			$talk_output .= $slides . $unwrap;
-			$talk_output .= $wrap . $speakers . $unwrap;
+			$talk_output .= $wrap . $speakers['html'] . $unwrap;
 
 			$session_id   = sanitize_title( $talk->post_title );
 			if ( $is_current ) {
@@ -604,6 +605,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
  */
 function wpad_session_speakers( $session_id, $talk_type ) {
 	$html         = '';
+	$list         = array();
 	$speakers_cpt = get_post_meta( $session_id, 'wpcsp_session_speakers', true );
 	$speakers_cpt = ( is_array( $speakers_cpt ) ) ? array_reverse( $speakers_cpt ) : $speakers_cpt;
 
@@ -614,6 +616,7 @@ function wpad_session_speakers( $session_id, $talk_type ) {
 			$first_name           = get_post_meta( $post_id, 'wpcsp_first_name', true );
 			$last_name            = get_post_meta( $post_id, 'wpcsp_last_name', true );
 			$full_name            = '<a href="' . get_permalink( $post_id ) . '">' . $first_name . ' ' . $last_name . '</a>';
+			$list[]               = $first_name . ' ' . $last_name;
 			$title_organization   = array();
 			$title                = ( get_post_meta( $post_id, 'wpcsp_title', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_title', true ) : null;
 			$organization         = ( get_post_meta( $post_id, 'wpcsp_organization', true ) ) ? $title_organization[] = get_post_meta( $post_id, 'wpcsp_organization', true ) : null;
@@ -667,8 +670,9 @@ function wpad_session_speakers( $session_id, $talk_type ) {
 		}
 		$html .= ob_get_clean();
 	}
+	$html = ( 'lightning' !== $talk_type ) ? '<div class="wpcsp-speakers">' . $speakers_heading . $html . '</div>' : $html;
 
-	return ( 'lightning' !== $talk_type ) ? '<div class="wpcsp-speakers">' . $speakers_heading . $html . '</div>' : $html;
+	return array( 'list' => $list, 'html' => $html );
 }
 
 
