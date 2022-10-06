@@ -770,6 +770,7 @@ label {
 	font-size: 1rem;
 }
 
+.post-password-form label,
 .search-form label {
 	display: inline-block;
 }
