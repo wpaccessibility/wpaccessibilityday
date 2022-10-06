@@ -610,7 +610,7 @@ function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 	$html         = '';
 	$list         = array();
 	$speakers_cpt = get_post_meta( $session_id, 'wpcsp_session_speakers', true );
-	$speakers_cpt = ( is_array( $speakers_cpt ) ) ? array_reverse( $speakers_cpt ) : $speakers_cpt;
+	$speakers_cpt = ( is_array( $speakers_cpt ) ) ? array_reverse( $speakers_cpt ) : array( get_post_meta( $session_id, '_wpcs_session_speakers', true ) );
 
 	if ( $speakers_cpt ) {
 		$speakers_heading = ( count( $speakers_cpt ) > 1 ) ? '<h3>Speakers</h3>' : '<h3>Speaker</h3>';
