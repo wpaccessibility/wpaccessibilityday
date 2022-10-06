@@ -33,11 +33,9 @@ get_header(); ?>
 
 						<?php
 						// Check if end time is available. This is for pre version 1.0.1 as the end time wasn't available.
-						if($session_date && !$session_end_time)
+						if ( $session_date ) {
 							echo '<h2 class="wpsc-single-session-time"> '.$session_date.' at '.date($time_format, $session_time).'</h2>';
-
-						if($session_date && $session_end_time)
-							echo '<h2 class="wpsc-single-session-time"> '.$session_date.' from '.date($time_format, $session_time).' to '.date($time_format, $session_end_time).'</h2>';
+						}
 						?>
 						
 						<div class="entry-meta wpsc-single-session-meta">
