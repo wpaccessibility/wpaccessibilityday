@@ -250,16 +250,21 @@ body {
 	font-size: 2rem;
 }
 
-
 @media screen and (min-width: 960px) {
 	.wp-block-group.schedule {
 		transform: skew( -3deg, -1deg );
-		max-width: calc( 100% - 4em );
+		max-width: 960px;
 	}
 
 	.wp-block-group.schedule .wp-block-group__inner-container {
 		transform: skew( 3deg, 1deg );
 		padding: 1em;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.wp-block-group.schedule {
+		max-width: 100%
 	}
 }
 
