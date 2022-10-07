@@ -606,11 +606,11 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			if ( $is_current ) {
 				$hidden       = '';
 				$control      = str_replace( '"false"', '"true"', $control );
-				$current_talk = "<p class='current-talk alignwide'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
+				$current_talk = "<p class='current-talk'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
 			}
 
 			$output[] = "
-			<div class='wp-block-group alignwide schedule $talk_type' id='$session_id'>
+			<div class='wp-block-group schedule $talk_type' id='$session_id'>
 				<div class='wp-block-group__inner-container'>
 					$talk_heading
 					$control
@@ -622,7 +622,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		} else {
 			$talk_heading = sprintf( $time_html, '<span class="unannounced">Watch this spot!</span>' );
 			$output[]     = "
-			<div class='wp-block-group alignwide schedule unset' id='unset'>
+			<div class='wp-block-group schedule unset' id='unset'>
 				<div class='wp-block-group__inner-container'>
 					$talk_heading
 					<div class='wp-block-columns inside'>
@@ -632,7 +632,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		}
 	}
 
-	$opening_remarks = "<div class='wp-block-group alignwide schedule'>
+	$opening_remarks = "<div class='wp-block-group schedule'>
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
@@ -689,7 +689,13 @@ function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 				$wrap      = '<div class="wp-block-column">';
 				$unwrap    = '</div>';
 				$result    = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE meta_key = '_wpcs_session_speakers' AND meta_value = %d LIMIT 1", $post_id ) );
-				$talk_html = '<div class="lightning-talk"><h3><a href="' . get_the_permalink( $result[0]->post_id ) . '">' . get_post_field( 'post_title', $result[0]->post_id ) . '</a></h3><div class="talk-description">' . wp_trim_words( get_post_field( 'post_content', $result[0]->post_id ) ) . '</div></div>';
+				$talk_html = '
+				<div class="lightning-talk">
+					<h3><a href="' . get_the_permalink( $result[0]->post_id ) . '">' . get_post_field( 'post_title', $result[0]->post_id ) . '</a></h3>
+					<div class="talk-description">
+						' . wp_trim_words( get_post_field( 'post_content', $result[0]->post_id ) ) . '
+					</div>
+				</div>';
 				$meta      = get_post_meta( $result[0]->post_id, '_wpad_session', true );
 				if ( ! $meta ) {
 					update_post_meta( $result[0]->post_id, '_wpad_session', $session_id );
