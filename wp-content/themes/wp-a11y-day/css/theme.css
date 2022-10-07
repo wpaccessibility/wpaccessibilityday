@@ -171,7 +171,7 @@ body {
 	flex-wrap: wrap;
 }
 
-.time-wrapper .localtime {
+.schedule .time-wrapper .localtime {
 	display: inline;
 }
 
@@ -256,6 +256,14 @@ body {
 
 .schedule .talk-header h2 {
 	margin: 0;
+}
+
+.schedule .talk-header {
+	line-height: 1.4;
+}
+
+.schedule .talk-header .talk-speakers {
+	font-size: 1rem;
 }
 
 .schedule .talk-header a {

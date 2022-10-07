@@ -129,8 +129,6 @@
 	if ( null !== toggleDetails ) {
 		toggleDetails.forEach( (el) => {
 			var parentEl = el.parentNode.parentNode;
-			console.log( el );
-			console.log( parentEl );
 			var target   = parentEl.querySelector( '.inside' );
 			target.classList.add( 'hidden' );
 			el.addEventListener( 'click', function(e) {
