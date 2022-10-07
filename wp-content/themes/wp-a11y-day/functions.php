@@ -566,7 +566,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$text = "Up next: ";
 		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
-		$time_html = '<h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper">' . $time . ':00 UTC' . ' </div><div class="talk-wrapper">%s</div></h2>';
+		$time_html = '<div class="talk-header"><h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper"><span>' . $time . ':00 UTC<span class="screen-reader-text">,&nbsp;</span></span>' . ' </div></h2><div class="talk-wrapper">%s</div></div>';
 		$talk_ID   = $schedule[ $time ];
 		if ( $talk_ID ) {
 			$talk_type = sanitize_html_class( get_post_meta( $talk_ID, '_wpcs_session_type', true ) );
@@ -592,13 +592,13 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				$unwrap = '';
 			}
 			$talk_output  = $wrap . $sponsors;
-			$talk_output .= ( 'lightning' != $talk_type ) ? '<div class="talk-description">' . $talk->post_content . '</div>' : '';
+			$talk_output .= ( 'lightning' != $talk_type ) ? '<div class="talk-description">' . wp_trim_words( $talk->post_content ) . '</div>' : '';
 			$talk_output .= $slides . $unwrap;
 			$talk_output .= $wrap . $speakers['html'] . $unwrap;
 
 			$session_id = sanitize_title( $talk->post_title );
 			$hidden     =  ( isset( $_GET['buttonsoff'] ) ) ? '' : 'hidden';
-			$control    = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-expanded="false" aria-describedby="talk-' . $talk_attr_id . '"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details</button>';
+			$control    = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-expanded="false"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details<span class="screen-reader-text">: ' . $talk->post_title . '</span></button>';
 
 			if ( $is_current ) {
 				$hidden       = '';
@@ -634,7 +634,10 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				<div class='wp-block-group__inner-container'>
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
-							<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'><div class='time-wrapper'>14:45 UTC</div> <span>Opening Remarks</span></h2>
+							<div class='talk-header'>
+								<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'><div class='time-wrapper'><span>14:45 UTC<span class='screen-reader-text'>,&nbsp;</span></span></div></h2>
+								<div class='talk-wrapper'>Opening Remarks</div>
+							</div>
 							<div class='talk-description'>
 								<p>Joe Dolson, co-lead organizer of WP Accessibility Day will kick off the event with brief opening comments.</p>
 							</div>
@@ -662,7 +665,10 @@ function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 	$speakers_cpt = ( is_array( $speakers_cpt ) ) ? array_reverse( $speakers_cpt ) : array( get_post_meta( $session_id, '_wpcs_session_speakers', true ) );
 
 	if ( $speakers_cpt ) {
-		$speakers_heading = ( count( $speakers_cpt ) > 1 ) ? '<h3>Speakers</h3>' : '<h3>Speaker</h3>';
+		$speakers_heading = '';
+		if ( ! is_page( 'schedule' ) ) {
+			$speakers_heading = ( count( $speakers_cpt ) > 1 ) ? '<h3>Speakers</h3>' : '<h3>Speaker</h3>';
+		}
 		ob_start();
 		foreach ( $speakers_cpt as $post_id ) {
 			$first_name           = get_post_meta( $post_id, 'wpcsp_first_name', true );

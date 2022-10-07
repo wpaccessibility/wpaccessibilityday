@@ -166,6 +166,15 @@ body {
 	font-size: 1rem;
 }
 
+.talk-header .time-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.time-wrapper .localtime {
+	display: inline;
+}
+
 .schedule .inside.hidden {
 	display: none;
 }
@@ -238,11 +247,19 @@ body {
 	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
 }
 
-.schedule h2 {
+.schedule .talk-header {
 	margin-top: 0;
 	margin-bottom: .5rem;
 	display: grid;
-	grid-template-columns: 7em 1fr;
+	grid-template-columns: 12em 1fr;
+}
+
+.schedule .talk-header h2 {
+	margin: 0;
+}
+
+.schedule .talk-header a {
+	font-size: 2rem;
 }
 
 .single-wpcs_session .wpcsp-session-speaker,
