@@ -298,6 +298,43 @@ time .localtime:after {
 	content: ')';
 }
 
+.wpad-attendees {
+	display: grid;
+	padding: 0;
+	list-style: none;
+}
+
+.wpad-attendees li {
+	padding: 12px;
+	display: grid;
+	grid-template-columns: 64px 1fr;
+	column-gap: 16px;
+	font-size: 1rem;
+}
+
+.wpad-attendees li:nth-of-type(odd) {
+	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
+}
+
+.wpad-attendees li h3 {
+	margin: 0;
+	font-size: 1.1rem;
+}
+
+.wpad-attendees .attendee-info div {
+	font-size: .9rem;
+}
+
+.wpad-attendees img {
+	border-radius: 8px;
+}
+
+@media screen and (min-width: 50em) {
+	.wpad-attendees {
+		grid-template-columns: repeat( 3, 1fr );
+	}
+}
+
 #primary {
 	font-size: 20px;
 	font-size: 1.25rem;

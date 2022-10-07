@@ -358,6 +358,7 @@ function wpad_shortcode_people( $atts ) {
 			$loc = ( '' == $state ) ? $city : $city . ', ' . $state;
 		}
 		$location = ( '' === $country ) ? $loc : $loc . ', ' . $country;
+		$location = ( '' === $loc ) ? str_replace( ', ', '', $location ) : $location;
 		if ( $company || $job_title ) {
 			$company = ( $company ) ? $company : '';
 			$company = ( $job_title && $company ) ? $job_title . ', ' . $company : $company;
@@ -375,8 +376,7 @@ function wpad_shortcode_people( $atts ) {
 		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h3 class="attendee-name">' . $name . '</h3>' . $company . $location . '</div></li>';
 	}
 
-
-	return '<ul class="wpad-attendees">' . $output . '</ul>';
+	return '<ul class="wpad-attendees alignwide">' . $output . '</ul>';
 }
 add_shortcode( 'attendees', 'wpad_shortcode_people' );
 
@@ -557,13 +557,16 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		$time       = str_pad( $base, 2, '0', STR_PAD_LEFT );
 		$is_current = false;
 
-		if ( ( $begin < time() && time() < $end ) && date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
-			$is_current = true;
-		}
-		if ( (int) date( 'i' ) < 50 ) {
-			$text = "Now speaking: ";
-		} else {
-			$text = "Up next: ";
+		$text = '';
+		if ( ( time() > $begin - HOUR_IN_SECONDS ) && ( time() < $end ) ) {
+			if ( ( $begin < time() && time() < $end ) && date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
+				$is_current = true;
+			}
+			if ( (int) date( 'i' ) < 50 ) {
+				$text = "Now speaking: ";
+			} else {
+				$text = "Up next: ";
+			}
 		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
 		$time_html = '<div class="talk-header"><h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper"><span>' . $time . ':00 UTC<span class="screen-reader-text">,&nbsp;</span></span>' . ' </div></h2><div class="talk-wrapper">%s</div></div>';
@@ -617,13 +620,12 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				</div>
 			</div>";
 		} else {
-			$talk_heading = sprintf( $time_html, '' );
+			$talk_heading = sprintf( $time_html, '<span class="unannounced">Watch this spot!</span>' );
 			$output[]     = "
 			<div class='wp-block-group alignwide schedule unset' id='unset'>
 				<div class='wp-block-group__inner-container'>
 					$talk_heading
 					<div class='wp-block-columns inside'>
-						Schedule not yet set.
 					</div>
 				</div>
 			</div>";
