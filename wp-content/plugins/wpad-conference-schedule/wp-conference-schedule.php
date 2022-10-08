@@ -613,7 +613,7 @@ class WPAD_Conference_Schedule {
 	}
 
 	/**
-	 * The [sponsors] shortcode handler.
+	 * The [wpcs_sponsors] shortcode handler.
 	 */
 	function shortcode_sponsors( $attr, $content ) {
 		global $post;
@@ -727,7 +727,7 @@ class WPAD_Conference_Schedule {
 	}
 
 	/**
-	 * The [speakers] shortcode handler.
+	 * The [wpcs_speakers] shortcode handler.
 	 */
 	function shortcode_speakers( $attr, $content ) {
 		global $post;
@@ -1303,6 +1303,41 @@ function wpcsp_sponsor_metabox() {
 		'id'         => 'wpcsp_website_url',
 		'type'       => 'text_url',
 		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+	) );
+	
+	// Instagram URL
+	$cmb->add_field( array(
+		'name'       => __( 'Instagram URL', 'wpcsp' ),
+		//'desc'       => __( '', 'wpcsp' ),
+		'id'         => 'wpcsp_instagram_url',
+		'type'       => 'text_url',
+		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+	) );
+
+	// Linkedin URL
+	$cmb->add_field( array(
+		'name'       => __( 'Linkedin URL', 'wpcsp' ),
+		//'desc'       => __( '', 'wpcsp' ),
+		'id'         => 'wpcsp_linkedin_url',
+		'type'       => 'text_url',
+		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+	) );
+
+	// YouTube URL
+	$cmb->add_field( array(
+		'name'       => __( 'YouTube URL', 'wpcsp' ),
+		//'desc'       => __( '', 'wpcsp' ),
+		'id'         => 'wpcsp_youtube_url',
+		'type'       => 'text_url',
+		'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+	) );
+		
+	// Sponsor Swag
+	$cmb->add_field( array(
+		'name'       => __( 'Digital Swag', 'wpcsp' ),
+		'desc'       => __( 'Use this field to add swag for attendees.', 'wpcsp' ),
+		'id'         => 'wpcsp_sponsor_swag',
+		'type'       => 'wysiwyg',
 	) );
 }
 
