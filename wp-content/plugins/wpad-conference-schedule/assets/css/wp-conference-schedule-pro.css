@@ -29,6 +29,19 @@
   display: inline-block;
   margin: 10px;
 }
+
+.single-wpcsp_sponsor .wpcsp-sponsor-swag {
+	margin-top: 10px;
+	border: 4px dashed #7f1177;
+    border-radius: 10px;
+    padding: 20px;
+    background: #EFE6F0;
+}
+
+.single-wpcsp_sponsor .wpcsp-sponsor-swag h2 {
+	margin-top: 0;
+    font-size: 1em;
+}
 @media (min-width: 768px) {
   .wpcsp-sponsors .wpcsp-sponsor-level .wpcsp-sponsor-list .wpcsp-sponsor {
     margin: 20px;
