@@ -987,6 +987,14 @@ class WPAD_Conference_Schedule {
 			'options' => $sponsor,
 		));
 
+		$cmb->add_field(
+			array(
+				'name' => 'Slides',
+				'id'   => 'wpcsp_session_slides',
+				'type' => 'text',
+			)
+		);
+
 	}
 
 	public function filter_session_speakers($speakers_typed, $session_id){
