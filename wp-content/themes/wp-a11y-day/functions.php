@@ -373,7 +373,7 @@ function wpad_shortcode_people( $atts ) {
 			$icons[] = '<a href="' . esc_url( $linkedin ) . '"><span class="dashicons dashicons-linkedin" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html( $name ) . ' on LinkedIn</span></a>';
 		}
 		$social = ( ! empty( $icons ) ) ? '<div class="attendee-social">' . implode( ' ', $icons ) . '</div>' : '';
-		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h3 class="attendee-name">' . $name . '</h3>' . $company . $location . '</div></li>';
+		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h3 class="attendee-name">' . $name . '</h3>' . $company . $location . $social . '</div></li>';
 	}
 
 	return '<ul class="wpad-attendees alignwide">' . $output . '</ul>';
@@ -503,7 +503,7 @@ function wpad_get_people_data( $id ) {
 function wpad_get_sessions() {
 	$query = array(
 		'post_type'      => 'wpcs_session',
-		'post_status'    => 'draft',
+		'post_status'    => 'publish',
 		'posts_per_page' => -1,
 		'fields'         => 'ids',
 		'meta_query'     => array(
