@@ -19,6 +19,8 @@ get_header(); ?>
 				$last_name = get_post_meta( $post_id, 'wpcsp_last_name', true );
 				$full_name = $first_name.' '.$last_name;
 				$title = get_post_meta( $post_id, 'wpcsp_title', true );
+				$pronouns = get_post_meta( $post_id, 'wpcsp_pronouns', true );
+				$country = get_post_meta( $post_id, 'wpcsp_country', true );
 				$organization = get_post_meta( $post_id, 'wpcsp_organization', true );
 				$schedule_page_url = get_option('wpcs_field_schedule_page_url');
 				$speaker_page_url = get_option('wpcsp_field_speakers_page_url');
@@ -43,14 +45,30 @@ get_header(); ?>
 
 						<div class="wpcsp-speaker-grid">
 
-							<?php if(has_post_thumbnail()) the_post_thumbnail( 'full' ); ?>
+							<?php
+							if ( has_post_thumbnail() ) {
+								the_post_thumbnail( 'full' );
+							}
+							if ( $pronouns ) {
+								$pronouns = ' <span class="wpcsp-speaker-pronouns">(' . esc_html( $pronouns ) . ')</span>';
+							}
+							?>
 
 							<div>
-								<h1 class="entry-title"><?php echo esc_html( $full_name ); ?></h1>
+								<h1 class="entry-title"><?php echo esc_html( $full_name ); echo $pronouns; ?></h1>
 
 								<div class="wpcsp-speaker-details">
-									<?php if($title) echo '<p class="wpcsp-speaker-title">'. esc_html( $title ).'</p>'; ?>
-									<?php if($organization) echo '<p class="wpcsp-speaker-organization">'. esc_html( $organization ) .'</p>'; ?>
+									<?php
+									if ( $title ) {
+										echo '<p class="wpcsp-speaker-title">'. esc_html( $title ).'</p>';
+									}
+									if ( $country ) {
+										echo '<p class="wpcsp-speaker-country">' . esc_html( $country ) . '</p>';
+									}
+									if ( $organization ) {
+										echo '<p class="wpcsp-speaker-organization">'. esc_html( $organization ) .'</p>';
+									}
+									?>
 								</div>
 
 								<?php
