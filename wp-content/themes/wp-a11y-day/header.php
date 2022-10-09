@@ -25,7 +25,17 @@
 	<header id="masthead">
 		<div class="header-1 site-header">
 			<div class="site-branding">
+				<?php
+				if ( is_front_page() ) {
+					?>
 				<p class="site-title"><span class="wrapper"><?php echo wpad_site_logo(); ?> <span><?php bloginfo( 'name' ); ?></span></span></p>
+					<?php
+				} else {
+					?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="wrapper"><?php echo wpad_site_logo(); ?> <span><?php bloginfo( 'name' ); ?></span></a></p>
+					<?php
+				}
+				?>
 			</div><!-- .site-branding -->
 
 			<nav id="utility-navigation" class="utility-navigation navigation" aria-label="Utilities">
