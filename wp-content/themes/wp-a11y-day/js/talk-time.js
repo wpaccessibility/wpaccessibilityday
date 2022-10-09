@@ -52,7 +52,12 @@
 		var slido = document.getElementById( 'slido' );
 		if ( slido ) {
 			var content = slido.contentWindow;
-			console.log( content );
+			waitForEl( '#live-tab-ideas', content ).then( function( el ) {
+				console.log( el );
+				var chatLabel = content.document.querySelector( '#live-tab-ideas .live-tab__title' );
+				chatLabel.innerHTML = 'Chat';
+				console.log( chatLabel );
+			});
 		}
 
 		const streamtext = document.getElementById( 'streamtext' );
@@ -96,6 +101,27 @@
 				}
 			});
 		}
+
+		function waitForEl(selector,context){
+			 return new Promise(resolve => {
+				 if (context.document.querySelector(selector)) {
+					 return resolve(context.document.querySelector(selector));
+				 }
+
+				 const observer = new MutationObserver(mutations => {
+					 if (context.document.querySelector(selector)) {
+						 resolve(context.document.querySelector(selector));
+						 observer.disconnect();
+					 }
+				 });
+
+				 observer.observe(context.document.body, {
+					 childList: true,
+					 subtree: true
+				 });
+			 });
+		}
+
 		// Cookie handler, non-$ style
 		function createCookie(name, value, days) {
 			if (days) {
@@ -130,7 +156,9 @@
 		toggleDetails.forEach( (el) => {
 			var parentEl = el.parentNode.parentNode;
 			var target   = parentEl.querySelector( '.inside' );
-			target.classList.add( 'hidden' );
+			if ( 'false' === el.getAttribute( 'aria-expanded' ) ) {
+				target.classList.add( 'hidden' );
+			}
 			el.addEventListener( 'click', function(e) {
 				var expanded = this.getAttribute( 'aria-expanded' );
 				if ( 'true' === expanded ) {

@@ -548,6 +548,10 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 	}
 	$start = $args['start'] - 24;
 	for( $i = $start; $i < $args['start']; $i++ ) {
+		$is_first = false;
+		if ( $i === $start ) {
+			$is_first = true;
+		}
 		if ( absint( $i ) != $i ) {
 			$base = 24 - absint( $i );
 		} else {
@@ -557,7 +561,8 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 		$time       = str_pad( $base, 2, '0', STR_PAD_LEFT );
 		$is_current = false;
 
-		$text = '';
+		$text    = '';
+		$is_next = false;
 		if ( ( time() > $begin - HOUR_IN_SECONDS ) && ( time() < $end ) ) {
 			if ( ( $begin < time() && time() < $end ) && date( 'H' ) == $time && (int) date( 'i' ) < 50 || date( 'G' ) == (int) $time - 1 && (int) date( 'i' ) > 50 ) {
 				$is_current = true;
@@ -565,8 +570,12 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			if ( (int) date( 'i' ) < 50 ) {
 				$text = "Now speaking: ";
 			} else {
-				$text = "Up next: ";
+				$is_next = true;
+				$text    = "Up next: ";
 			}
+		} else if ( ! ( time() > $end ) ) {
+			$is_next = true;
+			$text    = false;
 		}
 		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
 		$time_html = '<div class="talk-header"><h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper"><span>' . $time . ':00 UTC<span class="screen-reader-text">,&nbsp;</span></span>' . ' </div></h2><div class="talk-wrapper">%s</div></div>';
@@ -603,10 +612,13 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$hidden     =  ( isset( $_GET['buttonsoff'] ) ) ? '' : 'hidden';
 			$control    = ( isset( $_GET['buttonsoff'] ) ) ? '' : '<button type="button" class="toggle-details" aria-expanded="false"><span class="dashicons-plus dashicons" aria-hidden="true"></span> View Details<span class="screen-reader-text">: ' . $talk->post_title . '</span></button>';
 
-			if ( $is_current ) {
+			if ( $is_current || ( $is_first && $is_next ) ) {
 				$hidden       = '';
 				$control      = str_replace( '"false"', '"true"', $control );
-				$current_talk = "<p class='current-talk'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
+				$control      = str_replace( '-plus', '-minus', $control );
+				if ( false !== $text ) {
+					$current_talk = "<p class='current-talk'><strong>$text</strong> <a href='#$session_id'>$time:00 UTC - $talk->post_title</a></p>";
+				}
 			}
 
 			$output[] = "
