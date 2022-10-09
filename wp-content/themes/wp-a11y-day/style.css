@@ -1285,6 +1285,11 @@ footer .widget {
     margin-bottom: 5px;
 }
 
+.wpcsp-speaker-pronouns {
+	font-size: 1.5rem;
+	color: var(--color-dark-blue);
+}
+
 .wpcsp_speaker .wp-block-latest-posts.wp-block-latest-posts__list li {
 	list-style: disc;
 }
