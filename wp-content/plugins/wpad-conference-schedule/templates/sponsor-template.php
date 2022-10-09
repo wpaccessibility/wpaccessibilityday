@@ -59,7 +59,7 @@ get_header(); ?>
 								
 							</div>
 							<div>
-								
+								<?php the_title('<h2>About ','</h1>'); ?>
 								<?php if($levels){ ?>
 									<p class="wpcsp-sponsor-level"><?php echo $levels.$levels_label; ?></p>
 								<?php } ?>
