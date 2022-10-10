@@ -1280,6 +1280,8 @@ footer .widget {
 	padding: 0 36px;
 }
 
+.wpcsp-session-speaker img,
+.wpcsp-speaker-grid img,
 .wpcsp-speakers .wpcsp-speaker-image {
     border-radius: 20px;
     margin-bottom: 5px;
@@ -1293,6 +1295,15 @@ footer .widget {
 .wpcsp_speaker .wp-block-latest-posts.wp-block-latest-posts__list li {
 	list-style: disc;
 }
+.wpcsp_speaker .wpcsp-speaker-country .dashicons-location {
+	width: 30px;
+    padding-top: 3px;
+}
+.wpcsp_speaker .wpcsp-speaker-country .dashicons-location:before {
+	color: var(--color-dark-purple);
+    font-size: 30px;
+}
+
 
 /*--------------------------------------------------------------
 ## Sponsor Levels
