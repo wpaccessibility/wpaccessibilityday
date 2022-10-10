@@ -803,7 +803,7 @@ function wpad_youtube_links() {
 			$until = human_time_diff( $time, strtotime( '2022-11-02 15:00 UTC' ) );
 			$append = "Starts in only <strong>$until</strong>!";
 		}
-		$output = "<div class='wpad-callout'><p><a href='" . home_url( '/attendee-registration/' ) . "'>Register for WP Accessibility Day!</a> $append</p></div>";
+		$output = "<div class='wpad-callout'><p><a href='" . esc_url( get_option( 'wpcs_field_registration' ) ) . "'>Register for WP Accessibility Day!</a> $append</p></div>";
 	}
 
 	return $output;

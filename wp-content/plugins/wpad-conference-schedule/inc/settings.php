@@ -3,14 +3,6 @@
  * custom option and settings
  */
 function wpcs_settings_init() {
-	 
-	// register a info section in the "wpcs" page
-	add_settings_section(
-		'wpcs_section_info',
-		__( 'Share The Love!', 'wpcs' ),
-		'wpcs_section_info_cb',
-		'wpcs'
-	);
 
 	// register a settings section in the "wpcs" page
 	add_settings_section(
@@ -21,17 +13,16 @@ function wpcs_settings_init() {
 	);
 
 	// register byline setting for "wpcs" page
-	register_setting("wpcs", "wpcs_field_byline");
+	register_setting("wpcs", "wpcs_field_registration");
  
 	// register byline field in the "wpcs_section_info" section, inside the "wpcs" page
-	add_settings_field("wpcs_field_byline", "Show The WP Conference Schedule link", "wpcs_field_byline_cb", "wpcs", "wpcs_section_info");
+	add_settings_field("wpcs_field_registration", "Registration URL", "wpcs_field_registration_cb", "wpcs", "wpcs_section_settings");
 
 	// register schedule page URL setting for "wpcs" page
 	register_setting("wpcs", "wpcs_field_schedule_page_url");
  
 	// register schedule page URL field in the "wpcs_section_info" section, inside the "wpcs" page
 	add_settings_field("wpcs_field_schedule_page_url", "Schedule Page URL", "wpcs_field_schedule_page_url_cb", "wpcs", "wpcs_section_settings");
-
 }
  
 /**
@@ -60,17 +51,17 @@ function wpcs_section_settings_cb( $args ) {
 	<?php
 }
  
-function wpcs_field_byline_cb(){
+function wpcs_field_registration_cb(){
 	?>
-	<input type="checkbox" name="wpcs_field_byline" value="1" <?php checked(1, get_option('wpcs_field_byline'), true); ?> />
-	<label for="wpcs_field_byline"></label>
+	<input type="url" name="wpcs_field_registration" value="<?php echo esc_url( get_option( 'wpcs_field_registration' ) ); ?>" style="width:100%;max-width: 450px;" aria-describedby="wpcs_field_registration_description" />
+	<p class="description" id="wpcs_field_registration_description">The URL of your registration form.</p>
 	<?php
 }
 
 function wpcs_field_schedule_page_url_cb(){
 	?>
-	<input type="text" name="wpcs_field_schedule_page_url" value="<?php echo get_option('wpcs_field_schedule_page_url'); ?>" style="width: 450px;">
-	<p class="description">The URL of the page that your conference schedule is embedded on.</p>
+	<input type="text" name="wpcs_field_schedule_page_url" value="<?php echo esc_url( get_option('wpcs_field_schedule_page_url') ); ?>" style="width:100%;max-width: 450px;" aria-describedby="wpcs_field_schedule_page_url_description">
+	<p class="description" id="wpcs_field_schedule_page_url_description">The URL of the page that your conference schedule is embedded on.</p>
 	<?php
 }
  
