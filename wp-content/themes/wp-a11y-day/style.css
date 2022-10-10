@@ -1344,6 +1344,12 @@ span.large-number {
     margin-bottom: 5px;
 }
 
+.wpcsp-speaker-social-icon .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+}
+
 .wpcsp-speaker-pronouns {
 	font-size: 1.5rem;
 	color: var(--color-dark-blue);
