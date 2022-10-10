@@ -62,11 +62,11 @@ get_header(); ?>
 									if ( $title ) {
 										echo '<p class="wpcsp-speaker-title">'. esc_html( $title ).'</p>';
 									}
-									if ( $country ) {
-										echo '<p class="wpcsp-speaker-country">' . esc_html( $country ) . '</p>';
-									}
 									if ( $organization ) {
 										echo '<p class="wpcsp-speaker-organization">'. esc_html( $organization ) .'</p>';
+									}
+									if ( $country ) {
+										echo '<p class="wpcsp-speaker-country"><span class="dashicons dashicons-location"></span>' . esc_html( $country ) . '</p>';
 									}
 									?>
 								</div>
