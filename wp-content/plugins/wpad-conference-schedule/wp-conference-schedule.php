@@ -745,7 +745,8 @@ class WPAD_Conference_Schedule {
 			'groups'         => '',
 			'columns'		 => 1,
 			'gap'			 => 30,
-			'align'			 => 'left'
+			'align'			 => 'left',
+			'heading_level'  => 'h2',
 		), $attr );
 
 		foreach ( array( 'orderby', 'order', 'speaker_link' ) as $key_for_case_sensitive_value ) {
@@ -829,7 +830,7 @@ class WPAD_Conference_Schedule {
 		if ( ! $speakers->have_posts() ) {
 			return '';
 		}
-
+		$heading_level = ( in_array( $attr['heading_level'], array( 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ) ? $attr['heading_level'] : 'h2';
 		// Render the HTML for the shortcode
 		ob_start();
 		?>
@@ -854,7 +855,6 @@ class WPAD_Conference_Schedule {
 						$speaker_classes[] = sanitize_html_class( 'wpcsp-track-' . $track );
 					}
 				}
-
 				?>
 
 				<!-- Organizers note: The id attribute is deprecated and only remains for backwards compatibility, please use the corresponding class to target individual speakers -->
@@ -862,7 +862,7 @@ class WPAD_Conference_Schedule {
 
 					<?php if(has_post_thumbnail($post_id) && $attr['show_image'] == true) echo get_the_post_thumbnail($post_id, [$attr['image_size'], $attr['image_size']], array( 'class' => 'wpcsp-speaker-image' ) ); ?>
 
-					<h2 class="wpcsp-speaker-name">
+					<<?php echo $heading_level; ?> class="wpcsp-speaker-name">
 						<?php if ( 'permalink' === $attr['speaker_link'] ) : ?>
 
 							<a href="<?php the_permalink(); ?>">
@@ -874,7 +874,7 @@ class WPAD_Conference_Schedule {
 							<?php echo $full_name; ?>
 
 						<?php endif; ?>
-					</h2>
+					</<?php echo $heading_level; ?>>
 
 					<?php if($title_organization){ ?>
 						<p class="wpcsp-speaker-title-organization">
