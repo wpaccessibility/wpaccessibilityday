@@ -1203,6 +1203,36 @@ footer .widget {
 	display: block;
 }
 
+.home .wpcsp-speaker-title-organization {
+	display: none;
+}
+
+.home .wpcsp-speakers .wpcsp-speaker-name {
+	margin-top: -62px;
+}
+
+.home .wpcsp-speakers .wpcsp-speaker-name a {
+	background: #fff;
+    padding: 2px 10px;
+    text-decoration: none;
+	font-size: 0.8em;
+}
+
+.home .wpcsp-speakers .wpcsp-speaker-name a:hover,
+.home .wpcsp-speakers .wpcsp-speaker-name a:focus {
+	text-decoration: underline;
+	outline-color: #fff;
+}
+
+.home .wpcsp-speakers .wpcsp-speaker-image {
+	margin-bottom: 15px;
+}
+
+span.large-number {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
 @media screen and (max-width: 769px) {
 	.home .wp-block-latest-posts {
 		grid-template-columns: none;
