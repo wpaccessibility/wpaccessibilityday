@@ -373,7 +373,7 @@ function wpad_shortcode_people( $atts ) {
 			$icons[] = '<a href="' . esc_url( $linkedin ) . '"><span class="dashicons dashicons-linkedin" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html( $name ) . ' on LinkedIn</span></a>';
 		}
 		$social = ( ! empty( $icons ) ) ? '<div class="attendee-social">' . implode( ' ', $icons ) . '</div>' : '';
-		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h3 class="attendee-name">' . $name . '</h3>' . $company . $location . $social . '</div></li>';
+		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h2 class="attendee-name">' . $name . '</h2>' . $company . $location . $social . '</div></li>';
 	}
 
 	return '<ul class="wpad-attendees alignwide">' . $output . '</ul>';
