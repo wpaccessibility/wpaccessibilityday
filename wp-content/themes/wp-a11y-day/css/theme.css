@@ -334,6 +334,7 @@ time .localtime:after {
 	background: radial-gradient(circle, var(--color-light-blue) 52%, var(--color-light-purple) 100%);
 }
 
+.wpad-attendees li h2,
 .wpad-attendees li h3 {
 	margin: 0;
 	font-size: 1.1rem;
