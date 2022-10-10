@@ -1235,13 +1235,13 @@ footer .widget {
 }
 
 .home .wpcsp-speakers .wpcsp-speaker-name {
-	margin-top: -62px;
+	margin-top: -72px;
 }
 
 .home .wpcsp-speakers .wpcsp-speaker-name a {
 	background: #fff;
-    padding: 2px 10px;
-    text-decoration: none;
+	padding: 2px 10px;
+	text-decoration: none;
 	font-size: 0.8em;
 }
 
