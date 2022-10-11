@@ -1220,3 +1220,19 @@ function wpad_headers( $headers, $wp ) {
 	return $headers;
 }
 add_filter( 'wp_headers', 'wpad_headers', 100, 2 );
+
+/**
+ * Hide adminbar from subscribers.
+ *
+ * @param bool $state True to show, false to hide.
+ *
+ * @return bool
+ */
+function wpad_hide_admin_bar( $state ) {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return false;
+	}
+
+	return $state;
+}
+add_action( 'show_admin_bar', 'wpad_hide_admin_bar' );
