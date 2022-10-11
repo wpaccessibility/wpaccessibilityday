@@ -1202,3 +1202,21 @@ function custom_maybe_activate_user() {
 	exit();
 }
 add_action('wp', 'custom_maybe_activate_user', 9);
+
+/**
+ * Pass custom cache rules for sponsor pages.
+ *
+ * @param array $headers array of header strings.
+ * @param WP    $wp Current WP environment.
+ *
+ * @return array
+ */
+function wpad_headers( $headers, $wp ) {
+	// Disable caching on sponsor post type single.
+	if ( 'wpcsp_sponsor' === $wp->query_vars['post_type'] ) {
+		$headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0';
+	}
+
+	return $headers;
+}
+add_filter( 'wp_headers', 'wpad_headers', 100, 2 );
