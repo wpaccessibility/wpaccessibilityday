@@ -14,7 +14,7 @@ get_header(); ?>
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post(); 
-				$time_format      = get_option( 'time_format', 'g:i a' );
+				$time_format      = 'H:i';
 				$post             = get_post();
 				$session_time     = absint( get_post_meta( $post->ID, '_wpcs_session_time', true ) );
 				$session_end_time = absint( get_post_meta( $post->ID, '_wpcs_session_end_time', true ) );
@@ -32,10 +32,9 @@ get_header(); ?>
 						<?php the_title( '<h1 class="entry-title wpsc-single-session-title">', '</h1>' ); ?>
 
 						<?php
-						// Check if end time is available. This is for pre version 1.0.1 as the end time wasn't available.
 						if ( $session_date ) {
 							$datatime  = gmdate( 'Y-m-d\TH:i:s\Z', $session_time );
-							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.gmdate($time_format, $session_time).'</span></h2>';
+							echo '<h2 class="wpsc-single-session-time talk-time" data-time="' . $datatime . '"> '.$session_date.' at <span class="time-wrapper">'.gmdate($time_format, $session_time).' UTC</span></h2>';
 						} else {
 							$parent_session = get_post_meta( $post->ID, '_wpad_session', true );
 							$session_time   = absint( get_post_meta( $parent_session, '_wpcs_session_time', true ) );
