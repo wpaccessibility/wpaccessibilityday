@@ -1401,6 +1401,20 @@ span.large-number {
 	font-size: 1rem;
 }
 
+.wp-block-group.transcript summary h2 {
+	margin-bottom: 0;
+}
+
+.wp-block-group.transcript summary {
+	padding-bottom: 4px;
+	border-bottom: 2px solid var(--color-dark-purple);
+}
+.wp-block-group.transcript summary:focus,
+.wp-block-group.transcript summary:hover {
+	padding-bottom: 0;
+	border-bottom: 6px solid var(--color-dark-purple);
+}
+
 /*--------------------------------------------------------------
 # Media
 --------------------------------------------------------------*/

@@ -176,6 +176,13 @@
 		});
 	}
 
+	var transcript_group = $( '.wp-block-group.transcript' );
+	if ( transcript_group ) {
+		var summary    = transcript_group.find( 'h2' );
+		var details  = transcript_group.find( '.wp-block-group__inner-container' );
+		summary.wrap( '<summary></summary>' );
+		details.replaceWith( '<details>' + details.html() + '</details>' );
+	}
 
 	});
 }(jQuery));
