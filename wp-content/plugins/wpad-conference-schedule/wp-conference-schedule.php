@@ -241,11 +241,6 @@ class WPAD_Conference_Schedule {
 		$session_type     = get_post_meta( $post->ID, '_wpcs_session_type', true );
 		$session_speakers = get_post_meta( $post->ID, '_wpcs_session_speakers',  true );
 
-		$session_end_time     = absint( get_post_meta( $post->ID, '_wpcs_session_end_time', true ) );
-		$session_end_hours    = ( $session_end_time ) ? date( 'g', $session_end_time )     : date( 'g' );
-		$session_end_minutes  = ( $session_end_time ) ? date( 'i', $session_end_time )     : '00';
-		$session_end_meridiem = ( $session_end_time ) ? date( 'a', $session_end_time )     : 'am';
-
 		wp_nonce_field( 'edit-session-info', 'wpcs-meta-session-info' );
 		?>
 
@@ -276,32 +271,6 @@ class WPAD_Conference_Schedule {
 				<option value="pm" <?php selected( 'pm', $session_meridiem ); ?>>pm</option>
 			</select>
 		</p>
-
-		<p>
-			<label><?php _e( 'End Time:', 'wp-conference-schedule' ); ?></label>
-
-			<select name="wpcs-session-end-hour" aria-label="<?php _e( 'Session Start Hour', 'wp-conference-schedule' ); ?>">
-				<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
-					<option value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, $session_end_hours ); ?>>
-						<?php echo esc_html( $i ); ?>
-					</option>
-				<?php endfor; ?>
-			</select> :
-
-			<select name="wpcs-session-end-minutes" aria-label="<?php _e( 'Session Start Minutes', 'wp-conference-schedule' ); ?>">
-				<?php for ( $i = '00'; (int) $i <= 55; $i = sprintf( '%02d', (int) $i + 5 ) ) : ?>
-					<option value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, $session_end_minutes ); ?>>
-						<?php echo esc_html( $i ); ?>
-					</option>
-				<?php endfor; ?>
-			</select>
-
-			<select name="wpcs-session-end-meridiem" aria-label="<?php _e( 'Session Meridiem', 'wp-conference-schedule' ); ?>">
-				<option value="am" <?php selected( 'am', $session_end_meridiem ); ?>>am</option>
-				<option value="pm" <?php selected( 'pm', $session_end_meridiem ); ?>>pm</option>
-			</select>
-		</p>
-
 		<p>
 			<label for="wpcs-session-type"><?php _e( 'Type:', 'wp-conference-schedule' ); ?></label>
 			<select id="wpcs-session-type" name="wpcs-session-type">
@@ -311,11 +280,6 @@ class WPAD_Conference_Schedule {
 				<option value="custom" <?php selected( $session_type, 'custom' ); ?>><?php _e( 'Custom', 'wp-conference-schedule' ); ?></option>
 			</select>
 		</p>
-
-		<!-- <p>
-			<label for="wpcs-session-speakers"><?php _e( 'Speaker Name(s):', 'wp-conference-schedule' ); ?></label>
-			<input type="text" class="widefat" id="wpcs-session-speakers" name="wpcs-session-speakers" value="<?php echo $session_speakers; ?>" />
-		</p> -->
 
 		<?php
 	}
@@ -350,16 +314,6 @@ class WPAD_Conference_Schedule {
 				$session_time = '';
 			}
 			update_post_meta( $post_id, '_wpcs_session_time', $session_time );
-
-			// Update session end time
-			$session_end_time = strtotime( sprintf(
-				'%s %d:%02d %s',
-				sanitize_text_field( $_POST['wpcs-session-date'] ),
-				absint( $_POST['wpcs-session-end-hour'] ),
-				absint( $_POST['wpcs-session-end-minutes'] ),
-				'am' == $_POST['wpcs-session-end-meridiem'] ? 'am' : 'pm'
-			) );
-			update_post_meta( $post_id, '_wpcs_session_end_time', $session_end_time );
 
 			// Update session type
 			$session_type = sanitize_text_field( $_POST['wpcs-session-type'] );
