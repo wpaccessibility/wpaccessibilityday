@@ -12,11 +12,11 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 			<?php while ( have_posts() ) : the_post(); 
-			$post_id = get_the_ID();
-			$website_url = get_post_meta( $post_id, 'wpcsp_website_url', true );
-			$swag = wpautop( get_post_meta( $post_id, 'wpcsp_sponsor_swag', true ));
-			$terms = get_the_terms($post_id, 'wpcsp_sponsor_level');
-			$register_url = site_url( '/register/', 'https' );
+			$post_id      = get_the_ID();
+			$website_url  = get_post_meta( $post_id, 'wpcsp_website_url', true );
+			$swag         = wpautop( get_post_meta( $post_id, 'wpcsp_sponsor_swag', true ));
+			$terms        = get_the_terms($post_id, 'wpcsp_sponsor_level');
+			$register_url = get_option( 'wpcs_field_registration' );
 			if( !is_wp_error($terms)){
 				$levels = wp_list_pluck($terms,'name');
 				$levels_label = ' Level Sponsor';
@@ -48,11 +48,12 @@ get_header(); ?>
 								<?php if($swag){ ?>
 									<div class="wpcsp-sponsor-swag">
 										<h2>Attendee Swag</h2> 
-										<?php if ( is_user_logged_in() ) {
-												echo $swag;
-												} else {
-												echo '<p>You must be logged into your attendee account to view swag. <a href="'. wp_login_url(). '">Login</a> or <a href="'. $register_url . '">get a free ticket</a></p>';
-												}
+										<?php
+										if ( is_user_logged_in() ) {
+											echo $swag;
+										} else {
+											echo '<p>You must be logged into your attendee account to view swag. <a href="' . wp_login_url() . '">Login</a> or <a href="' . esc_url( $register_url ) . '">get a free ticket</a></p>';
+										}
 										?>
 									</div>
 								<?php } ?>
