@@ -192,6 +192,12 @@ body {
 	background: var(--color-light-blue);
 }
 
+.wpcs-session-links {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 32px;
+}
+
 .lightning-talk .talk-description {
 	margin-bottom: 1em;
 }

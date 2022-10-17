@@ -112,8 +112,14 @@ get_header(); ?>
 							<?php
 							}
 							the_content();
-							wpcs_slides( get_the_ID() );
-							wpcs_resources( get_the_ID() );
+							?>
+							<div class="wpcs-session-links">
+								<?php
+								wpcs_slides( get_the_ID() );
+								wpcs_resources( get_the_ID() );
+								?>
+							</div>
+							<?php
 							$speakers  = wpad_session_speakers( get_the_ID(), $session_type );
 							echo $speakers['html'];
 						?>
