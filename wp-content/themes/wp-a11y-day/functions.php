@@ -584,13 +584,8 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$talk_type = sanitize_html_class( get_post_meta( $talk_ID, '_wpcs_session_type', true ) );
 			$speakers  = wpad_session_speakers( $talk_ID, $talk_type );
 			$sponsors  = wpad_session_sponsors( $talk_ID );
-			$slides    = esc_url( get_post_meta( $talk_ID, 'wpcsp_session_slides', true ) );
 			$talk      = get_post( $talk_ID );
 
-			$slides = ( $slides ) ? '<p class="slides"><a href="' . $slides . '">View Slides for &ldquo;' . $talk->post_title . '&rdquo;</a></p>' : '';
-			if ( current_user_can( 'manage_options' ) && 'lightning' !== $talk_type ) {
-				$slides .= ( $slides ) ? '' : '<p class="slides">Admin note: Slides not yet provided.</p>';
-			}
 			$talk_attr_id  = sanitize_title( $talk->post_title );
 			$talk_title    = '<a href="' . esc_url( get_the_permalink( $talk_ID ) ) . '" id="talk-' . $talk_attr_id . '">' . $talk->post_title . '</a>';
 			$talk_label    = ( 'panel' === $talk_type ) ? '<strong>Panel:</strong> ' : '';
