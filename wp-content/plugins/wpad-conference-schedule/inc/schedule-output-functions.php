@@ -775,8 +775,8 @@ function wpcs_slides( $session_ID ) {
 		foreach ( $slides as $slide ) {
 			$output .= '<li>' . $slide . '</li>';
 		}
+		echo '<div class="wpcs-slides-wrapper"><h3>Slides</h3><ul class="wpcs-slides">' . $output . '</ul></div>';
 	}
-	echo '<div class="wpcs-slides-wrapper"><h3>Slides</h3><ul class="wpcs-slides">' . $output . '</ul></div>';
 }
 
 /**
@@ -824,8 +824,8 @@ function wpcs_resources( $session_ID ) {
 		foreach ( $resources as $resource ) {
 			$output .= '<li>' . $resource . '</li>';
 		}
+		echo '<div class="wpcs-resources-wrapper"><h3>Resources</h3><ul class="wpcs-resources">' . $output . '</ul></div>';
 	}
-	echo '<div class="wpcs-resources-wrapper"><h3>Resources</h3><ul class="wpcs-resources">' . $output . '</ul></div>';
 }
 
 /**
