@@ -696,8 +696,6 @@ function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 				$wrap      = '<div class="wp-block-column">';
 				$unwrap    = '</div>';
 				$result    = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE meta_key = '_wpcs_session_speakers' AND meta_value = %d LIMIT 1", $post_id ) );
-				$slides    = esc_url( get_post_meta( $result[0]->post_id, 'wpcsp_session_slides', true ) );
-				$slides    = ( $slides ) ? '<p class="slides"><a href="' . $slides . '">Slides for &ldquo;' . get_post_field( 'post_title', $result[0]->post_id ) . '&rdquo;</a></p>' : '';
 
 				$talk_html = '
 				<div class="lightning-talk">
@@ -705,7 +703,6 @@ function wpad_session_speakers( $session_id, $talk_type = 'session' ) {
 					<div class="talk-description">
 						' . wp_trim_words( get_post_field( 'post_content', $result[0]->post_id ) ) . '
 					</div>
-					' . $slides . '
 				</div>';
 				$meta      = get_post_meta( $result[0]->post_id, '_wpad_session', true );
 				if ( ! $meta ) {
