@@ -17,7 +17,6 @@ get_header(); ?>
 				$time_format      = 'H:i';
 				$post             = get_post();
 				$session_time     = absint( get_post_meta( $post->ID, '_wpcs_session_time', true ) );
-				$session_end_time = absint( get_post_meta( $post->ID, '_wpcs_session_end_time', true ) );
 				$session_date     = ( $session_time ) ? date( 'F j, Y', $session_time ) : '';
 				$session_type     = get_post_meta( $post->ID, '_wpcs_session_type', true );
 				$session_speakers_text = get_post_meta( $post->ID, '_wpcs_session_speakers',  true );
@@ -113,7 +112,9 @@ get_header(); ?>
 							<?php
 							}
 							the_content();
-							$speakers = wpad_session_speakers( get_the_ID(), $session_type );
+							wpcs_slides( get_the_ID() );
+							wpcs_resources( get_the_ID() );
+							$speakers  = wpad_session_speakers( get_the_ID(), $session_type );
 							echo $speakers['html'];
 						?>
 					</div><!-- .entry-content -->

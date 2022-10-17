@@ -609,7 +609,7 @@ function wpcs_scheduleOutput( $props ) {
 				$session_type         = get_post_meta( $session->ID, '_wpcs_session_type', true );
 				//$speakers         	  = get_post_meta( $session->ID, '_wpcs_session_speakers', true );
 				$speakers         	  = apply_filters( 'wpcs_filter_session_speakers',  get_post_meta( $session->ID, '_wpcs_session_speakers', true ), $session->ID);
-				
+
 				$start_time           = get_post_meta( $session->ID, '_wpcs_session_time', true );
 				$end_time         	  = get_post_meta( $session->ID, '_wpcs_session_end_time', true );
 				$minutes			  = ($end_time - $start_time) / 60;
@@ -728,4 +728,119 @@ function wpcs_scheduleOutput( $props ) {
 
 	return $output;
 
+}
+
+/**
+ * Get an array of links to slide data.
+ *
+ * @param int $session_ID Post ID for session.
+ *
+ * @return array
+ */
+function wpcs_get_slides( $session_ID ) {
+	$slides    = get_post_meta( $session_ID, 'wpcsp_session_slides', true );
+	$filetypes = array( '.ppt', '.pptx', '.pdf', '.key', '.otp', '.pps', '.ppsx' );
+	$list      = array();
+	$extension = 'url';
+	if ( is_array( $slides ) ) {
+		foreach ( $slides as $slide ) {
+			foreach ( $filetypes as $ext ) {
+				$extension = 'url';
+				$ends_with = wpad_ends_with( $slide, $ext );
+				if ( $ends_with ) {
+					$extension = $ext;
+					break;
+				}
+			}
+			if ( 'url' !== $extension ) {
+				$class  = sanitize_title( $extension );
+				$list[] = '<a href="' . esc_url( $slide ) . '" class="' . $class . '">' . 'Slides (' . strtoupper( $class ) . ')</a>';
+			} else {
+				$list[] = ( esc_url( $slide ) ) ? '<a href="' . esc_url( $slide ) . '">Slides (URL)</a>' : '';
+			}
+		}
+	}
+
+	return $list;
+}
+
+/**
+ * Output slides.
+ *
+ * @param int $session_ID Session ID.
+ */
+function wpcs_slides( $session_ID ) {
+	$slides = wpcs_get_slides( $session_ID );
+	if ( is_array( $slides ) && ! empty( $slides ) ) {
+		foreach ( $slides as $slide ) {
+			$output .= '<li>' . $slide . '</li>';
+		}
+	}
+	echo '<ul class="wpcs-slides">' . $output . '</ul>';
+}
+
+/**
+ * Get an array of links to session resources.
+ *
+ * @param int $session_ID Post ID for session.
+ *
+ * @return array
+ */
+function wpcs_get_resources( $session_ID ) {
+	$resources = get_post_meta( $session_ID, 'wpcsp_session_resources', true );
+	$filetypes = array( '.doc', '.docx', '.xls', '.xlsx', '.pdf' );
+	$list      = array();
+	$extension = 'url';
+	if ( is_array( $resources ) ) {
+		foreach ( $resources as $resource ) {
+			foreach ( $filetypes as $ext ) {
+				$extension = 'url';
+				$ends_with = wpad_ends_with( $resource, $ext );
+				if ( $ends_with ) {
+					$extension = $ext;
+					break;
+				}
+			}
+			if ( 'url' !== $extension ) {
+				$class  = sanitize_title( $extension );
+				$list[] = '<a href="' . esc_url( $resource ) . '" class="' . $class . '">' . 'Session Resource (' . strtoupper( $class ) . ')</a>';
+			} else {
+				$list[] = ( esc_url( $resource ) ) ? '<a href="' . esc_url( $resource ) . '">Session Resource (URL)</a>' : '';
+			}
+		}
+	}
+
+	return $list;
+}
+
+/**
+ * Output resources.
+ *
+ * @param int $session_ID Session ID.
+ */
+function wpcs_resources( $session_ID ) {
+	$resources = wpcs_get_resources( $session_ID );
+	if ( is_array( $resources ) && ! empty( $resources ) ) {
+		foreach ( $resources as $resource ) {
+			$output .= '<li>' . $resource . '</li>';
+		}
+	}
+	echo '<ul class="wpcs-resources">' . $output . '</ul>';
+}
+
+/**
+ * Check for a file extension ending on a URL.
+ *
+ * @param string $source Source string to check.
+ * @param string $ext Extension we're checking for.
+ *
+ * @return bool
+ */
+function wpad_ends_with( $source, $ext ) {
+	$length = strlen( $ext );
+	if ( $length === 0 ) {
+		return true;
+	}
+
+	return ( substr( $source, -$length ) === $ext );
 }

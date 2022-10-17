@@ -943,11 +943,22 @@ class WPAD_Conference_Schedule {
 
 		$cmb->add_field(
 			array(
-				'name' => 'Slides',
-				'id'   => 'wpcsp_session_slides',
-				'type' => 'text',
+				'name'       => 'Slides',
+				'id'         => 'wpcsp_session_slides',
+				'type'       => 'text',
+				'repeatable' => true,
 			)
 		);
+
+		$cmb->add_field(
+			array(
+				'name'       => 'Resources',
+				'id'         => 'wpcsp_session_resources',
+				'type'       => 'text',
+				'repeatable' => true,
+			)
+		);
+
 
 	}
 
