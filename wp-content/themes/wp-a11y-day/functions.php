@@ -544,7 +544,8 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 	$schedule = array();
 	foreach( $posts as $post_ID ) {
 		$time              = gmdate( 'H', get_post_meta( $post_ID, '_wpcs_session_time', true ) );
-		$schedule[ $time ] = $post_ID;
+		$datatime          = gmdate( 'Y-m-d\TH:i:s\Z', get_post_meta( $post_ID, '_wpcs_session_time', true ) );
+		$schedule[ $time ] = array( 'id' => $post_ID, 'ts' => $datatime );
 	}
 	$start = $args['start'] - 24;
 	for( $i = $start; $i < $args['start']; $i++ ) {
@@ -577,9 +578,10 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			$is_next = true;
 			$text    = false;
 		}
-		$datatime  = date( 'Y-m-d\TH:i:s\Z', strtotime( $time . ':00 UTC' ) );
+		
+		$datatime  = $schedule[ $time ]['ts'];
 		$time_html = '<div class="talk-header"><h2 class="talk-time" data-time="' . $datatime . '" id="talk-time-' . $time . '"><div class="time-wrapper"><span>' . $time . ':00 UTC<span class="screen-reader-text">,&nbsp;</span></span>' . ' </div></h2><div class="talk-wrapper">%s</div></div>';
-		$talk_ID   = $schedule[ $time ];
+		$talk_ID   = $schedule[ $time ]['id'];
 		if ( $talk_ID ) {
 			$talk_type = sanitize_html_class( get_post_meta( $talk_ID, '_wpcs_session_type', true ) );
 			$speakers  = wpad_session_speakers( $talk_ID, $talk_type );
