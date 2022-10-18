@@ -192,6 +192,14 @@ body {
 	background: var(--color-light-blue);
 }
 
+.wpcsp-sponsor-description a {
+	display: inline-block;
+}
+
+.wpcsp-sponsor-description a img {
+	display: block;
+}
+
 .wpcs-session-links {
 	display: flex;
 	flex-wrap: wrap;
