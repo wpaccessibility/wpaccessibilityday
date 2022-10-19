@@ -330,10 +330,16 @@ time .localtime:after {
 	content: ')';
 }
 
+.wpcsp-sponsor-list,
 .wpad-attendees {
 	display: grid;
 	padding: 0;
 	list-style: none;
+}
+
+.wpcsp-sponsor-list li {
+	list-style: none;
+	text-align: center;
 }
 
 .wpad-attendees li {
@@ -363,9 +369,29 @@ time .localtime:after {
 }
 
 @media screen and (min-width: 50em) {
+	.wpcsp-sponsor-list,
 	.wpad-attendees {
 		grid-template-columns: repeat( 3, 1fr );
 	}
+}
+
+#page .wpad-donors {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#page .wpad-donors li {
+	margin-bottom: 1rem;
+}
+
+#page .wpad-donors li span.date {
+	font-size: .9rem;
+	margin-left: 1rem;
+}
+
+#page .wpad-donors li span.info {
+	font-size: 1rem;
 }
 
 #primary {
