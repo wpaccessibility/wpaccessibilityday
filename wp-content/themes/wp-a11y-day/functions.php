@@ -1019,8 +1019,10 @@ function wpad_get_donors() {
  * @return string
  */
 function wpad_display_donors( $atts = array(), $content = '' ) {
-	$donors = wpad_get_donors();
-	$output = '';
+	$donors    = wpad_get_donors();
+	$attendees = wpad_get_microsponsors( true );
+	$donors    = array_merge( $donors, $attendees );
+	$output    = '';
 	foreach ( $donors as $donor ) {
 		$name     = $donor['first_name'] . ' ' . $donor['last_name'];
 		$company  = $donor['company'];
@@ -1047,7 +1049,7 @@ add_shortcode( 'donors', 'wpad_display_donors', 10, 2 );
 /**
  * Fetch Gravity Forms microsponsors.
  */
-function wpad_get_microsponsors() {
+function wpad_get_microsponsors( $low_donors = false ) {
 	global $wpdb;
 	$sponsors = array();
 	$query    = "SELECT * FROM wp_gf_entry WHERE form_id = 13";
@@ -1059,6 +1061,7 @@ function wpad_get_microsponsors() {
 		foreach ( $meta as $value ) {
 			$data['payment_date'] = $entry->payment_date;
 			$data['paid']         = $entry->payment_status;
+			$data['amount']       = str_replace( '$', '', $entry->payment_amount );
 			switch ( $value->meta_key ) {
 				case '1.3':
 					$data['first_name'] = $value->meta_value;
@@ -1071,6 +1074,15 @@ function wpad_get_microsponsors() {
 					break;
 				case '6':
 					$data['company'] = $value->meta_value;
+					break;
+				case '7.3':
+					$data['city'] = $value->meta_value;
+					break;
+				case '7.4':
+					$data['state'] = $value->meta_value;
+					break;
+				case '7.6':
+					$data['country'] = $value->meta_value;
 					break;
 				case '1.3':
 					$data['fname'] = $value->meta_value;
@@ -1088,11 +1100,17 @@ function wpad_get_microsponsors() {
 					$data['paid'] = $value->meta_value;
 					break;
 				case '26':
-					$data['public'] = $value->meta_value;
+					$data['public'] = $value->meta_value; // public microsponsor.
+					break;
+				case '20':
+					$data['attendee'] = $value->meta_value; // public attendee.
 					break;
 			}
 		}
-		if ( $data['public'] !== 'Yes' || (string) $data['paid'] === '0' ) {
+		// If we're fetching low donors, use their attendee status & values not equal to 10.
+		// If we're fetching microsponsors, use their sponsor status & values <= 10.
+		$skip = ( $low_donors ) ? ( $data['attendee'] !== 'Yes' || (int) $data['amount'] != 10 ) : ( $data['public'] !== 'Yes' || (int) $data['amount'] <= 10 );
+		if ( $skip ) {
 			continue;
 		} else {
 			$sponsors[] = $data;
