@@ -646,7 +646,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 					<div class='wp-block-columns'>
 						<div class='wp-block-column'>
 							<div class='talk-header'>
-								<h2 class='talk-time' data-time='2020-11-02T14:45:00Z'><div class='time-wrapper'><span>14:45 UTC<span class='screen-reader-text'>,&nbsp;</span></span></div></h2>
+								<h2 class='talk-time' data-time='2022-11-02T14:45:00Z'><div class='time-wrapper'><span>14:45 UTC<span class='screen-reader-text'>,&nbsp;</span></span></div></h2>
 								<div class='talk-wrapper'>Opening Remarks</div>
 							</div>
 							<div class='talk-description'>
