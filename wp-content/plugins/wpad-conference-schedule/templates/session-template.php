@@ -82,7 +82,7 @@ get_header(); ?>
 										$sponser_url = "";
 										$target = "";
 										foreach($sponsor_list as $sponser_li){ 
-											$sponsor_img = get_the_post_thumbnail_url($sponser_li);
+											$sponsor_img = get_the_post_thumbnail( $sponser_li, 'full', array( 'alt' => get_the_title() ) );
 											if(!empty($sponsor_img)){
 												$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
 												$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
@@ -101,7 +101,7 @@ get_header(); ?>
 												}
 												?>
 												<div class="wpcsp-sponsor-single-image">
-													<a href="<?php echo $sponser_url;?>"><img src="<?php echo get_the_post_thumbnail_url($sponser_li);?>" alt=""></a>
+													<a href="<?php echo $sponser_url;?>"><?php echo $sponsor_img; ?></a>
 												</div>
 											<?php
 											}
