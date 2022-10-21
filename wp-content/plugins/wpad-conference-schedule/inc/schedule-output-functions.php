@@ -802,8 +802,16 @@ function wpcs_get_resources( $session_ID ) {
 				}
 			}
 			if ( 'url' !== $extension ) {
+				$name = '';
+				if ( current_user_can( 'manage_options' ) ) {
+					$parts  = parse_url( $resource );
+					$path   = $parts['path'];
+					$split  = explode( '/', $path );
+					$name   = end( $split );
+					$name   = ' - ' . str_replace( array( '-', '_', $extension ), ' ', $name );
+				}
 				$class  = sanitize_title( $extension );
-				$list[] = '<a href="' . esc_url( $resource ) . '" class="' . $class . '">' . 'Session Resource (' . strtoupper( $class ) . ')</a>';
+				$list[] = '<a href="' . esc_url( $resource ) . '" class="' . $class . '">' . 'Session Resource (' . strtoupper( $class ) . ')' . $name . '</a>';
 			} else {
 				$list[] = ( esc_url( $resource ) ) ? '<a href="' . esc_url( $resource ) . '">Session Resource (URL)</a>' : '';
 			}
