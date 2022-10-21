@@ -61,6 +61,8 @@
 }
 .wpcsp-sponsor-single-image img {
   max-height: 50px;
+  width: auto;
+  display: block;
 }
 
 .single-wpcsp_speaker .entry .entry-content > * {
