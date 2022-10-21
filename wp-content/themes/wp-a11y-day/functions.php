@@ -657,7 +657,7 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 				</div>
 			</div>";
 	$closing_remarks = '';
-	$links           = wpad_youtube_links();
+	$links           = wpad_banner();
 
 	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output );
 }
@@ -789,15 +789,16 @@ function wpad_session_sponsors($session_id){
  *
  * @return string
  */
-function wpad_youtube_links() {
+function wpad_banner() {
 	$time   = time();
 	$output = '';
 	if ( $time < strtotime( '2022-11-02 14:50 UTC' ) ) {
 		if ( $time < strtotime( '2022-11-02 15:00 UTC' ) ) {
+			$start = gmdate( 'F j, Y', strtotime( '2022-11-02 15:00 UTC' ) );
 			$until = human_time_diff( $time, strtotime( '2022-11-02 15:00 UTC' ) );
-			$append = "Starts in only <strong>$until</strong>!";
+			$append = " - in just <strong>$until</strong>!";
 		}
-		$output = "<div class='wpad-callout'><p><a href='" . esc_url( get_option( 'wpcs_field_registration' ) ) . "'>Register for WP Accessibility Day!</a> $append</p></div>";
+		$output = "<div class='wpad-callout'><p>WP Accessibility Day starts $start $append <a href='" . esc_url( get_option( 'wpcs_field_registration' ) ) . "'>Register today!</a> </p></div>";
 	}
 
 	return $output;
