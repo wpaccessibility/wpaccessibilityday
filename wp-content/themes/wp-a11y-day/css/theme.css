@@ -553,6 +553,22 @@ h2.event-time {
 	background: #fff;
 }
 
+.site-header .site-utilities {
+	display: grid;
+}
+
+.site-header .site-utilities time {
+	text-align: right;
+	font-weight: 700;
+	font-size: 1.33rem;
+}
+
+.site-header .site-utilities time .dashicons {
+	vertical-align: middle;
+	color: var(--color-dark-purple);
+	line-height: .8;
+}
+
 .site-header .utility-navigation li {
 	margin: 0 .5em;
 }

@@ -37,7 +37,7 @@
 				}
 				?>
 			</div><!-- .site-branding -->
-
+			<div class="site-utilities">
 			<nav id="utility-navigation" class="utility-navigation navigation" aria-label="Utilities">
 				<?php
 					wp_nav_menu( array(
@@ -47,6 +47,8 @@
 					) );
 				?>
 			</nav><!-- #site-navigation -->
+			<time class="event-date" datetime="2022-11-02T14:45:00Z"><span class="dashicons dashicons-clock" aria-hidden="true"></span> November 2nd-3rd, 2022</time>
+			</div>
 		</div><!-- .header-1 -->
 		<nav id="main-navigation" class="main-navigation navigation" aria-label="Main">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'wp-accessibility-day' ); ?></button>
