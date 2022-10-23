@@ -330,6 +330,10 @@ time .localtime:after {
 	content: ')';
 }
 
+.wpad-microsponsors {
+	align-items: center;
+}
+
 .wpad-microsponsors,
 .wpad-attendees {
 	display: grid;
