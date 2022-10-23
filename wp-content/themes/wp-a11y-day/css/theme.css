@@ -330,14 +330,14 @@ time .localtime:after {
 	content: ')';
 }
 
-.wpcsp-sponsor-list,
+.wpad-microsponsors,
 .wpad-attendees {
 	display: grid;
 	padding: 0;
 	list-style: none;
 }
 
-.wpcsp-sponsor-list li {
+.wpad-microsponsors li {
 	list-style: none;
 	text-align: center;
 }
@@ -369,9 +369,11 @@ time .localtime:after {
 }
 
 @media screen and (min-width: 50em) {
-	.wpcsp-sponsor-list,
 	.wpad-attendees {
 		grid-template-columns: repeat( 3, 1fr );
+	}
+	.wpad-microsponsors {
+		grid-template-columns: repeat( 5, 1fr );
 	}
 }
 

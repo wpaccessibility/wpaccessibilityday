@@ -1010,15 +1010,15 @@ label[for=matomo_optout_checkbox] {
 
 @media only screen and (max-width: 600px) {
 	
-	.home #gform_1 {
-    	display: block !important;
+	#gform_1 {
+		display: block !important;
 	}
 	
-	.home #gform_1 .gform_footer, 
-	.home #gform_1 .gform_page_footer {
-    margin: 0 !important;
-    padding: 0 !important;
-}
+	#gform_1 .gform_footer, 
+	#gform_1 .gform_page_footer {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
 }
 
 .widget {
@@ -1187,29 +1187,29 @@ footer .widget {
 	margin-bottom:0;
 }
 
-.home #gform_1 {
+#gform_1 {
 	display: flex;
 }
 
-.home #gform_1 .gform-body {
+#gform_1 .gform-body {
 	width:75%;
 
 }
-.home #gform_1 .gform-footer{
+#gform_1 .gform-footer{
 	padding:0;
 }
 
-.home #gform_1 .gform_footer input {
+#gform_1 .gform_footer input {
 	margin:0;
 	padding: 14px 24px;
 	line-height: 1;
 }
 
-.home #gform_1 #input_1_1 {
+#gform_1 #input_1_1 {
 	border-radius: 2px 0 0 2px;
 }
 
-.home #gform_submit_button_1 {
+#gform_submit_button_1 {
 	border-radius: 0 2px 2px 0;
 }
 
