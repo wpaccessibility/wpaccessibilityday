@@ -82,7 +82,7 @@ get_header(); ?>
 										$sponser_url = "";
 										$target = "";
 										foreach($sponsor_list as $sponser_li){ 
-											$sponsor_img = get_the_post_thumbnail( $sponser_li, 'full', array( 'alt' => get_the_title() ) );
+											$sponsor_img = get_the_post_thumbnail( $sponser_li, 'full', array( 'alt' => get_the_title( $sponser_li ) ) );
 											if(!empty($sponsor_img)){
 												$sponsor_url = get_option('wpcsp_field_sponsor_page_url');
 												$wpcsp_website_url = get_post_meta($sponser_li,'wpcsp_website_url',true);
