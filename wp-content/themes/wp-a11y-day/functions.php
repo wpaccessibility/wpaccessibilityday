@@ -339,8 +339,13 @@ function wpad_shortcode_people( $atts ) {
 		'fields'     => array( 'ID', 'display_name', 'user_email' ),
 	);
 	// get all authorized users.
+	$output = get_transient( 'wpad_attendees' );
+	if ( $output ) {
+		return $output;
+	} else {
+		$output = '';
+	}
 	$users  = get_users( $args );
-	$output = '';
 	foreach ( $users as $user ) {
 		$name      = $user->display_name;
 		$gravatar  = get_avatar( $user->user_email );
@@ -375,8 +380,10 @@ function wpad_shortcode_people( $atts ) {
 		$social = ( ! empty( $icons ) ) ? '<div class="attendee-social">' . implode( ' ', $icons ) . '</div>' : '';
 		$output .= '<li>' . $gravatar . '<div class="attendee-info"><h2 class="attendee-name">' . $name . '</h2>' . $company . $location . $social . '</div></li>';
 	}
+	$output = '<ul class="wpad-attendees alignwide">' . $output . '</ul>';
+	set_transient( 'wpad_attendees', $output, 300 );
 
-	return '<ul class="wpad-attendees alignwide">' . $output . '</ul>';
+	return $output;
 }
 add_shortcode( 'attendees', 'wpad_shortcode_people' );
 
@@ -1020,7 +1027,7 @@ function wpad_get_donors() {
  * @return string
  */
 function wpad_display_donors( $atts = array(), $content = '' ) {
-	$output = get_transient( 'wpad_donors' )
+	$output = get_transient( 'wpad_donors' );
 	if ( $output ) {
 		return $output;
 	} else {
@@ -1169,10 +1176,10 @@ function wpad_display_microsponsors( $atts = array(), $content = '' ) {
 			$output .= '<li class="wpcsp-sponsor"><div class="wpcsp-sponsor-description">' . $wrap . '<img class="wpcsp-sponsor-image" src="' . esc_url( $image ) . '" alt="' . esc_html( $label ) . '" style="width: auto; max-height: ' . esc_attr( $mh ) . '" />' . $unwrap . '</div></li>';
 		}
 	}
-	$output = '<ul class="wpcsp-sponsor-list wpad-microsponsors"' . $output . '</ul>';
+	$output = '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>';
 	set_transient( 'wpad_microsponsors', $output, 300 );
 
-	return '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>';
+	return $output;
 }
 
 /**
