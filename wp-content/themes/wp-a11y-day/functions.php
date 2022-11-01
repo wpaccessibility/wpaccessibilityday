@@ -542,7 +542,7 @@ add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
  */
 function wpaccessibilityday_schedule( $atts, $content ) {
 	$return = get_transient( 'wpad_schedule' );
-	if ( $return ) {
+	if ( $return && ! isset( $_GET['reset_cache'] ) ) {
 		return $return;
 	} else {
 		$return = '';
