@@ -541,6 +541,12 @@ add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
  * @return string
  */
 function wpaccessibilityday_schedule( $atts, $content ) {
+	$return = get_transient( 'wpad_schedule' );
+	if ( $return ) {
+		return $return;
+	} else {
+		$return = '';
+	}
 	$begin = strtotime( '2022-11-02 14:45 UTC' );
 	$end   = strtotime( '2022-11-03 15:00 UTC' );
 	$args  = shortcode_atts( array(
@@ -665,8 +671,10 @@ function wpaccessibilityday_schedule( $atts, $content ) {
 			</div>";
 	$closing_remarks = '';
 	$links           = wpad_banner();
+	$return          = $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output );
+	set_transient( 'wpad_schedule', $return, 150 );
 
-	return $links . $current_talk . $opening_remarks . implode( PHP_EOL, $output );
+	return $return;
 }
 
 /**
@@ -1152,7 +1160,7 @@ function wpad_display_microsponsors( $atts = array(), $content = '' ) {
 		$atts,
 		'microsponsors'
 	);
-	$mh       = $args['maxheight'];
+	$mh     = $args['maxheight'];
 	$output = get_transient( 'wpad_microsponsors' );
 	if ( $output ) {
 		return $output;
