@@ -1020,6 +1020,12 @@ function wpad_get_donors() {
  * @return string
  */
 function wpad_display_donors( $atts = array(), $content = '' ) {
+	$output = get_transient( 'wpad_donors' )
+	if ( $output ) {
+		return $output;
+	} else {
+		$output = '';
+	}
 	$donors    = wpad_get_donors();
 	$attendees = wpad_get_microsponsors( true );
 	$donors    = array_merge( $donors, $attendees );
@@ -1037,8 +1043,10 @@ function wpad_display_donors( $atts = array(), $content = '' ) {
 		$date     = gmdate( 'F, Y', strtotime( $donor['payment_date'] ) );
 		$output .= '<li><strong>' . esc_html( $name ) . '</strong> <span class="date">' . $date . '</span><br /><span class="info">' . esc_html( $company . $location ) . '</span></li>';
 	}
+	$output = '<ul class="wpad-donors"' . $output . '</ul>';
+	set_transient( 'wpad_donors', $output, 300 );
 
-	return '<ul class="wpad-donors">' . $output . '</ul>';
+	return $output;
 }
 
 /**
@@ -1138,8 +1146,13 @@ function wpad_display_microsponsors( $atts = array(), $content = '' ) {
 		'microsponsors'
 	);
 	$mh       = $args['maxheight'];
+	$output = get_transient( 'wpad_microsponsors' );
+	if ( $output ) {
+		return $output;
+	} else {
+		$output = '';
+	}
 	$sponsors = wpad_get_microsponsors();
-	$output   = '';
 	if ( is_array( $sponsors ) && count( $sponsors ) > 0 ) {
 		foreach ( $sponsors as $sponsor ) {
 			$name     = $sponsor['first_name'] . ' ' . $sponsor['last_name'];
@@ -1156,6 +1169,8 @@ function wpad_display_microsponsors( $atts = array(), $content = '' ) {
 			$output .= '<li class="wpcsp-sponsor"><div class="wpcsp-sponsor-description">' . $wrap . '<img class="wpcsp-sponsor-image" src="' . esc_url( $image ) . '" alt="' . esc_html( $label ) . '" style="width: auto; max-height: ' . esc_attr( $mh ) . '" />' . $unwrap . '</div></li>';
 		}
 	}
+	$output = '<ul class="wpcsp-sponsor-list wpad-microsponsors"' . $output . '</ul>';
+	set_transient( 'wpad_microsponsors', $output, 300 );
 
 	return '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>';
 }
