@@ -1038,7 +1038,7 @@ function wpad_display_donors( $atts = array(), $content = '' ) {
 		$output .= '<li><strong>' . esc_html( $name ) . '</strong> <span class="date">' . $date . '</span><br /><span class="info">' . esc_html( $company . $location ) . '</span></li>';
 	}
 
-	return ( current_user_can( 'manage_options' ) ) ? '<ul class="wpad-donors">' . $output . '</ul>' : '';
+	return '<ul class="wpad-donors">' . $output . '</ul>';
 }
 
 /**
@@ -1157,7 +1157,7 @@ function wpad_display_microsponsors( $atts = array(), $content = '' ) {
 		}
 	}
 
-	return ( current_user_can( 'manage_options' ) ) ? '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>' : '';
+	return '<ul class="wpcsp-sponsor-list wpad-microsponsors">' . $output . '</ul>';
 }
 
 /**
