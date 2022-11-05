@@ -1059,6 +1059,15 @@ blockquote {
 	font-size: 1.2em;
 }
 
+.session_id {
+	font-family:courier;
+	margin-left: 5px;
+	color: #333;
+	border: 1px solid #aaa;
+	font-size: 1rem;
+	padding: 5px;
+}
+
 /* Organizers */
 .reorder {
 	display: flex;
