@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'WPCS_DIR' , plugin_dir_path( __FILE__ ) );
 
 // Version
-define( 'WPCS_VERSION', '1.0.4' );
+define( 'WPCS_VERSION', '1.0.5' );
 
 // Plugin File URL
 define( 'PLUGIN_FILE_URL' , __FILE__);
@@ -240,6 +240,8 @@ class WPAD_Conference_Schedule {
 		$session_meridiem = ( $session_time ) ? date( 'a', $session_time )     : 'am';
 		$session_type     = get_post_meta( $post->ID, '_wpcs_session_type', true );
 		$session_speakers = get_post_meta( $post->ID, '_wpcs_session_speakers',  true );
+		$session_captions = get_post_meta( $post->ID, '_wpcs_caption_url',  true );
+		$session_youtube  = get_post_meta( $post->ID, '_wpcs_youtube_id',  true );
 
 		wp_nonce_field( 'edit-session-info', 'wpcs-meta-session-info' );
 		?>
@@ -279,6 +281,14 @@ class WPAD_Conference_Schedule {
 				<option value="lightning" <?php selected( $session_type, 'lightning' ); ?>><?php _e( 'Lightning Talks', 'wp-conference-schedule' ); ?></option>
 				<option value="custom" <?php selected( $session_type, 'custom' ); ?>><?php _e( 'Custom', 'wp-conference-schedule' ); ?></option>
 			</select>
+		</p>
+		<p>
+			<label for="wpcs-session-youtube"><?php _e( 'YouTube ID', 'wp-conference-schedule' ); ?></label>
+			<input type="text" id="wpcs-session-youtube" name="wpcs-session-youtube" value="<?php echo esc_attr( $session_youtube ); ?>" />
+		</p>
+		<p>
+			<label for="wpcs-session-caption"><?php _e( 'Caption URL:', 'wp-conference-schedule' ); ?></label>
+			<input type="text" id="wpcs-session-caption" name="wpcs-session-caption" value="<?php echo esc_attr( $session_captions ); ?>" />
 		</p>
 
 		<?php
@@ -325,6 +335,14 @@ class WPAD_Conference_Schedule {
 			// Update session speakers
 			$session_speakers = sanitize_text_field($_POST['wpcs-session-speakers']);
 			update_post_meta( $post_id, '_wpcs_session_speakers', $session_speakers);
+
+			// Update session YouTube ID
+			$session_youtube = sanitize_text_field($_POST['wpcs-session-youtube']);
+			update_post_meta( $post_id, '_wpcs_youtube_id', $session_youtube);
+			
+			// Update session caption URL
+			$session_caption = sanitize_text_field($_POST['wpcs-session-caption']);
+			update_post_meta( $post_id, '_wpcs_caption_url', $session_caption);
 
 		}
 
@@ -1340,3 +1358,35 @@ function wpcsp_sponsor_level_metabox() {
 
 // Load the plugin class.
 $GLOBALS['wpcs_plugin'] = new WPAD_Conference_Schedule();
+
+add_shortcode( 'able', 'wpad_get_video' );
+
+function wpad_get_video() {
+	return '
+	<div class="wp-block-group wpad-video-player">
+		<video id="able-player-' . get_the_ID() . '" data-skin="2020" data-able-player data-transcript-div="able-player-transcript-' . get_the_ID() . '" preload="auto" poster="' . wpad_get_poster() . '" data-youtube-id="' . wpad_get_youtube() . '">
+			<track kind="captions" src="' . wpad_get_captions() . '" srclang="en" label="English">
+		</video>
+		<div id="able-player-transcript-' . get_the_ID() . '"></div>
+	</div>';
+}
+
+function wpad_get_poster() {
+	$poster  = get_the_post_thumbnail_url();
+
+	return $poster;
+}
+
+function wpad_get_captions() {
+	$post_id          = get_the_ID();
+	$session_captions = get_post_meta( $post_id, '_wpcs_caption_url', true );
+
+	return $session_captions;
+}
+
+function wpad_get_youtube() {
+	$post_id         = get_the_ID();
+	$session_youtube = get_post_meta( $post_id, '_wpcs_youtube_id', true );
+
+	return $session_youtube;
+}

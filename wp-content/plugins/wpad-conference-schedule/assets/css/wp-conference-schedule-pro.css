@@ -256,3 +256,27 @@
   color: #ffffff;
   background-color: #000000;
 }
+
+.able-poster {
+	padding: 20px 0;
+	background: #030303;
+}
+
+.able-big-play-button:focus,
+.able-big-play-button:hover {
+	background: transparent !important;
+}
+
+.able {
+	box-shadow: none;
+	border: 1px solid #eee;
+}
+
+.able-seekbar-head {
+	width: 1em;
+	height: 1em;
+}
+
+.able-window-toolbar label {
+	display: inline;
+}
