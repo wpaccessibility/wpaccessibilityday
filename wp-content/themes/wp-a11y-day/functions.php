@@ -541,7 +541,8 @@ add_shortcode( 'schedule', 'wpaccessibilityday_schedule' );
  * @return string
  */
 function wpaccessibilityday_schedule( $atts, $content ) {
-	$return = get_transient( 'wpad_schedule' );
+	$return       = get_transient( 'wpad_schedule' );
+	$current_talk = '';
 	if ( $return && ! isset( $_GET['reset_cache'] ) ) {
 		return $return;
 	} else {
@@ -1260,7 +1261,7 @@ add_action('wp', 'custom_maybe_activate_user', 9);
  */
 function wpad_headers( $headers, $wp ) {
 	// Disable caching on sponsor post type single.
-	if ( 'wpcsp_sponsor' === $wp->query_vars['post_type'] ) {
+	if ( isset( $wp->query_vars['post_type'] ) && 'wpcsp_sponsor' === $wp->query_vars['post_type'] ) {
 		$headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0';
 	}
 
