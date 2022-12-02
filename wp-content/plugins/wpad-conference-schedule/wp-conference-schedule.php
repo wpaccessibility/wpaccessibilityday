@@ -1364,6 +1364,7 @@ add_shortcode( 'able', 'wpad_get_video' );
 function wpad_get_video() {
 	return '
 	<div class="wp-block-group alignwide wpad-video-player">
+		<h2>Session Video</h2>
 		<video id="able-player-' . get_the_ID() . '" data-skin="2020" data-able-player data-transcript-div="able-player-transcript-' . get_the_ID() . '" preload="auto" poster="' . wpad_get_poster() . '" data-youtube-id="' . wpad_get_youtube() . '">
 			<track kind="captions" src="' . wpad_get_captions() . '" srclang="en" label="English">
 		</video>
