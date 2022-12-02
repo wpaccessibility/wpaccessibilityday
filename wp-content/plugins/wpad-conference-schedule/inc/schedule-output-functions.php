@@ -771,6 +771,7 @@ function wpcs_get_slides( $session_ID ) {
  */
 function wpcs_slides( $session_ID ) {
 	$slides = wpcs_get_slides( $session_ID );
+	$output = '';
 	if ( is_array( $slides ) && ! empty( $slides ) ) {
 		foreach ( $slides as $slide ) {
 			$output .= '<li>' . $slide . '</li>';
